@@ -14,5 +14,5 @@ export const ContactAvatar: React.FC<Props> = ({ avatar }) => {
 
     const defaultAvatar = <UserOutlined />;
 
-    return <Avatar className={styles.contactAvatar} icon={defaultAvatar} />;
+    return <Avatar className={styles.contactAvatar} icon={avatar === 'default' && defaultAvatar} />;
 };

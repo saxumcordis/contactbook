@@ -9,6 +9,6 @@ type Props = {
 };
 
 export const ContactBox: React.FC<Props> = ({ contact }) => {
-  const { _id, avatar, name } = contact;
+  const { avatar } = contact;
   return <div className={styles.contactBox}><ContactAvatar avatar={avatar}/></div>;
 };
