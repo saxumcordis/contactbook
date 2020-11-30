@@ -1,0 +1,41 @@
+@import '../../../../assets/theme/colors';
+@import '../../../../assets/theme/fonts';
+
+.searchInputWrapper {
+  margin-right: 15px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchInput {
+  background-color: $color1 !important;
+  border-color: $color5 !important;
+
+  &>input {
+    font-family: "FuturaBookC";
+    font-size: 16px;
+    height: 25px;
+    transition: all 0.4s ease;
+    background: $color1;
+    color: $primary;
+    caret-color: $color5;
+
+    &::placeholder {
+      transition: all 0.4s ease;
+      color: $color3;
+    }
+
+  }
+
+
+  &>span>span {
+    color: $color5;
+    margin-right: 100%;
+  }
+
+  &:focus {
+    box-shadow: $color3 !important;
+  }
+}
