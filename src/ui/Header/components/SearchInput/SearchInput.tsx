@@ -1,17 +1,15 @@
 import React from "react";
 import styles from "./SearchInput.module.scss";
 
-import "antd/es/input/style/index.css";
-
-import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import {InputField} from "../../../../components/InputField";
 
 export const SearchInput = () => {
   const suffix = <SearchOutlined />;
 
   return (
     <div className={styles.searchInputWrapper}>
-      <Input
+      <InputField
         className={styles.searchInput}
         suffix={suffix}
         placeholder="Start input contact name..."

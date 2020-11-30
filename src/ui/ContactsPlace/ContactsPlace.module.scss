@@ -1,0 +1,19 @@
+@import '../../assets/theme/colors';
+@import '../../assets/theme/fonts';
+
+.contactsPlace {
+  margin: 15px 0 0 15px;
+  display: flex;
+  flex-direction: column;
+  color: $color2;
+  flex-grow: 1;
+}
+
+.contactsWrapper {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: calc(100% - 15px);
+}

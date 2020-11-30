@@ -1,0 +1,21 @@
+@import '../../../../assets/theme/colors';
+@import '../../../../assets/theme/fonts';
+
+.contactsPlaceHeader {
+  font-family: "FuturaBookC", monospace;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 5px 5px;
+  width: calc(100% - 25px);
+  background: $color3;
+  box-shadow: 0 2px 2px $color1;
+  color: $color4;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &>span {
+    text-shadow: 1px 1px $primary;
+  }
+}
