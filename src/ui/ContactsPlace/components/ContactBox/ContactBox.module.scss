@@ -1,0 +1,15 @@
+@import "../../../../assets/theme/colors";
+
+.contactBox {
+  margin-top: 10px;
+  width: 200px;
+  height: 75px;
+  border: 2px solid $color4;
+  box-shadow: 0 1px 3px $color2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 16px;
+
+}
