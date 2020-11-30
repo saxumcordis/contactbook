@@ -1,0 +1,15 @@
+@import '../../../../assets/theme/colors';
+
+.addPersonButton {
+  margin-left: 15px;
+  font-size: 48px;
+  max-width: 48px;
+  color: $color5;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.addPersonButton:active {
+  transition: all 0.4s ease;
+  transform: rotate(90deg);
+}
