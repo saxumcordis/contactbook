@@ -1,0 +1,12 @@
+@import 'assets/theme/colors';
+@import 'assets/theme/fonts';
+
+body {
+  margin: 0;
+  font-family: 'FuturaBookC', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $primary;
+  color: $fontColor;
+}
+
