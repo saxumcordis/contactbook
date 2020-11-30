@@ -1,0 +1,12 @@
+@import '../../assets/theme/colors';
+@import '../../assets/theme/fonts';
+
+.header {
+  width: 100%;
+  height: 50px;
+  background: $color1;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 3px 5px $color2;
+}
