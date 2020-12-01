@@ -14,8 +14,8 @@ export interface Contact_person_data_address {
 }
 
 export interface Contact_person_data {
-    phone: Contact_person_data_phone;
-    address: Contact_person_data_address;
+    phone: Contact_person_data_phone | null;
+    address: Contact_person_data_address | null;
 }
 
 export interface Contact_person {
@@ -24,6 +24,8 @@ export interface Contact_person {
     surname: string | null;
     fatherName: string | null;
     avatar: string;
+    birth: string | null;
+    group: string | null;
     data: Contact_person_data | null;
 }
 
