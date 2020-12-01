@@ -8,7 +8,7 @@ export const ContactsPlaceHeader = () => {
         <span>Все контакты</span>
         <span>Показать группу</span>
         <span>Сортировка</span>
-        <span>Всего контактов</span>
+        <span>Всего контактов 0/243</span>
     </div>
   );
 };
