@@ -1,0 +1,43 @@
+@import '../../assets/theme/colors';
+
+.button {
+  .suffixIcon,
+  .prefixIcon {
+    display: inline-flex;
+  }
+
+  .prefixIcon {
+    margin-right: 6px;
+  }
+
+  .suffixIcon {
+    margin-left: 6px;
+  }
+
+  &:global(.ant-btn-sm) {
+    line-height: 1;
+  }
+
+  &:global(.ant-btn) {
+    display: inline-flex;
+    align-items: center;
+
+    &:hover, &:active {
+      color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  &:global(.ant-btn-link) {
+    padding: 0;
+    border: none;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &:global(.ant-btn-block) {
+      justify-content: center;
+    }
+  }
+}
