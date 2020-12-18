@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: rgba($primary, 0.5);
+  background-color: rgba($color1, 0.5);
 }
 
 
@@ -22,6 +22,7 @@
   flex-direction: column;
   border-radius: 8px;
   min-width: 370px;
+  border: 1px solid $color4;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0 , 0.12);
   background: white;
   z-index: 1100;
@@ -33,29 +34,33 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $color4;
   height: 55px;
 }
 
 .title {
-  font-size: 16px;
+  font-size: 20px;
+  color: $color5;
+  text-shadow: 1px 1px 1px $color2;
 }
 
 .close {
   max-width: 16px;
   width: 16px;
-  color: pink;
+  color: $color5;
   cursor: pointer;
   margin-left: auto;
 }
 
 .body {
-  color: grey;
+  color: $primary;
+  font-size: 15px;
+  line-height: 1.23;
 }
 
 .footer {
   padding: 22px 20px;
-  border-top: 1px solid black;
+  border-top: 1px solid $color4;
   display: flex;
   justify-content: flex-end;
 }

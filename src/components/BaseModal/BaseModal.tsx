@@ -2,25 +2,12 @@ import React, { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import styles from "./BaseModal.module.scss";
+import { BaseModalProps } from "../../types/Components";
 
-type Props = {
-  title?: React.ReactNode;
-  className?: string;
-  body?: React.ReactNode;
-  footer?: React.ReactNode;
-  closable?: boolean;
-  isOpen: boolean;
-  setOpen: (value: boolean) => void;
-};
+type Props = BaseModalProps;
 
-export const BaseModal: React.FC<Props> = ({
-  title,
-  className,
-  body,
-  footer,
-  ...props
-}) => {
-  const { closable, isOpen, setOpen } = props;
+export const BaseModal: React.FC<Props> = ({ ...props }) => {
+  const { closable, isOpen, setOpen, className, title, body, footer } = props;
 
   const containerRef = useRef<Element>();
 
