@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./ContactAvatar.module.scss";
+import styles from "./SmallAvatar.module.scss";
 
 import { Avatar } from "antd";
 
@@ -10,7 +10,7 @@ type Props = {
   avatar: string;
 };
 
-export const ContactAvatar: React.FC<Props> = ({ avatar }) => {
+export const SmallAvatar: React.FC<Props> = ({ avatar }) => {
   const defaultAvatar = <UserOutlined />;
 
   return (
