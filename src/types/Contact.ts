@@ -30,5 +30,5 @@ export interface Contact_person {
 }
 
 export interface Contact {
-    contact: Contact_person | null;
+    contact: Contact_person;
 }
