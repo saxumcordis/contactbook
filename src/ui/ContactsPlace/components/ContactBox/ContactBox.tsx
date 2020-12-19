@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./ContactBox.module.scss";
 
 import { Contact_person } from "../../../../types/Contact";
-import { SmallAvatar } from "../../../../components/SmallAvatar";
+import { Avatar } from "../../../../components/Avatar";
 import { ContactBoxInfo } from "./components/ContactBoxInfo";
 import { ContactModal } from "../ContactModal";
 
@@ -18,7 +18,7 @@ export const ContactBox: React.FC<Props> = ({ contact }) => {
   const { avatar } = contact;
   return (
     <div className={styles.contactBox} onClick={() => !isOpen && handleOpen()}>
-      <SmallAvatar avatar={avatar} />
+      <Avatar avatar={avatar} size={"small"} />
       <ContactBoxInfo contact={contact} />
       <ContactModal contact={contact} isOpen={isOpen} setOpen={setOpen} />
     </div>
