@@ -1,8 +1,13 @@
 @import "../../../../assets/theme/colors";
 
 .contactModal {
-  max-width: 600px;
-  width: 600px;
+  max-width: 800px;
+  width: 800px;
   max-height: 800px;
   background: $color1;
+}
+
+.form {
+  position: fixed;
+  z-index: 1100;
 }
