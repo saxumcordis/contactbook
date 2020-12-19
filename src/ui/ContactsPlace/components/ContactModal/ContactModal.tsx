@@ -9,7 +9,7 @@ import {ContactModalBody} from "./components";
 
 type Props = Contact & BaseModalProps;
 
-export const ContactModal: React.FC<Props> = ({ ...props }) => {
+export const ContactModal: React.FC<Props> = props => {
   const { isOpen, setOpen, contact } = props;
 
 

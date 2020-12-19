@@ -6,7 +6,7 @@ import { BaseModalProps } from "../../types/Components";
 
 type Props = BaseModalProps;
 
-export const BaseModal: React.FC<Props> = ({ ...props }) => {
+export const BaseModal: React.FC<Props> = props => {
   const { closable, isOpen, setOpen, className, title, body, footer } = props;
 
   const containerRef = useRef<Element>();
