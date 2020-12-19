@@ -1,18 +1,17 @@
 import React from "react";
-import { Contact_person } from "../../../../../types/Contact";
 
 type Props = {
-  contact: Contact_person;
+  title: string,
+  dirty: boolean,
 };
 
 //TODO Изменение хедера: редактирование/просмотр контакта. Добавить контекст юзера
 
-export const ContactModalHeader: React.FC<Props> = ({ contact }) => {
-  const { name, surname } = contact;
+export const ContactModalHeader: React.FC<Props> = ({ title, dirty }) => {
 
   return (
     <>
-      Контакт: {name} {surname}
+      {!dirty ? "Контакт" : "Редактирование контакта:"} {title}
     </>
   );
 };
