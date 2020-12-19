@@ -1,0 +1,63 @@
+@import "../../../../../assets/theme/colors";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px;
+
+}
+
+.headingGroup {
+  & > div > input {
+    max-width: 340px;
+    max-height: 40px;
+  }
+
+  border-bottom-color: $color2 !important;
+}
+
+.noPaddingSide {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.noBorderBottom {
+  border-bottom: none !important;
+}
+
+.shortWidth {
+  & > div > input {
+    width: 280px;
+  }
+}
+
+.inputStyle {
+  & > div > input {
+    height: 30px;
+    outline: none;
+    background-color: $color1 !important;
+    border-color: $color5 !important;
+    color: $primary;
+    padding: 0 8px;
+    &::placeholder {
+      transition: all 0.4s ease;
+      color: $color3;
+    }
+
+  }
+}
+
+.avatar {
+  color: $primary;
+  border: 1px solid $color5;
+  display: flex;
+  justify-content: center;
+  max-width: 140px;
+  height: 100%;
+  box-shadow: 0 4px 8px $color2;
+  border-radius: 10px;
+}
