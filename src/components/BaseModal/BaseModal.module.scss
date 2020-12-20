@@ -27,6 +27,8 @@
   background: white;
   z-index: 1100;
   transition: all 0.2s ease-in-out;
+
+  overflow: auto;
 }
 
 .header {
@@ -50,6 +52,7 @@
   color: $color5;
   cursor: pointer;
   margin-left: auto;
+  outline: none;
 }
 
 .body {
@@ -63,4 +66,27 @@
   border-top: 1px solid $color4;
   display: flex;
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    height: 30px;
+    padding: 8px 20px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .body {
+    font-size: 13px;
+  }
+
+  .footer {
+    padding: 11px 10px;
+  }
+
+  .close {
+    font-size: 12px;
+  }
 }

@@ -15,7 +15,6 @@ export const ContactModalBody = () => {
         <FieldGroup
           layout="column"
           className={classNames(
-            styles.shortWidth,
             styles.noPadding,
             styles.inputStyle,
             styles.noBorderBottom
@@ -36,7 +35,7 @@ export const ContactModalBody = () => {
       >
         <Field id="mobile" name="mobile" placeholder="Моб.телефон" />
         <Field id="home" name="home" placeholder="Дом.телефон" />
-        <Field id="work" name="work" placeholder="Моб.телефон" />
+        <Field id="work" name="work" placeholder="Раб.телефон" />
       </FieldGroup>
     </div>
   );
