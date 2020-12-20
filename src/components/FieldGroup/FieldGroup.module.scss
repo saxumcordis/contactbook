@@ -7,10 +7,10 @@
 }
 
 .fieldGroup_layoutColumn {
+  padding: 0;
   .body {
     flex-direction: column;
     align-items: flex-start;
-
     & > * {
       margin-right: 0;
       margin-bottom: 16px;
