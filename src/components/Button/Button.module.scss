@@ -1,6 +1,8 @@
 @import '../../assets/theme/colors';
+@import '../../assets/theme/fonts';
 
 .button {
+  font-family: 'FuturaBookC', serif;
   .suffixIcon,
   .prefixIcon {
     display: inline-flex;
