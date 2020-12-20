@@ -9,16 +9,23 @@ export const ContactsPlace = () => {
     name: "Alexander",
     avatar: "default",
     surname: "Alexandrov",
-    fatherName: null,
-    birth: null,
-    group: null,
+    fatherName: "Alexandrovich",
+    birth: "12.12.2000",
+    group: "Семья",
     data: {
       phone: {
-        mobile: "1231",
-        work: null,
-        home: null,
+        mobile: "89999999999",
+        work: "89999999999",
+        home: "999999",
       },
-      address: null
+      address: {
+        country: "Россия",
+        city: "Москва",
+        street: "Вавилова",
+        house: "19",
+        flat: "10",
+        postalCode: "117312",
+      }
     },
   };
 
@@ -39,7 +46,7 @@ export const ContactsPlace = () => {
       <div className={styles.contactsWrapper}>
         <ContactBox contact={{...contact, surname: null}} />
         <ContactBox contact={{...contact, data: {...data, phone: {...phone, mobile: null}}}} />
-        <ContactBox contact={{...contact, surname: null, data: null}} />
+        <ContactBox contact={{...contact, surname: null,fatherName:null, data: null}} />
         <ContactBox contact={contact} />
         <ContactBox contact={contact} />
         <ContactBox contact={contact} />
