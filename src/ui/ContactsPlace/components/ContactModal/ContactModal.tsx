@@ -62,7 +62,7 @@ export const ContactModal: React.FC<Props> = (props) => {
             className={styles.contactModal}
             title={
               <ContactModalHeader
-                title={contact.name + " " + contact.surname}
+                title={contact.name + " " + (contact.surname || "")}
                 dirty={dirty}
               />
             }
