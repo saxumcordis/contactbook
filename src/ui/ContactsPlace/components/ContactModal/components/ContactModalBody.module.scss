@@ -17,7 +17,15 @@
     max-height: 40px;
   }
 
-  border-bottom-color: $color2 !important;
+}
+
+.headingRight {
+  & > div {
+    align-items: flex-end !important;
+    & > div > input {
+      width: 100px !important;
+    }
+  }
 }
 
 .noPaddingSide {
@@ -34,36 +42,43 @@
 }
 
 .shortWidth {
-  & > div > input {
-    width: 280px;
+  & > div > div > input {
+    max-width: 160px;
   }
 }
 
 .inputStyle {
-  & > div > input {
+  & > div > div > input {
     width: 300px;
     height: 30px;
+    font-size: 15px;
     outline: none;
+    border: 1px solid;
     background-color: $color1 !important;
-    border-color: $color5 !important;
+    border-color: $color3 !important;
     color: $primary;
     padding: 0 8px;
+
     &::placeholder {
       transition: all 0.4s ease;
       color: $color3;
     }
-
   }
+}
+
+.labelStyle {
+  color: $color3;
+  font-size: 13px;
 }
 
 .avatar {
   color: $primary;
-  border: 1px solid $color5;
+  border: 1px solid $color3;
   display: flex;
   justify-content: center;
-  max-width: 140px;
+  width: 112px;
   height: 100%;
-  box-shadow: 0 4px 8px $color2;
+  font-size: 112px;
   border-radius: 10px;
 }
 
@@ -83,7 +98,8 @@
   }
 
   .avatar {
-    font-size: 100px;
-    max-width: 100px;
+    font-size: 60px;
+    max-width: 60px;
+    max-height: 60px;
   }
 }

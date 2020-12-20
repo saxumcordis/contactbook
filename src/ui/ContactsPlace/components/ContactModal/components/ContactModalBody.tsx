@@ -1,10 +1,10 @@
 import React from "react";
-import { Field } from "formik";
 
 import styles from "./ContactModalBody.module.scss";
 import { FieldGroup } from "../../../../../components/FieldGroup";
 import classNames from "classnames";
-import {Avatar} from "../../../../../components/Avatar";
+import { Avatar } from "../../../../../components/Avatar";
+import { LabeledInput } from "../../../../../components/LabeledInput";
 
 export const ContactModalBody = () => {
   return (
@@ -20,11 +20,47 @@ export const ContactModalBody = () => {
             styles.noBorderBottom
           )}
         >
-          <Field id="name" name="name" placeholder="Имя" />
-          <Field id="surname" name="surname" placeholder="Фамилия" />
-          <Field id="fatherName" name="fatherName" placeholder="Отчество" />
+          <LabeledInput labelStyle={styles.labelStyle}
+            id="name"
+            name="name"
+            placeholder="Нет данных"
+            labelText="Имя"
+          />
+          <LabeledInput labelStyle={styles.labelStyle}
+            id="surname"
+            name="surname"
+            placeholder="Нет данных"
+            labelText="Фамилия"
+          />
+          <LabeledInput labelStyle={styles.labelStyle}
+            id="fatherName"
+            name="fatherName"
+            placeholder="Нет данных"
+            labelText="Отчество"
+          />
         </FieldGroup>
-          <Avatar avatar={"default"} size={"default"} className={styles.avatar}/>
+        <FieldGroup
+          layout="column"
+          className={classNames(
+            styles.noPadding,
+            styles.shortWidth,
+            styles.inputStyle,
+            styles.noBorderBottom,
+            styles.headingRight
+          )}
+        >
+          <Avatar
+            avatar={"default"}
+            size={"default"}
+            className={styles.avatar}
+          />
+          <LabeledInput labelStyle={styles.labelStyle}
+            id="birth"
+            name="birth"
+            placeholder="Нет данных"
+            labelText="Дата рождения"
+          />
+        </FieldGroup>
       </FieldGroup>
       <FieldGroup
         className={classNames(
@@ -33,9 +69,77 @@ export const ContactModalBody = () => {
           styles.inputStyle
         )}
       >
-        <Field id="mobile" name="mobile" placeholder="Моб.телефон" />
-        <Field id="home" name="home" placeholder="Дом.телефон" />
-        <Field id="work" name="work" placeholder="Раб.телефон" />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="mobile"
+          name="mobile"
+          placeholder="Нет данных"
+          labelText="Моб.телефон"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="home"
+          name="home"
+          placeholder="Нет данных"
+          labelText="Дом.телефон"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="work"
+          name="work"
+          placeholder="Нет данных"
+          labelText="Раб.телефон"
+        />
+      </FieldGroup>
+      <FieldGroup
+        className={classNames(
+          styles.noPaddingSide,
+          styles.inputStyle,
+          styles.noBorderBottom,
+          styles.shortWidth
+        )}
+      >
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="country"
+          name="country"
+          placeholder="Нет данных"
+          labelText="Страна"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="city"
+          name="city"
+          placeholder="Нет данных"
+          labelText="Город"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="street"
+          name="street"
+          placeholder="Нет данных"
+          labelText="Улица"
+        />
+      </FieldGroup>
+      <FieldGroup
+        className={classNames(
+          styles.noPaddingSide,
+          styles.inputStyle,
+          styles.shortWidth
+        )}
+      >
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="house"
+          name="house"
+          placeholder="Нет данных"
+          labelText="№ Дома"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="flat"
+          name="flat"
+          placeholder="Нет данных"
+          labelText="№ Квартиры"
+        />
+        <LabeledInput labelStyle={styles.labelStyle}
+          id="postalCode"
+          name="postalCode"
+          placeholder="Нет данных"
+          labelText="Почтовый индекс"
+        />
       </FieldGroup>
     </div>
   );
