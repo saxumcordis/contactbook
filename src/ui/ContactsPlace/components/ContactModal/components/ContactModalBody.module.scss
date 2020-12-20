@@ -84,13 +84,13 @@
 
 @media screen and (max-width: 700px) {
   .shortWidth {
-    & > div > input {
+    & > div > div > input {
       max-width: 100px;
     }
   }
 
   .inputStyle {
-    & > div > input {
+    & > div > div > input {
       height: 20px;
       font-size: 13px;
       width: 200px;
@@ -98,8 +98,8 @@
   }
 
   .avatar {
-    font-size: 60px;
-    max-width: 60px;
-    max-height: 60px;
+    font-size: 94px;
+    max-width: 94px;
+    max-height: 94px;
   }
 }
