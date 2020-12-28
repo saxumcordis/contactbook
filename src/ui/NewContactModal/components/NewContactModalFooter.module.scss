@@ -1,0 +1,36 @@
+@import "../../../assets/theme/colors";
+
+.footer {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  & > * {
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.button {
+  background: $color3 !important;
+  border-color: $color4 !important;
+  color: $color2 !important;
+  box-shadow: 0 2px 4px $color2 !important;
+
+  &:hover {
+    color: $color1 !important;
+    box-shadow: 0 2px 4px $primary !important;
+  }
+
+  &[disabled] {
+    color: $color3 !important;
+    background: $color2 !important;
+    border-color: $color4 !important;
+    box-shadow: 0 2px 4px $color3 !important;
+  }
+
+  &:hover:disabled {
+    color: $color3;
+  }
+}

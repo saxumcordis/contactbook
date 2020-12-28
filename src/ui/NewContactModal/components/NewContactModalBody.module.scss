@@ -1,0 +1,103 @@
+@import "../../../assets/theme/colors";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px;
+}
+
+.headingGroup {
+  & > div {
+    align-items: center;
+  }
+
+  & > div > input {
+    max-width: 340px;
+    max-height: 40px;
+  }
+}
+
+.headingRight {
+  & > div {
+    align-items: flex-end !important;
+    & > div > input {
+      width: 100px !important;
+    }
+  }
+}
+
+.noPaddingSide {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.noBorderBottom {
+  border-bottom: none !important;
+}
+
+.shortWidth {
+  & > div > div > input {
+    max-width: 160px;
+  }
+}
+
+.inputStyle {
+  & > div > div > input {
+    width: 300px;
+    height: 30px;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid;
+    background-color: $color1 !important;
+    border-color: $color3 !important;
+    color: $primary;
+    padding: 0 8px;
+
+    &::placeholder {
+      transition: all 0.4s ease;
+      color: $color3;
+    }
+  }
+}
+
+.labelStyle {
+  color: $color3;
+  font-size: 13px;
+}
+
+.avatar {
+  color: $primary;
+  border: 1px solid $color3;
+  display: flex;
+  justify-content: center;
+  width: 112px;
+  height: 100%;
+  font-size: 112px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .shortWidth {
+    & > div > div > input {
+      max-width: 100px;
+    }
+  }
+
+  .inputStyle {
+    & > div > div > input {
+      height: 20px;
+      font-size: 13px;
+      width: 200px;
+    }
+  }
+
+  .avatar {
+    font-size: 94px;
+    max-width: 94px;
+    max-height: 94px;
+  }
+}
