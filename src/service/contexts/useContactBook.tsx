@@ -7,12 +7,9 @@ import React, {
 } from "react";
 import { Contact_person } from "../../types/Contact";
 
-type ContactBookItem = {
-  contact: Contact_person;
-};
-
 type ContactBookContext = {
-  contactBook: ContactBookItem[];
+  contactBook: Contact_person[];
+  length: number,
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
 } & Contact_person;
@@ -31,18 +28,20 @@ export const ContactBookProvider: React.FC = ({ children }) => {
 
   const addContact = useCallback(
     (contact) => setContactBook(contactBook.concat([contact])),
-    contactBook
+    [contactBook]
   );
 
   const removeContact = useCallback(
     (id) =>
       setContactBook(
-        contactBook.filter((contact: { id: number }) => contact.id != id)
+        contactBook.filter((contact: { id: number }) => contact.id !== id)
       ),
     [contactBook]
   );
 
-  const value = { contactBook, addContact, removeContact };
+  const length = contactBook.length || 0;
+
+  const value = { contactBook, addContact, removeContact, length };
 
   return (
     <ContactBookContext.Provider value={value}>
