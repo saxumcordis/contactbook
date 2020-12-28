@@ -1,9 +1,15 @@
-import React, {createContext, useCallback, useContext, useEffect, useState} from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Contact_person } from "../../types/Contact";
 
 type ContactBookItem = {
   contact: Contact_person;
-}
+};
 
 type ContactBookContext = {
   contactBook: ContactBookItem[];
@@ -49,8 +55,8 @@ export const PersistContactBook = () => {
   const { contactBook } = useContactBook();
 
   useEffect(() => {
-    localStorage.setItem('contactBook', JSON.stringify(contactBook));
+    localStorage.setItem("contactBook", JSON.stringify(contactBook));
   }, [contactBook]);
 
-  return <></>
-}
+  return <></>;
+};
