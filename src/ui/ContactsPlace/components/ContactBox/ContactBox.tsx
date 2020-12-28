@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./ContactBox.module.scss";
 
 import { Contact_person } from "../../../../types/Contact";
@@ -13,7 +13,7 @@ type Props = {
 export const ContactBox: React.FC<Props> = ({ contact }) => {
   const [isOpen, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(!isOpen);
+  const handleOpen = useCallback(() => setOpen(true), [setOpen]);
 
   const { avatar } = contact;
   return (
