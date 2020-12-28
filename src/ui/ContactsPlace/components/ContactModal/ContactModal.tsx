@@ -7,32 +7,15 @@ import styles from "./ContactModal.module.scss";
 import { ContactModalFooter, ContactModalHeader } from "./components";
 import { ContactModalBody } from "./components";
 import { Form, Formik } from "formik";
+import { ContactFormValues } from "../../../../types/ContactForm";
 
 type Props = Contact & BaseModalProps;
 
-type FormValues = {
-  name: string;
-  surname: string | null;
-  fatherName: string | null;
-  avatar: string;
-  birth: string | null;
-  group: string | null;
-  country: string | null;
-  city: string | null;
-  street: string | null;
-  house: string | null;
-  flat: string | null;
-  postalCode: string | null;
-  mobile: string | null;
-  work: string | null;
-  home: string | null;
-};
-
 export const ContactModal: React.FC<Props> = (props) => {
   const { isOpen, setOpen, contact } = props;
-  const initialValues = useMemo<FormValues>(() => {
+  const initialValues = useMemo<ContactFormValues>(() => {
     return {
-      name: contact.name,
+      name: contact?.name,
       surname: contact?.surname || null,
       fatherName: contact?.fatherName || null,
       avatar: contact.avatar,
