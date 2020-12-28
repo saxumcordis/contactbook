@@ -9,7 +9,7 @@ import { Contact_person } from "../../types/Contact";
 
 type ContactBookContext = {
   contactBook: Contact_person[];
-  length: number,
+  length: number;
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
 } & Contact_person;
