@@ -18,7 +18,11 @@ export const Avatar: React.FC<Props> = ({ avatar, className, size }) => {
 
   return (
     <AntdAvatar
-      className={classNames({ [styles.defaultAvatar]: avatar === 'default' }, className, styles[size + "Size"])}
+      className={classNames(
+        { [styles.defaultAvatar]: avatar === "default" },
+        className,
+        styles[size + "Size"]
+      )}
       icon={avatar === "default" && defaultAvatar}
     />
   );

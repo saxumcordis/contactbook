@@ -25,28 +25,35 @@ export const ContactsPlace = () => {
         house: "19",
         flat: "10",
         postalCode: "117312",
-      }
+      },
     },
   };
 
-  const phone =  {
+  const phone = {
     mobile: "1231",
-        work: null,
-        home: null,
+    work: null,
+    home: null,
   };
 
   const data = {
     phone: phone,
-    address: null
+    address: null,
   };
 
   return (
     <div className={styles.contactsPlace}>
       <ContactsPlaceHeader />
       <div className={styles.contactsWrapper}>
-        <ContactBox contact={{...contact, surname: null}} />
-        <ContactBox contact={{...contact, data: {...data, phone: {...phone, mobile: null}}}} />
-        <ContactBox contact={{...contact, surname: null,fatherName:null, data: null}} />
+        <ContactBox contact={{ ...contact, surname: null }} />
+        <ContactBox
+          contact={{
+            ...contact,
+            data: { ...data, phone: { ...phone, mobile: null } },
+          }}
+        />
+        <ContactBox
+          contact={{ ...contact, surname: null, fatherName: null, data: null }}
+        />
         <ContactBox contact={contact} />
         <ContactBox contact={contact} />
         <ContactBox contact={contact} />

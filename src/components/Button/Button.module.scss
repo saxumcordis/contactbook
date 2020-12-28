@@ -1,8 +1,8 @@
-@import '../../assets/theme/colors';
-@import '../../assets/theme/fonts';
+@import "../../assets/theme/colors";
+@import "../../assets/theme/fonts";
 
 .button {
-  font-family: 'FuturaBookC', serif;
+  font-family: "FuturaBookC", serif;
   .suffixIcon,
   .prefixIcon {
     display: inline-flex;
@@ -24,7 +24,8 @@
     display: inline-flex;
     align-items: center;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       color: $primary;
       border-color: $primary;
     }

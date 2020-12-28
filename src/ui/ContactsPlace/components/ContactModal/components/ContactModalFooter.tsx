@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Contact_person } from "../../../../../types/Contact";
 import { Button } from "../../../../../components/Button";
 
-import styles from './ContactModalFooter.module.scss';
+import styles from "./ContactModalFooter.module.scss";
 
 type Props = {
   contact: Contact_person;
@@ -23,10 +23,17 @@ export const ContactModalFooter: React.FC<Props> = ({
 
   return (
     <div className={styles.footer}>
-      <Button className={styles.button} htmlType="button" disabled={!dirty} onClick={handleCancel}>
+      <Button
+        className={styles.button}
+        htmlType="button"
+        disabled={!dirty}
+        onClick={handleCancel}
+      >
         Отменить
       </Button>
-      <Button className={styles.button} htmlType="submit" disabled={!dirty} >Сохранить</Button>
+      <Button className={styles.button} htmlType="submit" disabled={!dirty}>
+        Сохранить
+      </Button>
     </div>
   );
 };

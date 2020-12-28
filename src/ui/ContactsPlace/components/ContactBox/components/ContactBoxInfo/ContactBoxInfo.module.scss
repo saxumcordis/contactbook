@@ -6,7 +6,7 @@
   text-align: right;
   justify-content: flex-start;
 
-  &>span {
+  & > span {
     text-decoration: underline;
     font-size: 18px;
     font-weight: 600;
@@ -14,7 +14,7 @@
     color: $color4;
   }
 
-  &>span:hover {
+  & > span:hover {
     text-shadow: 1px 0 1px $color5;
   }
 }

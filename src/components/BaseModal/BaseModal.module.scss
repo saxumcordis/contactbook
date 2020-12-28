@@ -14,7 +14,6 @@
   background-color: rgba($color1, 0.5);
 }
 
-
 .modal {
   cursor: default;
   opacity: 1;
@@ -23,7 +22,7 @@
   border-radius: 8px;
   min-width: 370px;
   border: 1px solid $color4;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0 , 0.12);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.12);
   background: white;
   z-index: 1100;
   transition: all 0.2s ease-in-out;

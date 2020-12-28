@@ -1,9 +1,9 @@
-@import 'assets/theme/colors';
-@import 'assets/theme/fonts';
+@import "assets/theme/colors";
+@import "assets/theme/fonts";
 
 body {
   margin: 0;
-  font-family: 'FuturaBookC', serif;
+  font-family: "FuturaBookC", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $primary;
@@ -25,7 +25,4 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background-color: $color4;
   }
-
 }
-
-

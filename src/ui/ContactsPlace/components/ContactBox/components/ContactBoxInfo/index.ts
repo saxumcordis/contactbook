@@ -1,1 +1,1 @@
-export { ContactBoxInfo } from './ContactBoxInfo';
+export { ContactBoxInfo } from "./ContactBoxInfo";

@@ -1,5 +1,5 @@
-@import '../../../../assets/theme/colors';
-@import '../../../../assets/theme/fonts';
+@import "../../../../assets/theme/colors";
+@import "../../../../assets/theme/fonts";
 
 .searchInputWrapper {
   margin-right: 15px;
@@ -13,7 +13,7 @@
   background-color: $color1 !important;
   border-color: $color5 !important;
 
-  &>input {
+  & > input {
     font-family: "FuturaBookC", monospace;
     font-size: 15px;
     height: 25px;
@@ -26,11 +26,9 @@
       transition: all 0.4s ease;
       color: $color3;
     }
-
   }
 
-
-  &>span>span {
+  & > span > span {
     color: $color5;
     margin-right: 100%;
   }
