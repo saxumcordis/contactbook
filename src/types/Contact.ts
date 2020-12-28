@@ -19,7 +19,7 @@ export interface Contact_person_data {
 }
 
 export interface Contact_person {
-  _id: string;
+  _id: number;
   name: string;
   surname: string | null;
   fatherName: string | null;
