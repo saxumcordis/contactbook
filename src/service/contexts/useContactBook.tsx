@@ -7,14 +7,14 @@ import React, {
 } from "react";
 import { Contact_person } from "../../types/Contact";
 
-type ContactBookContext = {
+type TContactBookContext = {
   contactBook: Contact_person[];
   length: number;
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
 } & Contact_person;
 
-export const ContactBookContext = createContext<Partial<ContactBookContext>>(
+export const ContactBookContext = createContext<Partial<TContactBookContext>>(
   {}
 );
 
