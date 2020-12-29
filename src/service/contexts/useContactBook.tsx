@@ -13,6 +13,7 @@ type TContactBookContext = {
   lastId: number;
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
+  updateContact: (contact: Contact_person) => void;
 } & Contact_person;
 
 export const ContactBookContext = createContext<Partial<TContactBookContext>>(
@@ -40,11 +41,28 @@ export const ContactBookProvider: React.FC = ({ children }) => {
     [contactBook]
   );
 
+  const updateContact = useCallback(
+    (contact) =>
+      setContactBook(
+        contactBook.map((e: Contact_person) =>
+          e._id === contact._id ? contact : e
+        )
+      ),
+    [contactBook]
+  );
+
   const length = contactBook.length || 0;
 
   const lastId = length && contactBook[length - 1]._id;
 
-  const value = { contactBook, addContact, removeContact, length, lastId };
+  const value = {
+    contactBook,
+    addContact,
+    removeContact,
+    updateContact,
+    length,
+    lastId,
+  };
 
   return (
     <ContactBookContext.Provider value={value}>
