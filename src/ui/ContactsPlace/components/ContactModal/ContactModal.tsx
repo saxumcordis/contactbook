@@ -8,35 +8,39 @@ import { ContactModalFooter, ContactModalHeader } from "./components";
 import { ContactModalBody } from "./components";
 import { Form, Formik } from "formik";
 import { ContactFormValues } from "../../../../types/ContactForm";
+import {useContactBook} from "../../../../service/contexts";
 
 type Props = Contact & BaseModalProps;
 
 export const ContactModal: React.FC<Props> = (props) => {
   const { isOpen, setOpen, contact } = props;
+
+  const {contactBook} = useContactBook();
+
   const initialValues = useMemo<ContactFormValues>(() => {
     return {
       name: contact?.name,
-      surname: contact?.surname || null,
-      fatherName: contact?.fatherName || null,
+      surname: contact?.surname || "",
+      fatherName: contact?.fatherName || "",
       avatar: contact.avatar,
-      birth: contact?.birth || null,
-      group: contact?.group || null,
-      country: contact?.data?.address?.country || null,
-      city: contact?.data?.address?.city || null,
-      street: contact?.data?.address?.street || null,
-      house: contact?.data?.address?.house || null,
-      flat: contact?.data?.address?.flat || null,
-      postalCode: contact?.data?.address?.postalCode || null,
-      mobile: contact?.data?.phone?.mobile || null,
-      work: contact?.data?.phone?.work || null,
-      home: contact?.data?.phone?.home || null,
+      birth: contact?.birth || "",
+      group: contact?.group || "",
+      country: contact?.data?.address?.country || "",
+      city: contact?.data?.address?.city || "",
+      street: contact?.data?.address?.street || "",
+      house: contact?.data?.address?.house || "",
+      flat: contact?.data?.address?.flat || "",
+      postalCode: contact?.data?.address?.postalCode || "",
+      mobile: contact?.data?.phone?.mobile || "",
+      work: contact?.data?.phone?.work || "",
+      home: contact?.data?.phone?.home || "",
     };
-  }, [contact]);
+  }, [contact, isOpen, contactBook]);
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={() => console.log("a")}
+      onSubmit={() => console.log(contact)}
       render={({ dirty, resetForm }) => (
         <Form className={styles.form}>
           <BaseModal
@@ -47,6 +51,8 @@ export const ContactModal: React.FC<Props> = (props) => {
               <ContactModalHeader
                 title={contact.name + " " + (contact.surname || "")}
                 dirty={dirty}
+                id={contact._id}
+                setOpen={setOpen}
               />
             }
             body={<ContactModalBody />}
