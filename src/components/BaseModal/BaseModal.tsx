@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import React, { createRef, useCallback, useEffect } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import styles from "./BaseModal.module.scss";
@@ -9,7 +9,7 @@ type Props = BaseModalProps;
 export const BaseModal: React.FC<Props> = (props) => {
   const { closable, isOpen, setOpen, className, title, body, footer } = props;
 
-  const containerRef = useRef<Element>();
+  const containerRef = createRef<HTMLDivElement>();
 
   const classes = classNames(styles.modal, className);
 
@@ -32,12 +32,6 @@ export const BaseModal: React.FC<Props> = (props) => {
     [isOpen, containerRef, handleClose]
   );
 
-  useLayoutEffect(() => {
-    if (isOpen) {
-      containerRef.current = document.getElementsByClassName(styles.overlay)[0];
-    }
-  }, [isOpen]);
-
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
 
@@ -47,7 +41,7 @@ export const BaseModal: React.FC<Props> = (props) => {
   }, [isOpen, handleClickOutside]);
 
   return isOpen ? (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} ref={containerRef}>
       <div className={classes}>
         <div className={styles.header}>
           {title && <h3 className={styles.title}>{title}</h3>}
