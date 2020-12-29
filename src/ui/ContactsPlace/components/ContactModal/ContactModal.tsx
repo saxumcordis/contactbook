@@ -8,14 +8,11 @@ import { ContactModalFooter, ContactModalHeader } from "./components";
 import { ContactModalBody } from "./components";
 import { Form, Formik } from "formik";
 import { ContactFormValues } from "../../../../types/ContactForm";
-import {useContactBook} from "../../../../service/contexts";
 
 type Props = Contact & BaseModalProps;
 
 export const ContactModal: React.FC<Props> = (props) => {
   const { isOpen, setOpen, contact } = props;
-
-  const {contactBook} = useContactBook();
 
   const initialValues = useMemo<ContactFormValues>(() => {
     return {
@@ -35,7 +32,7 @@ export const ContactModal: React.FC<Props> = (props) => {
       work: contact?.data?.phone?.work || "",
       home: contact?.data?.phone?.home || "",
     };
-  }, [contact, isOpen, contactBook]);
+  }, [contact]);
 
   return (
     <Formik
