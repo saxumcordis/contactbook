@@ -22,7 +22,7 @@ export const BaseModal: React.FC<Props> = (props) => {
       }
 
       if (
-        !containerRef!.current!.childNodes[0].contains(
+        !containerRef!.current?.childNodes[0].contains(
           e.target as HTMLElement
         ) &&
         (e.target as HTMLElement)?.classList.contains(styles.overlay)
