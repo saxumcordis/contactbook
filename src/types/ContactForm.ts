@@ -1,17 +1,17 @@
 export interface ContactFormValues {
   name: string;
-  surname: string | null;
-  fatherName: string | null;
+  surname: string | "";
+  fatherName: string | "";
   avatar: string;
-  birth: string | null;
-  group: string | null;
-  country: string | null;
-  city: string | null;
-  street: string | null;
-  house: string | null;
-  flat: string | null;
-  postalCode: string | null;
-  mobile: string | null;
-  work: string | null;
-  home: string | null;
+  birth: string | "";
+  group: string | "";
+  country: string | "";
+  city: string | "";
+  street: string | "";
+  house: string | "";
+  flat: string | "";
+  postalCode: string | "";
+  mobile: string | "";
+  work: string | "";
+  home: string | "";
 }
