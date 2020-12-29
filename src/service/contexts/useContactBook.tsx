@@ -42,7 +42,7 @@ export const ContactBookProvider: React.FC = ({ children }) => {
 
   const length = contactBook.length || 0;
 
-  const lastId = length && contactBook[length - 1];
+  const lastId = length && contactBook[length - 1]._id;
 
   const value = { contactBook, addContact, removeContact, length, lastId };
 
