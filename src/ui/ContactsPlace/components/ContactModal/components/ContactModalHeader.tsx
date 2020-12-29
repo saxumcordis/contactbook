@@ -4,7 +4,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalHeader.module.scss";
 import { PopConfirm } from "../../../../../components/PopConfirm";
-import {useContactBook} from "../../../../../service/contexts";
+import { useContactBook } from "../../../../../service/contexts";
 
 type Props = {
   title: string;
@@ -15,20 +15,29 @@ type Props = {
 
 //TODO Изменение хедера: редактирование/просмотр контакта. Добавить контекст юзера
 
-export const ContactModalHeader: React.FC<Props> = ({ title, dirty, id , setOpen}) => {
-
-  const {removeContact} = useContactBook();
+export const ContactModalHeader: React.FC<Props> = ({
+  title,
+  dirty,
+  id,
+  setOpen,
+}) => {
+  const { removeContact } = useContactBook();
 
   const handleRemove = () => {
     removeContact?.(id);
     setOpen(false);
-  }
+  };
 
   return (
     <>
-      <PopConfirm title="Удалить контакт?" okText="Да" cancelText="Нет" onConfirm={handleRemove}>
+      <PopConfirm
+        title="Удалить контакт?"
+        okText="Да"
+        cancelText="Нет"
+        onConfirm={handleRemove}
+      >
         {!dirty ? "Контакт" : "Редактирование контакта"} {title}
-          <DeleteOutlined className={styles.deleteIcon} />
+        <DeleteOutlined className={styles.deleteIcon} />
       </PopConfirm>
     </>
   );

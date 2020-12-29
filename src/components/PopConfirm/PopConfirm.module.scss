@@ -2,7 +2,6 @@
 
 .popConfirm {
   background: $color1;
-
 }
 
 .footer {
@@ -19,7 +18,8 @@
   button {
     color: $color1;
     cursor: pointer;
-    &:focus, &:active {
+    &:focus,
+    &:active {
       color: $color1;
     }
   }
@@ -34,6 +34,5 @@
     color: $color4;
     border-color: $primary;
     box-shadow: 0 2px 4px $primary;
-  };
+  }
 }
-

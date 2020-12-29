@@ -63,12 +63,16 @@ export const NewContactModal: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, actions) => {handleSubmit(values); actions.resetForm(); close();}}
+      onSubmit={(values, actions) => {
+        handleSubmit(values);
+        actions.resetForm();
+        close();
+      }}
       render={({ dirty, resetForm }) => (
         <Form className={styles.form}>
           <BaseModal
             isOpen={isOpen || false}
-            setOpen={(isOpen) => close()}
+            setOpen={() => close()}
             className={styles.contactModal}
             title="Новый контакт"
             body={<NewContactModalBody />}

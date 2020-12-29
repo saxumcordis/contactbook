@@ -17,20 +17,28 @@ type Props = {
 };
 
 export const PopConfirm: React.FC<Props> = (props) => {
-  const { title, okText, cancelText, className, children, onConfirm, onCancel } = props;
+  const {
+    title,
+    okText,
+    cancelText,
+    className,
+    children,
+    onConfirm,
+    onCancel,
+  } = props;
 
   const [isOpen, setOpen] = useState(false);
 
   const handleOpen = useCallback(() => setOpen(true), [setOpen]);
 
   const handleCancel = useCallback(() => {
-      setOpen(false);
-      onCancel?.();
+    setOpen(false);
+    onCancel?.();
   }, [onCancel]);
 
   const handleConfirm = useCallback(() => {
-      setOpen(false);
-      onConfirm?.();
+    setOpen(false);
+    onConfirm?.();
   }, [onConfirm]);
 
   if (isOpen)
