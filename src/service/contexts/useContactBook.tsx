@@ -10,6 +10,7 @@ import { Contact_person } from "../../types/Contact";
 type TContactBookContext = {
   contactBook: Contact_person[];
   length: number;
+  lastId: number;
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
 } & Contact_person;
@@ -34,14 +35,16 @@ export const ContactBookProvider: React.FC = ({ children }) => {
   const removeContact = useCallback(
     (id) =>
       setContactBook(
-        contactBook.filter((contact: { id: number }) => contact.id !== id)
+        contactBook.filter((contact: { _id: number }) => contact._id !== id)
       ),
     [contactBook]
   );
 
   const length = contactBook.length || 0;
 
-  const value = { contactBook, addContact, removeContact, length };
+  const lastId = length && contactBook[length - 1];
+
+  const value = { contactBook, addContact, removeContact, length, lastId };
 
   return (
     <ContactBookContext.Provider value={value}>
