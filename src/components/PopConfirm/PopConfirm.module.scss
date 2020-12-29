@@ -1,0 +1,39 @@
+@import "../../assets/theme/colors";
+
+.popConfirm {
+  background: $color1;
+
+}
+
+.footer {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  & > * {
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  button {
+    color: $color1;
+    cursor: pointer;
+    &:focus, &:active {
+      color: $color1;
+    }
+  }
+
+  button:first-child:hover {
+    color: $color2;
+    border-color: $color2;
+    box-shadow: 0 2px 4px $color2;
+  }
+
+  button:last-child:hover {
+    color: $color4;
+    border-color: $primary;
+    box-shadow: 0 2px 4px $primary;
+  };
+}
+
