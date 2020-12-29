@@ -21,7 +21,7 @@ export const PopConfirm: React.FC<Props> = (props) => {
 
   const [isOpen, setOpen] = useState(false);
 
-  const handleOpen = useCallback(() => setOpen(!isOpen), [setOpen]);
+  const handleOpen = useCallback(() => setOpen(true), [setOpen]);
 
   const handleCancel = useCallback(() => {
       setOpen(false);
