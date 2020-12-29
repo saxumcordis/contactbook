@@ -11,7 +11,7 @@ import { useContactBook } from "../../service/contexts";
 export const NewContactModal: React.FC = () => {
   const { isOpen, close } = useNewContactModal();
 
-  const { addContact, length } = useContactBook();
+  const { addContact, lastId } = useContactBook();
 
   const initialValues = useMemo<ContactFormValues>(() => {
     return {
@@ -35,7 +35,7 @@ export const NewContactModal: React.FC = () => {
 
   const handleSubmit = (values: ContactFormValues) => {
     const contact = {
-      _id: length! + 1,
+      _id: lastId! + 1,
       name: values?.name,
       surname: values?.surname,
       fatherName: values?.fatherName,
@@ -63,7 +63,7 @@ export const NewContactModal: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, actions) => handleSubmit(values)}
+      onSubmit={(values, actions) => {handleSubmit(values); actions.resetForm(); close();}}
       render={({ dirty, resetForm }) => (
         <Form className={styles.form}>
           <BaseModal
