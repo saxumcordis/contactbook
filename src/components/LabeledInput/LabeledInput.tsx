@@ -11,14 +11,25 @@ type Props = {
   name: string;
   placeholder?: string;
   labelText: string;
+  labelSuffix?: React.ReactNode;
 };
 
 export const LabeledInput: React.FC<Props> = (props) => {
-  const { className, id, labelStyle, name, placeholder, labelText } = props;
+  const {
+    className,
+    id,
+    labelStyle,
+    name,
+    placeholder,
+    labelText,
+    labelSuffix,
+  } = props;
 
   return (
     <div className={classNames(className, styles.inputWrapper)}>
-      <label className={labelStyle}>{labelText}</label>
+      <label className={labelStyle}>
+        {labelText} {labelSuffix}
+      </label>
       <Field
         className={styles.input}
         id={id}
