@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/yup": "^0.29.11",
     "antd": "^4.8.6",
     "classnames": "^2.2.6",
     "cross-env": "^7.0.3",
@@ -21,7 +22,8 @@
     "react-router": "^5.2.0",
     "react-scripts": "4.0.1",
     "typescript": "^4.0.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",
