@@ -3,19 +3,22 @@ import { Contact_person } from "../../../../../types/Contact";
 import { Button } from "../../../../../components/Button";
 
 import styles from "./ContactModalFooter.module.scss";
+import { FormikErrors } from "formik";
+import { ContactFormValues } from "../../../../../types/ContactForm";
 
 type Props = {
   contact: Contact_person;
   dirty: boolean;
   handleCancelButton: () => void;
+  errors: FormikErrors<ContactFormValues>;
 };
 
 //TODO Изменение темы кнопки по сохранению.
 
 export const ContactModalFooter: React.FC<Props> = ({
-  contact,
   dirty,
   handleCancelButton,
+  errors,
 }) => {
   const handleCancel = useCallback(() => {
     handleCancelButton();
@@ -31,7 +34,11 @@ export const ContactModalFooter: React.FC<Props> = ({
       >
         Отменить
       </Button>
-      <Button className={styles.button} htmlType="submit" disabled={!dirty}>
+      <Button
+        className={styles.button}
+        htmlType="submit"
+        disabled={!dirty || !!Object.keys(errors).length}
+      >
         Сохранить
       </Button>
     </div>

@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Contact } from "../../../../types/Contact";
 import { BaseModal } from "../../../../components/BaseModal";
 import { BaseModalProps } from "../../../../types/Components";
+import * as Yup from "yup";
 
 import styles from "./ContactModal.module.scss";
 import { ContactModalFooter, ContactModalHeader } from "./components";
@@ -38,6 +39,14 @@ export const ContactModal: React.FC<Props> = (props) => {
     [contact]
   );
 
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string().required("Обязательное поле"),
+    mobile: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    work: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    home: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    postalCode: Yup.string().matches(/^[0-9]{6}$/, { message: "6 цифр" }),
+  });
+
   const handleUpdate = (values: ContactFormValues) => {
     const updatedContact = {
       _id: contact._id,
@@ -71,10 +80,11 @@ export const ContactModal: React.FC<Props> = (props) => {
     <Formik
       enableReinitialize
       initialValues={initialValues()}
+      validationSchema={SignupSchema}
       onSubmit={(values) => {
         handleUpdate(values);
       }}
-      render={({ dirty, resetForm }) => (
+      render={({ dirty, resetForm, errors }) => (
         <Form className={styles.form}>
           <BaseModal
             isOpen={isOpen}
@@ -88,12 +98,13 @@ export const ContactModal: React.FC<Props> = (props) => {
                 setOpen={setOpen}
               />
             }
-            body={<ContactModalBody />}
+            body={<ContactModalBody errors={errors} />}
             footer={
               <ContactModalFooter
                 contact={contact}
                 dirty={dirty}
                 handleCancelButton={resetForm}
+                errors={errors}
               />
             }
             closable={true}
