@@ -1,3 +1,5 @@
+@import "../../assets/theme/colors";
+
 .inputWrapper {
   display: flex;
   flex-direction: column;
@@ -7,4 +9,20 @@
 .input {
   font-family: "FuturaBookC", serif;
   margin-top: 2px;
+}
+
+.labelBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.labelError {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & > span:first-child {
+    margin-right: 2px;
+  }
+  color: $primary;
 }
