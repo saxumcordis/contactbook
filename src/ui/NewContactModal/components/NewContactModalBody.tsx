@@ -1,11 +1,24 @@
 import styles from "../../ContactsPlace/components/ContactModal/components/ContactModalBody.module.scss";
 import { FieldGroup } from "../../../components/FieldGroup";
 import classNames from "classnames";
-import { LabeledInput } from "../../../components/LabeledInput";
+import {
+  LabeledInput,
+  LabeledInputWithError,
+} from "../../../components/LabeledInput";
 import { Avatar } from "../../../components/Avatar";
 import React from "react";
 
-export const NewContactModalBody = () => {
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { FormikErrors } from "formik";
+import { ContactFormValues } from "../../../types/ContactForm";
+
+type Props = {
+  errors: FormikErrors<ContactFormValues>;
+};
+
+export const NewContactModalBody: React.FC<Props> = (props) => {
+  const { errors } = props;
+
   return (
     <div className={styles.form}>
       <FieldGroup
@@ -19,12 +32,14 @@ export const NewContactModalBody = () => {
             styles.noBorderBottom
           )}
         >
-          <LabeledInput
+          <LabeledInputWithError
             labelStyle={styles.labelStyle}
             id="name"
             name="name"
             placeholder="Нет данных"
             labelText="Имя"
+            labelSuffix={<ExclamationCircleOutlined />}
+            labelError={"Обязательное поле"}
           />
           <LabeledInput
             labelStyle={styles.labelStyle}
@@ -72,26 +87,29 @@ export const NewContactModalBody = () => {
           styles.inputStyle
         )}
       >
-        <LabeledInput
+        <LabeledInputWithError
           labelStyle={styles.labelStyle}
           id="mobile"
           name="mobile"
           placeholder="Нет данных"
           labelText="Моб.телефон"
+          labelError={errors?.mobile}
         />
-        <LabeledInput
+        <LabeledInputWithError
           labelStyle={styles.labelStyle}
           id="home"
           name="home"
           placeholder="Нет данных"
           labelText="Дом.телефон"
+          labelError={errors?.home}
         />
-        <LabeledInput
+        <LabeledInputWithError
           labelStyle={styles.labelStyle}
           id="work"
           name="work"
           placeholder="Нет данных"
           labelText="Раб.телефон"
+          labelError={errors?.work}
         />
       </FieldGroup>
       <FieldGroup
@@ -145,12 +163,13 @@ export const NewContactModalBody = () => {
           placeholder="Нет данных"
           labelText="№ Квартиры"
         />
-        <LabeledInput
+        <LabeledInputWithError
           labelStyle={styles.labelStyle}
           id="postalCode"
           name="postalCode"
           placeholder="Нет данных"
           labelText="Почтовый индекс"
+          labelError={errors?.postalCode}
         />
       </FieldGroup>
     </div>

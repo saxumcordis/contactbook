@@ -7,6 +7,7 @@ import { NewContactModalBody, NewContactModalFooter } from "./components";
 import { ContactFormValues } from "../../types/ContactForm";
 import { useNewContactModal } from "../../service/contexts/useNewContactModal";
 import { useContactBook } from "../../service/contexts";
+import * as Yup from "yup";
 
 export const NewContactModal: React.FC = () => {
   const { isOpen, close } = useNewContactModal();
@@ -32,6 +33,14 @@ export const NewContactModal: React.FC = () => {
       home: "",
     };
   }, []);
+
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string().required("Обязательное поле"),
+    mobile: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    work: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    home: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
+    postalCode: Yup.string().matches(/^[0-9]{6}$/, { message: "6 цифр" }),
+  });
 
   const handleSubmit = (values: ContactFormValues) => {
     const contact = {
@@ -63,21 +72,23 @@ export const NewContactModal: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={SignupSchema}
       onSubmit={(values, actions) => {
         handleSubmit(values);
         actions.resetForm();
         close();
       }}
-      render={({ dirty, resetForm }) => (
+      render={({ dirty, resetForm, errors }) => (
         <Form className={styles.form}>
           <BaseModal
             isOpen={isOpen || false}
             setOpen={() => close()}
             className={styles.contactModal}
             title="Новый контакт"
-            body={<NewContactModalBody />}
+            body={<NewContactModalBody errors={errors} />}
             footer={
               <NewContactModalFooter
+                errors={errors}
                 dirty={dirty}
                 handleCancelButton={resetForm}
               />
