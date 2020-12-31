@@ -5,6 +5,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import styles from "./ContactModalHeader.module.scss";
 import { PopConfirm } from "../../../../../components/PopConfirm";
 import { useContactBook } from "../../../../../service/contexts";
+import { handleLongStringWithTip } from "../../../../../service/stringHandlers";
 
 type Props = {
   title: string;
@@ -36,7 +37,8 @@ export const ContactModalHeader: React.FC<Props> = ({
         cancelText="Нет"
         onConfirm={handleRemove}
       >
-        {!dirty ? "Контакт" : "Редактирование контакта"} {title}
+        {!dirty ? "Контакт" : "Редактирование контакта"}{" "}
+        {handleLongStringWithTip(title)}
         <DeleteOutlined className={styles.deleteIcon} />
       </PopConfirm>
     </>

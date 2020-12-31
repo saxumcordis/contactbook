@@ -2,6 +2,7 @@ import React from "react";
 import { Contact_person } from "../../../../../../types/Contact";
 
 import styles from "./ContactBoxInfo.module.scss";
+import { handleLongStringWithTip } from "../../../../../../service/stringHandlers";
 
 type Props = {
   contact: Contact_person;
@@ -14,8 +15,8 @@ export const ContactBoxInfo: React.FC<Props> = ({ contact }) => {
 
   return (
     <div className={styles.contactBoxInfo}>
-      <span>{name}</span>
-      <span>{surname}</span>
+      <span>{handleLongStringWithTip(name)}</span>
+      <span>{handleLongStringWithTip(surname)}</span>
       <span>{mobilePhone}</span>
     </div>
   );
