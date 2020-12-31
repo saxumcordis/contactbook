@@ -9,6 +9,7 @@ export const InputField: React.FC<InputProps> = ({
   suffix,
   prefix,
   placeholder,
+  onChange,
 }) => {
   return (
     <Input
@@ -16,6 +17,7 @@ export const InputField: React.FC<InputProps> = ({
       suffix={suffix}
       prefix={prefix}
       placeholder={placeholder}
+      onChange={onChange}
     />
   );
 };
