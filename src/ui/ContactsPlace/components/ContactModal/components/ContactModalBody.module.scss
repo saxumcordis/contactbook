@@ -45,6 +45,12 @@
   }
 }
 
+.longWidth {
+  & > div > div > input {
+    width: auto !important;
+  }
+}
+
 .inputStyle {
   & > div > div > input {
     width: 300px;
