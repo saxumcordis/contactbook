@@ -22,6 +22,8 @@ export const NewContactModalFooter: React.FC<Props> = ({
     handleCancelButton();
   }, [handleCancelButton]);
 
+  console.log(errors);
+
   return (
     <div className={styles.footer}>
       <Button
@@ -35,7 +37,7 @@ export const NewContactModalFooter: React.FC<Props> = ({
       <Button
         className={styles.button}
         htmlType="submit"
-        disabled={!dirty || !Object.keys(errors).length}
+        disabled={!dirty || !!Object.keys(errors).length}
       >
         Сохранить
       </Button>
