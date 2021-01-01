@@ -46,7 +46,7 @@ export const ContactModal: React.FC<Props> = (props) => {
     home: Yup.string().matches(/^[0-9]{9,12}$/, { message: "9-12 цифр" }),
     postalCode: Yup.string().matches(/^[0-9]{6}$/, { message: "6 цифр" }),
     birth: Yup.string().matches(
-      /^((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\.((?:0[1-9])|(?:1[0-2]))\.(\d{4})/,
+      /^((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\.((?:0[1-9])|(?:1[0-2]))\.(\d{4})$/,
       { message: "д.м.г" }
     ),
   });
