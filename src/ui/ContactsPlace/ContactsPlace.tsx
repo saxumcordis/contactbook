@@ -14,7 +14,14 @@ export const ContactsPlace = () => {
     location: 0,
     threshold: 0.5,
     distance: 100,
-    keys: ["name", "surname", "data.phone.mobile"],
+    keys: [
+      "name",
+      "surname",
+      "fatherName",
+      "data.phone.mobile",
+      "data.phone.work",
+      "data.phone.home",
+    ],
   };
 
   const fuse = new Fuse(contactBook!, searchOptions);
