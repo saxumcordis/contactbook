@@ -71,12 +71,13 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
             size={"default"}
             className={styles.avatar}
           />
-          <LabeledInput
+          <LabeledInputWithError
             labelStyle={styles.labelStyle}
             id="birth"
             name="birth"
             placeholder="Нет данных"
             labelText="Дата рождения"
+            labelError={errors.birth}
           />
         </FieldGroup>
       </FieldGroup>
@@ -93,6 +94,7 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
           name="mobile"
           placeholder="Нет данных"
           labelText="Моб.телефон"
+          labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.mobile}
         />
         <LabeledInputWithError
@@ -101,6 +103,7 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
           name="home"
           placeholder="Нет данных"
           labelText="Дом.телефон"
+          labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.home}
         />
         <LabeledInputWithError
@@ -109,6 +112,7 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
           name="work"
           placeholder="Нет данных"
           labelText="Раб.телефон"
+          labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.work}
         />
       </FieldGroup>
@@ -169,7 +173,23 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
           name="postalCode"
           placeholder="Нет данных"
           labelText="Почтовый индекс"
+          labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.postalCode}
+        />
+      </FieldGroup>
+      <FieldGroup
+        className={classNames(
+          styles.noPaddingSide,
+          styles.inputStyle,
+          styles.longWidth
+        )}
+      >
+        <LabeledInput
+          labelStyle={styles.labelStyle}
+          id="group"
+          name="group"
+          placeholder="Нет данных"
+          labelText="Группа"
         />
       </FieldGroup>
     </div>
