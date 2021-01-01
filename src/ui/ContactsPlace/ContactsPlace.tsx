@@ -3,34 +3,31 @@ import styles from "./ContactsPlace.module.scss";
 import { ContactsPlaceHeader } from "./components/ContactsPlaceHeader";
 import { ContactBox } from "./components/ContactBox";
 import { useContactBook } from "../../service/contexts";
-import { isHavingSubstring } from "../../service/stringHandlers";
+
+import Fuse from "fuse.js";
 
 export const ContactsPlace = () => {
   const { contactBook, searchValue } = useContactBook();
 
-  const searchWords = searchValue?.filter((e) => e !== "");
+  const searchOptions = {
+    includeScore: true,
+    location: 0,
+    threshold: 0.5,
+    distance: 100,
+    keys: ["name", "surname", "data.phone.mobile"],
+  };
 
-  const bookForSearch =
-    (searchWords?.length &&
-      contactBook?.filter((contact) =>
-        searchWords?.reduce(
-          (a, b) =>
-            a *
-            (isHavingSubstring(contact.name, b) ||
-            isHavingSubstring(contact?.surname || "", b) ||
-            isHavingSubstring(contact?.data?.phone?.mobile || "", b)
-              ? 1
-              : 0),
-          1
-        )
-      )) ||
+  const fuse = new Fuse(contactBook!, searchOptions);
+  const searchedItems =
+    (searchValue?.length &&
+      fuse.search(searchValue || "").map((e) => e.item)) ||
     contactBook;
 
   return (
     <div className={styles.contactsPlace}>
       <ContactsPlaceHeader />
       <div className={styles.contactsWrapper}>
-        {bookForSearch?.map((contact, index) => (
+        {searchedItems?.map((contact, index) => (
           <ContactBox key={index} contact={contact} />
         ))}
       </div>

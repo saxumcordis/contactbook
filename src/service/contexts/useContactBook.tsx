@@ -14,8 +14,8 @@ type TContactBookContext = {
   addContact: (contact: Contact_person) => void;
   removeContact: (id: number) => void;
   updateContact: (contact: Contact_person) => void;
-  searchValue: string[];
-  setSearchValue: (value: string[]) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
 } & Contact_person;
 
 export const ContactBookContext = createContext<Partial<TContactBookContext>>(
@@ -30,7 +30,7 @@ export const ContactBookProvider: React.FC = ({ children }) => {
     JSON.parse(localStorage.getItem("contactBook") || "[]")
   );
 
-  const [searchValue, setSearchValue] = useState<string[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const addContact = useCallback(
     (contact) => setContactBook(contactBook.concat([contact])),

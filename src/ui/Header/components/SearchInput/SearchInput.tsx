@@ -11,8 +11,8 @@ export const SearchInput = () => {
   const { setSearchValue } = useContactBook();
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) setSearchValue?.(e.target.value.split(" "));
-    else setSearchValue?.([]);
+    if (e.target.value) setSearchValue?.(e.target.value);
+    else setSearchValue?.("");
   };
 
   return (
