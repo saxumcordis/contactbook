@@ -25,7 +25,7 @@ export const ContactsPlace = () => {
 
   return (
     <div className={styles.contactsPlace}>
-      <ContactsPlaceHeader />
+      <ContactsPlaceHeader currentLength={searchedItems?.length} />
       <div className={styles.contactsWrapper}>
         {searchedItems?.map((contact, index) => (
           <ContactBox key={index} contact={contact} />
