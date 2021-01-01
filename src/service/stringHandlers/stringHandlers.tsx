@@ -1,13 +1,13 @@
 import React from "react";
 
-export const handleLongString = (str: string | null) => {
-  if (str && str.length > 12) return str[0] + str.slice(1, 9) + "...";
+export const handleLongString = (str: string | null, limit: number) => {
+  if (str && str.length > limit) return str.slice(0, limit - 3) + "...";
   return str;
 };
 
-export const handleLongStringWithTip = (str: string | null) => {
-  if (str && str.length > 12)
-    return <span title={str}>{str[0] + str.slice(1, 9) + "..."}</span>;
+export const handleLongStringWithTip = (str: string | null, limit: number) => {
+  if (str && str.length > limit)
+    return <span title={str}>{str.slice(0, limit - 1) + "..."}</span>;
   return str;
 };
 

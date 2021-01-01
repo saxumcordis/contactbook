@@ -15,8 +15,8 @@ export const ContactBoxInfo: React.FC<Props> = ({ contact }) => {
 
   return (
     <div className={styles.contactBoxInfo}>
-      <span>{handleLongStringWithTip(name)}</span>
-      <span>{handleLongStringWithTip(surname)}</span>
+      <span>{handleLongStringWithTip(name, 12)}</span>
+      <span>{handleLongStringWithTip(surname, 12)}</span>
       <span>{mobilePhone}</span>
     </div>
   );
