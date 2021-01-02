@@ -23,6 +23,7 @@
   &:global(.ant-btn) {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 
     &:hover,
     &:active {
@@ -42,5 +43,13 @@
     &:global(.ant-btn-block) {
       justify-content: center;
     }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .button {
+    width: 70px;
+    height: 25px;
+    font-size: 12px;
   }
 }

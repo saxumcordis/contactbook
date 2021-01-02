@@ -18,3 +18,10 @@
     max-height: 300px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .contactModal {
+    max-width: 350px;
+    max-height: 500px;
+  }
+}

@@ -1,8 +1,13 @@
 @import "../../assets/theme/colors";
 
 .avatarSelectorModal {
-  max-width: 400px;
   width: 650px;
   max-height: 800px;
   background: $color1;
+}
+
+@media screen and (max-width: 450px) {
+  .avatarSelectorModal {
+    width: 300px;
+  }
 }

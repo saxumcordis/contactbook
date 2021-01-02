@@ -25,3 +25,12 @@
     height: 32px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .defaultCustomSize {
+    & > svg {
+      width: 76px;
+      height: 76px;
+    }
+  }
+}

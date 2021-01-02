@@ -17,3 +17,11 @@
     text-shadow: 1px 0 1px $color3;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .contactBoxInfo {
+    & > span {
+      font-size: 12px;
+    }
+  }
+}

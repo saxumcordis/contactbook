@@ -34,3 +34,13 @@
     }
   }
 }
+
+@media screen and (max-width: 450px) {
+  .contactsPlaceHeader {
+    font-size: 10px;
+
+    & > .fixedSpan {
+      max-width: 115px;
+    }
+  }
+}

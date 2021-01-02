@@ -80,8 +80,7 @@
   border: 1px solid $color3;
   display: flex;
   justify-content: center;
-  min-width: 112px;
-  min-height: 112px;
+  width: 112px;
   height: 100%;
   font-size: 112px;
   border-radius: 10px;
@@ -89,8 +88,8 @@
 }
 
 .customAvatar {
-  min-width: 112px;
-  min-height: 112px;
+  width: 112px;
+  height: 112px;
   align-items: center;
 }
 
@@ -109,9 +108,39 @@
     }
   }
 
-  .avatar {
+  .defaultAvatar, .customAvatar {
     font-size: 94px;
     max-width: 94px;
     max-height: 94px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form {
+    padding: 4px;
+  }
+  .shortWidth {
+    & > div > div > input {
+      max-width: 75px;
+      font-size: 10px;
+    }
+  }
+
+  .inputStyle {
+    & > div > div > input {
+      height: 20px;
+      font-size: 10px;
+      width: 140px;
+    }
+  }
+
+  .labelStyle {
+    font-size: 11px;
+  }
+
+  .defaultAvatar, .customAvatar {
+    font-size: 88px !important;
+    max-width: 88px !important;
+    max-height: 88px !important;
   }
 }

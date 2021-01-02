@@ -12,6 +12,7 @@
 .searchInput {
   background-color: $color1 !important;
   border-color: $color5 !important;
+  align-items: center;
 
   & > input {
     font-family: "FuturaBookC", monospace;
@@ -21,7 +22,6 @@
     background: $color1;
     color: $primary;
     caret-color: $color5;
-    align-content: center;
     &::placeholder {
       transition: all 0.4s ease;
       color: $color3;
@@ -35,5 +35,18 @@
 
   &:focus {
     box-shadow: $color3 !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .searchInputWrapper {
+    width: 200px;
+  }
+
+  .searchInput {
+    & > input {
+      height: 15px;
+      font-size: 10px;
+    }
   }
 }

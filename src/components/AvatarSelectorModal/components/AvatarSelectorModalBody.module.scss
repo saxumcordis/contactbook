@@ -19,3 +19,16 @@
     max-height: 110px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .avatarBox {
+    width: 70px;
+    height: 90px;
+    font-size: 65px;
+
+    & > svg {
+      width: 65px;
+      height: 65px;
+    }
+  }
+}

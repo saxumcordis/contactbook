@@ -8,5 +8,12 @@
   padding: 15px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 0 3px 5px $color1;
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    padding: 5px 0;
+  }
 }

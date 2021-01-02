@@ -20,3 +20,11 @@
 
 .avatar {
 }
+
+@media screen and (max-width: 450px) {
+  .contactBox {
+    width: 120px;
+    height: 50px;
+    padding: 0 8px;
+  }
+}

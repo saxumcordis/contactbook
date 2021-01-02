@@ -11,3 +11,9 @@
 .deleteIcon:hover {
   color: $primary;
 }
+
+@media screen and (max-width: 450px) {
+  .deleteIcon {
+    font-size: 18px
+  }
+}
