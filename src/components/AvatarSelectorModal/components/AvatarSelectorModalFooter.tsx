@@ -2,25 +2,25 @@ import React, { useCallback } from "react";
 import { Button } from "../../Button";
 
 type Props = {
-  onSubmit: () => void;
-  handleCancelButton: () => void;
+    onSubmit: () => void;
+    handleCancelButton: () => void;
 };
 
 export const AvatarSelectorModalFooter: React.FC<Props> = (props) => {
-  const { handleCancelButton, onSubmit } = props;
+    const { handleCancelButton, onSubmit } = props;
 
-  const handleCancel = useCallback(() => {
-    handleCancelButton();
-  }, [handleCancelButton]);
+    const handleCancel = useCallback(() => {
+        handleCancelButton();
+    }, [handleCancelButton]);
 
-  const handleSubmit = useCallback(() => {
-    onSubmit();
-  }, [onSubmit]);
+    const handleSubmit = useCallback(() => {
+        onSubmit();
+    }, [onSubmit]);
 
-  return (
-    <div>
-      <Button onClick={handleCancel}>Отменить</Button>
-      <Button onClick={handleSubmit}>Выбрать</Button>
-    </div>
-  );
+    return (
+        <div>
+            <Button onClick={handleCancel}>Отменить</Button>
+            <Button onClick={handleSubmit}>Выбрать</Button>
+        </div>
+    );
 };
