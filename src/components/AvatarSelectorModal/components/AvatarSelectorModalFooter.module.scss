@@ -1,0 +1,33 @@
+@import "../../../assets/theme/colors";
+
+.avatarSelectorFooter {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  & > * {
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  & > button {
+    background: $color3 !important;
+    border-color: $color4 !important;
+    color: $color1 !important;
+
+    &:hover {
+      color: $color1 !important;
+      border-color: $primary !important;
+    }
+
+    &[disabled] {
+      color: $color1 !important;
+      opacity: 0.32;
+    }
+
+    &:hover:disabled {
+      color: $color3;
+    }
+  }
+}

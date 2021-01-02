@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
 import { Button } from "../../Button";
 
+import styles from "./AvatarSelectorModalFooter.module.scss";
+
 type Props = {
     onSubmit: () => void;
     handleCancelButton: () => void;
