@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import { Form, Formik } from "formik";
 import styles from "../ContactsPlace/components/ContactModal/ContactModal.module.scss";
@@ -11,6 +11,8 @@ import * as Yup from "yup";
 
 export const NewContactModal: React.FC = () => {
   const { isOpen, close } = useNewContactModal();
+
+  const [avatar, setAvatar] = useState<string>("default");
 
   const { addContact, lastId } = useContactBook();
 
@@ -81,19 +83,38 @@ export const NewContactModal: React.FC = () => {
         actions.resetForm();
         close();
       }}
-      render={({ dirty, resetForm, errors }) => (
+      render={({
+        dirty,
+        resetForm,
+        errors,
+        setFieldTouched,
+        setFieldValue,
+      }) => (
         <Form className={styles.form}>
           <BaseModal
             isOpen={isOpen || false}
             setOpen={() => close()}
             className={styles.contactModal}
             title="Новый контакт"
-            body={<NewContactModalBody errors={errors} />}
+            body={
+              <NewContactModalBody
+                errors={errors}
+                avatar={avatar}
+                setAvatar={setAvatar}
+                changeAvatar={(avatar: string) => {
+                  setFieldValue("avatar", avatar);
+                  setFieldTouched("avatar");
+                }}
+              />
+            }
             footer={
               <NewContactModalFooter
                 errors={errors}
                 dirty={dirty}
-                handleCancelButton={resetForm}
+                handleCancelButton={() => {
+                  setAvatar("default");
+                  resetForm();
+                }}
               />
             }
             closable={true}
