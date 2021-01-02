@@ -11,3 +11,17 @@
 .smallSize {
   font-size: 32px;
 }
+
+.defaultCustomSize {
+  & > svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.smallCustomSize {
+  & > svg {
+    width: 32px;
+    height: 32px;
+  }
+}
