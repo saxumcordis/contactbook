@@ -89,6 +89,8 @@ export const ContactModalBody: React.FC<Props> = (props) => {
             placeholder="Нет данных"
             labelText="Дата рождения"
             labelError={errors.birth}
+            labelSuffix={<ExclamationCircleOutlined />}
+            hiddenTip={true}
           />
         </FieldGroup>
       </FieldGroup>
@@ -107,6 +109,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelText="Моб.телефон"
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.mobile}
+          hiddenTip={true}
         />
         <LabeledInputWithError
           labelStyle={styles.labelStyle}
@@ -116,6 +119,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelText="Дом.телефон"
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.home}
+          hiddenTip={true}
         />
         <LabeledInputWithError
           labelStyle={styles.labelStyle}
@@ -125,6 +129,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelText="Раб.телефон"
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.work}
+          hiddenTip={true}
         />
       </FieldGroup>
       <FieldGroup
@@ -186,6 +191,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelText="Почтовый индекс"
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.postalCode}
+          hiddenTip={true}
         />
       </FieldGroup>
       <FieldGroup
