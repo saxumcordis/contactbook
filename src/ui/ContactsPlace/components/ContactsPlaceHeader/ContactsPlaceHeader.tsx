@@ -19,7 +19,7 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
         {" "}
         {searchValue === ""
           ? "Количество контактов " + length
-          : "Количество найденных контактов " + currentLength}
+          : "Найдено контактов " + currentLength}
       </span>
     </div>
   );

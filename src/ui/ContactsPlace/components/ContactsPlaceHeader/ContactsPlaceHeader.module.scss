@@ -20,7 +20,7 @@
   }
 
   & > .fixedSpan {
-    width: 330px;
+    width: 250px;
     text-align: right;
   }
 }
@@ -28,5 +28,9 @@
 @media screen and (max-width: 700px) {
   .contactsPlaceHeader {
     font-size: 13px;
+
+    & > .fixedSpan {
+      max-width: 135px;
+    }
   }
 }
