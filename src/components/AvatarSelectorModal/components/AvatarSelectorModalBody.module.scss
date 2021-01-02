@@ -6,15 +6,16 @@
 }
 
 .avatarBox {
-  width: 150px;
+  width: 120px;
   height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  font-size: 128px;
+  font-size: 110px;
   & > svg {
-    width: 120px;
+    width: 110px;
+    max-height: 110px;
   }
 }
