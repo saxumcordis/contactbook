@@ -13,6 +13,7 @@ type Props = {
   className?: string;
   size: string;
   fillColor?: string;
+  onClick?: () => void;
 };
 
 export const Avatar: React.FC<Props> = ({
@@ -20,21 +21,24 @@ export const Avatar: React.FC<Props> = ({
   className,
   size,
   fillColor,
+  onClick,
 }) => {
   const defaultAvatar = <UserOutlined />;
 
   return (
-    <AntdAvatar
-      className={classNames(
-        { [styles.defaultAvatar]: avatar === "default" },
-        className,
-        { [styles[size + "Size"]]: avatar === "default" },
-        { [styles[size + "CustomSize"]]: avatar !== "default" }
-      )}
-      icon={
-        (avatar === "default" && defaultAvatar) ||
-        defaultAvatars(avatar, fillColor)?.icon
-      }
-    />
+    <div onClick={onClick}>
+      <AntdAvatar
+        className={classNames(
+          { [styles.defaultAvatar]: avatar === "default" },
+          className,
+          { [styles[size + "Size"]]: avatar === "default" },
+          { [styles[size + "CustomSize"]]: avatar !== "default" }
+        )}
+        icon={
+          (avatar === "default" && defaultAvatar) ||
+          defaultAvatars(avatar, fillColor)?.icon
+        }
+      />
+    </div>
   );
 };
