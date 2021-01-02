@@ -90,7 +90,13 @@ export const ContactModal: React.FC<Props> = (props) => {
       onSubmit={(values) => {
         handleUpdate(values);
       }}
-      render={({ dirty, resetForm, errors }) => (
+      render={({
+        dirty,
+        resetForm,
+        errors,
+        setFieldValue,
+        setFieldTouched,
+      }) => (
         <Form className={styles.form}>
           <BaseModal
             isOpen={isOpen}
@@ -109,13 +115,20 @@ export const ContactModal: React.FC<Props> = (props) => {
                 errors={errors}
                 avatar={avatar}
                 setAvatar={setAvatar}
+                changeAvatar={(avatar: string) => {
+                  setFieldValue("avatar", avatar);
+                  setFieldTouched("avatar");
+                }}
               />
             }
             footer={
               <ContactModalFooter
                 contact={contact}
                 dirty={dirty}
-                handleCancelButton={resetForm}
+                handleCancelButton={() => {
+                  setAvatar(contact.avatar);
+                  resetForm();
+                }}
                 errors={errors}
               />
             }

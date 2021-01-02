@@ -18,10 +18,11 @@ type Props = {
   errors: FormikErrors<ContactFormValues>;
   avatar: string;
   setAvatar: (value: string) => void;
+  changeAvatar: (avatar: string) => void;
 };
 
 export const ContactModalBody: React.FC<Props> = (props) => {
-  const { errors, avatar, setAvatar } = props;
+  const { errors, avatar, setAvatar, changeAvatar } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -207,6 +208,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
         setAvatar={setAvatar}
         isOpen={isOpen}
         setOpen={setOpen}
+        changeAvatar={changeAvatar}
       />
     </div>
   );
