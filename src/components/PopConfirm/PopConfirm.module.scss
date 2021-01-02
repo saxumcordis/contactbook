@@ -15,24 +15,23 @@
     }
   }
 
-  button {
-    color: $color1;
-    cursor: pointer;
-    &:focus,
-    &:active {
-      color: $color1;
+  & > button {
+    background: $color3 !important;
+    border-color: $color4 !important;
+    color: $color1 !important;
+
+    &:hover {
+      color: $color1 !important;
+      border-color: $primary !important;
     }
-  }
 
-  button:first-child:hover {
-    color: $color2;
-    border-color: $color2;
-    box-shadow: 0 2px 4px $color2;
-  }
+    &[disabled] {
+      color: $color1 !important;
+      opacity: 0.32;
+    }
 
-  button:last-child:hover {
-    color: $color4;
-    border-color: $primary;
-    box-shadow: 0 2px 4px $primary;
+    &:hover:disabled {
+      color: $color3;
+    }
   }
 }
