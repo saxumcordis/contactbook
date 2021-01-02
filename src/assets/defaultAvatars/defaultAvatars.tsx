@@ -56,7 +56,7 @@ export const defaultAvatars = (avatarName: string, fill?: string) => {
     unicornAvatar: {
       name: "unicornAvatar",
       icon: <UnicornAvatar fill={fill} />,
-    }
+    },
   };
 
   return avatarList[avatarName];
