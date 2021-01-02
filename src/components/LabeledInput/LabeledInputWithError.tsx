@@ -13,6 +13,7 @@ type Props = {
   labelText: string;
   labelSuffix?: React.ReactNode;
   labelError?: string;
+  hiddenTip?: boolean;
 };
 
 export const LabeledInputWithError: React.FC<Props> = (props) => {
@@ -25,6 +26,7 @@ export const LabeledInputWithError: React.FC<Props> = (props) => {
     labelText,
     labelSuffix,
     labelError,
+    hiddenTip,
   } = props;
 
   return (
@@ -32,8 +34,8 @@ export const LabeledInputWithError: React.FC<Props> = (props) => {
       <div className={styles.labelBox}>
         <label className={labelStyle}>{labelText}</label>
         <label className={classNames(labelStyle, styles.labelError)}>
-          <span>{labelError}</span>
-          {labelError && labelSuffix}
+          <span>{!hiddenTip && labelError}</span>
+          <span title={labelError}>{labelError && labelSuffix}</span>
         </label>
       </div>
       <Field
