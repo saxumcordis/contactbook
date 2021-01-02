@@ -25,7 +25,7 @@ export const AvatarSelectorModal: React.FC<Props> = (props) => {
     <Formik
       initialValues={initialValues}
       onSubmit={() => {}}
-      render={({ dirty, values, resetForm }) => (
+      render={({ values, resetForm }) => (
         <Form>
           <BaseModal
             className={styles.avatarSelectorModal}
