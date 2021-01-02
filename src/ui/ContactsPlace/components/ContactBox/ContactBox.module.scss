@@ -5,7 +5,7 @@
   width: 200px;
   height: 75px;
   border: 2px solid $color4;
-  box-shadow: 0 1px 3px $color2;
+  box-shadow: 0 1px 3px $color1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 
 .contactBox:hover {
-  border: 2px solid $color2;
+  box-shadow: 0 1px 3px $color3;
 }
 
 .avatar {

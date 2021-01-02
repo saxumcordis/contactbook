@@ -10,11 +10,10 @@
     text-decoration: underline;
     font-size: 18px;
     font-weight: 600;
-    text-shadow: 1px 0 1px $color3;
     color: $color4;
   }
 
   & > span:hover {
-    text-shadow: 1px 0 1px $color5;
+    text-shadow: 1px 0 1px $color3;
   }
 }

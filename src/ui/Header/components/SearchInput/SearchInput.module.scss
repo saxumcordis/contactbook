@@ -21,7 +21,7 @@
     background: $color1;
     color: $primary;
     caret-color: $color5;
-
+    align-content: center;
     &::placeholder {
       transition: all 0.4s ease;
       color: $color3;
