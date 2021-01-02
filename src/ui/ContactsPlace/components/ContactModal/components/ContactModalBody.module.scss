@@ -121,7 +121,7 @@
   }
   .shortWidth {
     & > div > div > input {
-      max-width: 75px;
+      max-width: 65px;
       font-size: 10px;
     }
   }
@@ -139,8 +139,9 @@
   }
 
   .defaultAvatar, .customAvatar {
-    font-size: 88px !important;
-    max-width: 88px !important;
-    max-height: 88px !important;
+    font-size: 81px !important;
+    max-width: 81px !important;
+    max-height: 81px !important;
+    margin-bottom: 7px;
   }
 }
