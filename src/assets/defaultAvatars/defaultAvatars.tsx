@@ -3,9 +3,14 @@ import { ReactComponent as RobotAvatar } from "./images/robotAvatar.svg";
 import { ReactComponent as WomanAvatar } from "./images/womanAvatar.svg";
 import { ReactComponent as ManAvatar } from "./images/manAvatar.svg";
 import { ReactComponent as UserAvatar } from "./images/userAvatar.svg";
+import { UserOutlined } from "@ant-design/icons";
 
 export const defaultAvatars = (avatarName: string, fill?: string) => {
   const avatarList: any = {
+    default: {
+      name: "default",
+      icon: <UserOutlined style={{ color: fill }} />,
+    },
     robotAvatar: {
       name: "robotAvatar",
       icon: <RobotAvatar fill={fill} />,
@@ -26,3 +31,11 @@ export const defaultAvatars = (avatarName: string, fill?: string) => {
 
   return avatarList[avatarName];
 };
+
+export const defaultAvatarsNames = [
+  "default",
+  "robotAvatar",
+  "womanAvatar",
+  "manAvatar",
+  "userAvatar",
+];
