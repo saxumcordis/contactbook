@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Contact } from "../../../../types/Contact";
 import { BaseModal } from "../../../../components/BaseModal";
 import { BaseModalProps } from "../../../../types/Components";
@@ -15,6 +15,8 @@ type Props = Contact & BaseModalProps;
 
 export const ContactModal: React.FC<Props> = (props) => {
   const { isOpen, setOpen, contact } = props;
+
+  const [avatar, setAvatar] = useState<string>(contact.avatar);
 
   const { updateContact } = useContactBook();
 
@@ -102,7 +104,13 @@ export const ContactModal: React.FC<Props> = (props) => {
                 setOpen={setOpen}
               />
             }
-            body={<ContactModalBody errors={errors} avatar={contact.avatar} />}
+            body={
+              <ContactModalBody
+                errors={errors}
+                avatar={avatar}
+                setAvatar={setAvatar}
+              />
+            }
             footer={
               <ContactModalFooter
                 contact={contact}

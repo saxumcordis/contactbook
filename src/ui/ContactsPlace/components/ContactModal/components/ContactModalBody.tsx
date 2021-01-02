@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./ContactModalBody.module.scss";
 import { FieldGroup } from "../../../../../components/FieldGroup";
@@ -12,14 +12,18 @@ import {
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { FormikErrors } from "formik";
 import { ContactFormValues } from "../../../../../types/ContactForm";
+import { AvatarSelectorModal } from "../../../../../components/AvatarSelectorModal";
 
 type Props = {
   errors: FormikErrors<ContactFormValues>;
   avatar: string;
+  setAvatar: (value: string) => void;
 };
 
 export const ContactModalBody: React.FC<Props> = (props) => {
-  const { errors, avatar } = props;
+  const { errors, avatar, setAvatar } = props;
+
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.form}>
@@ -75,6 +79,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
               [styles.customAvatar]: avatar !== "default",
             })}
             fillColor={"#55c3e8"}
+            onClick={() => setOpen(true)}
           />
           <LabeledInputWithError
             labelStyle={styles.labelStyle}
@@ -197,6 +202,12 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelText="Группа"
         />
       </FieldGroup>
+      <AvatarSelectorModal
+        avatar={avatar}
+        setAvatar={setAvatar}
+        isOpen={isOpen}
+        setOpen={setOpen}
+      />
     </div>
   );
 };
