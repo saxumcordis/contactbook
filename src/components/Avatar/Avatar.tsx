@@ -23,7 +23,7 @@ export const Avatar: React.FC<Props> = ({
   fillColor,
   onClick,
 }) => {
-  const defaultAvatar = <UserOutlined style={{color: fillColor}} />;
+  const defaultAvatar = <UserOutlined style={{ color: fillColor }} />;
 
   return (
     <div onClick={onClick}>

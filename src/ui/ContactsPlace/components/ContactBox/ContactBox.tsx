@@ -18,7 +18,7 @@ export const ContactBox: React.FC<Props> = ({ contact }) => {
   const { avatar } = contact;
   return (
     <div className={styles.contactBox} onClick={() => !isOpen && handleOpen()}>
-      <Avatar avatar={avatar} size={"small"} className={styles.avatar}/>
+      <Avatar avatar={avatar} size={"small"} className={styles.avatar} />
       <ContactBoxInfo contact={contact} />
       <ContactModal contact={contact} isOpen={isOpen} setOpen={setOpen} />
     </div>
