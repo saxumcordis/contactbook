@@ -75,15 +75,22 @@
   font-size: 13px;
 }
 
-.avatar {
+.defaultAvatar {
   color: $primary;
   border: 1px solid $color3;
   display: flex;
   justify-content: center;
-  width: 112px;
+  min-width: 112px;
+  min-height: 112px;
   height: 100%;
   font-size: 112px;
   border-radius: 10px;
+}
+
+.customAvatar {
+  min-width: 110px;
+  min-height: 110px;
+  align-items: center;
 }
 
 @media screen and (max-width: 700px) {

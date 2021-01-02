@@ -102,7 +102,7 @@ export const ContactModal: React.FC<Props> = (props) => {
                 setOpen={setOpen}
               />
             }
-            body={<ContactModalBody errors={errors} />}
+            body={<ContactModalBody errors={errors} avatar={contact.avatar} />}
             footer={
               <ContactModalFooter
                 contact={contact}

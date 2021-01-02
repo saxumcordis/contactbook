@@ -15,10 +15,11 @@ import { ContactFormValues } from "../../../../../types/ContactForm";
 
 type Props = {
   errors: FormikErrors<ContactFormValues>;
+  avatar: string;
 };
 
 export const ContactModalBody: React.FC<Props> = (props) => {
-  const { errors } = props;
+  const { errors, avatar } = props;
 
   return (
     <div className={styles.form}>
@@ -68,9 +69,12 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           )}
         >
           <Avatar
-            avatar={"default"}
+            avatar={avatar}
             size={"default"}
-            className={styles.avatar}
+            className={classNames(styles.defaultAvatar, {
+              [styles.customAvatar]: avatar !== "default",
+            })}
+            fillColor={"#55c3e8"}
           />
           <LabeledInputWithError
             labelStyle={styles.labelStyle}
