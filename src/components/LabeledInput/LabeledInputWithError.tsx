@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Field } from "formik";
 
 import styles from "./LabeledInput.module.scss";
+import { PopOver } from "../PopOver";
 
 type Props = {
   className?: string;
@@ -14,6 +15,7 @@ type Props = {
   labelSuffix?: React.ReactNode;
   labelError?: string;
   hiddenTip?: boolean;
+  tipPlacement?: string;
 };
 
 export const LabeledInputWithError: React.FC<Props> = (props) => {
@@ -27,6 +29,7 @@ export const LabeledInputWithError: React.FC<Props> = (props) => {
     labelSuffix,
     labelError,
     hiddenTip,
+    tipPlacement,
   } = props;
 
   return (
@@ -34,8 +37,18 @@ export const LabeledInputWithError: React.FC<Props> = (props) => {
       <div className={styles.labelBox}>
         <label className={labelStyle}>{labelText}</label>
         <label className={classNames(labelStyle, styles.labelError)}>
-          <span>{!hiddenTip && labelError}</span>
-          <span title={labelError}>{labelError && labelSuffix}</span>
+          {!hiddenTip && labelError && <span>{!hiddenTip && labelError}</span>}
+          {hiddenTip && labelError ? (
+            <PopOver content={labelError} placement={tipPlacement}>
+              <span className={styles.labelSuffix}>
+                {labelError && labelSuffix}
+              </span>
+            </PopOver>
+          ) : (
+            <span className={styles.labelSuffix}>
+              {labelError && labelSuffix}
+            </span>
+          )}
         </label>
       </div>
       <Field
