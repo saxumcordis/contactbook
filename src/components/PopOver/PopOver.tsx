@@ -12,8 +12,6 @@ type Props = {
 export const PopOver: React.FC<Props> = (props) => {
   const { content, children, placement = "top" } = props;
 
-  console.log(placement);
-
   const [element, setElement] = useState<HTMLElement | null>(null);
 
   const handlePopoverOpen = (
