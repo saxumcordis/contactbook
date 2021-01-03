@@ -4,21 +4,14 @@ import { Field } from "formik";
 
 import styles from "./LabeledInput.module.scss";
 import { PopOver } from "../PopOver";
+import {
+  LabeledInputProps,
+  LabeledInputWithErrorProps,
+} from "../../types/Components";
 
-type Props = {
-  className?: string;
-  id: string;
-  labelStyle?: string;
-  name: string;
-  placeholder?: string;
-  labelText: string;
-  labelSuffix?: React.ReactNode;
-  labelError?: string;
-  hiddenTip?: boolean;
-  tipPlacement?: string;
-};
-
-export const LabeledInputWithError: React.FC<Props> = (props) => {
+export const LabeledInputWithError: React.FC<
+  LabeledInputProps & LabeledInputWithErrorProps
+> = (props) => {
   const {
     className,
     id,

@@ -3,18 +3,9 @@ import classNames from "classnames";
 import { Field } from "formik";
 
 import styles from "./LabeledInput.module.scss";
+import { LabeledInputProps } from "../../types/Components";
 
-type Props = {
-  className?: string;
-  id: string;
-  labelStyle?: string;
-  name: string;
-  placeholder?: string;
-  labelText: string;
-  labelSuffix?: React.ReactNode;
-};
-
-export const LabeledInput: React.FC<Props> = (props) => {
+export const LabeledInput: React.FC<LabeledInputProps> = (props) => {
   const {
     className,
     id,

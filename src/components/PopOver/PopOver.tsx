@@ -2,14 +2,9 @@ import React, { useState } from "react";
 
 import styles from "./PopOver.module.scss";
 import classNames from "classnames";
+import { PopOverProps } from "../../types/Components";
 
-type Props = {
-  content: React.ReactNode;
-  children: React.ReactNode;
-  placement?: string;
-};
-
-export const PopOver: React.FC<Props> = (props) => {
+export const PopOver: React.FC<PopOverProps> = (props) => {
   const { content, children, placement = "top" } = props;
 
   const [element, setElement] = useState<HTMLElement | null>(null);

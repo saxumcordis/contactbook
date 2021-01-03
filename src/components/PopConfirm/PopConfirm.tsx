@@ -5,18 +5,9 @@ import classNames from "classnames";
 
 import { BaseModal } from "../BaseModal";
 import { Button } from "../Button";
+import { PopConfirmProps } from "../../types/Components";
 
-type Props = {
-  title?: string;
-  okText?: string;
-  cancelText?: string;
-  className?: string;
-  children: React.ReactNode;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-};
-
-export const PopConfirm: React.FC<Props> = (props) => {
+export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
   const {
     title,
     okText,

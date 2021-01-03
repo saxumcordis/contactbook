@@ -2,11 +2,7 @@ import classNames from "classnames";
 import React, { HTMLProps } from "react";
 
 import styles from "./FieldGroup.module.scss";
-
-type FieldGroupProps = {
-  heading?: string;
-  layout?: "column" | "row";
-};
+import { FieldGroupProps } from "../../types/Components";
 
 export const FieldGroup: React.FC<
   FieldGroupProps & HTMLProps<HTMLDivElement>

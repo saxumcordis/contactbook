@@ -7,16 +7,9 @@ import { Avatar as AntdAvatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { defaultAvatars } from "../../assets/defaultAvatars";
+import { AvatarProps } from "../../types/Components";
 
-type Props = {
-  avatar: string;
-  className?: string;
-  size: string;
-  fillColor?: string;
-  onClick?: () => void;
-};
-
-export const Avatar: React.FC<Props> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   avatar,
   className,
   size,

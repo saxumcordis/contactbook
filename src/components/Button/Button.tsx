@@ -1,17 +1,13 @@
 import React from "react";
 import { Button as AntdButton } from "antd";
-import { ButtonProps } from "antd/es/button";
+import { ButtonProps as AntdButtonProps } from "antd/es/button";
 import classNames from "classnames";
 import "antd/es/button/style/index.css";
 
 import styles from "./Button.module.scss";
+import { ButtonProps } from "../../types/Components";
 
-type Props = {
-  prefixIcon?: React.ReactNode;
-  suffixIcon?: React.ReactNode;
-} & ButtonProps;
-
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<ButtonProps & AntdButtonProps> = ({
   prefixIcon,
   suffixIcon,
   className,
