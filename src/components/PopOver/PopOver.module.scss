@@ -1,0 +1,48 @@
+@import "../../assets/theme/colors";
+
+.popOver {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  background: $color1;
+  border: 1px solid $primary;
+  width: 100px;
+  height: 26px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 4px;
+
+  & > span {
+    line-height: 1.43;
+  }
+
+  transition: 0.4s ease all;
+}
+
+.fadeIn {
+  animation: fadeIn 200ms ease-out;
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.object {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease all;
+}
+
+.object:hover {
+  color: $color3;
+}
