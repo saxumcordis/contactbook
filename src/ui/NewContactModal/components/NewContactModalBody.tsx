@@ -187,10 +187,11 @@ export const NewContactModalBody: React.FC<Props> = (props) => {
           id="postalCode"
           name="postalCode"
           placeholder="Нет данных"
-          labelText="Почтовый индекс"
+          labelText="Индекс"
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.postalCode}
           hiddenTip={true}
+          tipPlacement="topLeft"
         />
       </FieldGroup>
       <FieldGroup
