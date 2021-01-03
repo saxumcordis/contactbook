@@ -91,6 +91,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
             labelError={errors.birth}
             labelSuffix={<ExclamationCircleOutlined />}
             hiddenTip={true}
+            tipPlacement="leftTop"
           />
         </FieldGroup>
       </FieldGroup>
@@ -130,6 +131,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           labelSuffix={<ExclamationCircleOutlined />}
           labelError={errors?.work}
           hiddenTip={true}
+          tipPlacement="leftTop"
         />
       </FieldGroup>
       <FieldGroup
