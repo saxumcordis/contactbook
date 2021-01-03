@@ -9,3 +9,8 @@ export interface BaseModalProps {
   isOpen: boolean;
   setOpen: (value: boolean) => void;
 }
+
+export interface NoDataProps {
+  content: React.ReactNode | string;
+  className?: string;
+}
