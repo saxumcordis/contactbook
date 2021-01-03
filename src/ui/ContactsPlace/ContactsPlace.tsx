@@ -5,9 +5,13 @@ import { ContactBox } from "./components/ContactBox";
 import { useContactBook } from "../../service/contexts";
 
 import Fuse from "fuse.js";
+import { NoData } from "../../components/NoData";
+import { useNewContactModal } from "../../service/contexts/useNewContactModal";
 
 export const ContactsPlace = () => {
-  const { contactBook, searchValue } = useContactBook();
+  const { contactBook, searchValue, length } = useContactBook();
+
+  const { open } = useNewContactModal();
 
   const searchOptions = {
     includeScore: true,
@@ -30,6 +34,13 @@ export const ContactsPlace = () => {
       fuse.search(searchValue || "").map((e) => e.item)) ||
     contactBook;
 
+  const emptyContactBookMessage = (
+    <div className={styles.emptyContactBookMessage}>
+      <span>У Вас ещё нет контактов</span>{" "}
+      <span onClick={() => open()}>Начните заполнять книжку прямо сейчас!</span>
+    </div>
+  );
+
   return (
     <div className={styles.contactsPlace}>
       <ContactsPlaceHeader currentLength={searchedItems?.length} />
@@ -37,6 +48,10 @@ export const ContactsPlace = () => {
         {searchedItems?.map((contact, index) => (
           <ContactBox key={index} contact={contact} />
         ))}
+        {!length && <NoData content={emptyContactBookMessage} />}
+        {!searchedItems?.length && !!length && (
+          <NoData content="Ни один из контактов не удовлетворяет введённым параметрам" />
+        )}
       </div>
     </div>
   );
