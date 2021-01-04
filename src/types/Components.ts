@@ -71,4 +71,7 @@ export interface PopOverProps {
   content: React.ReactNode;
   children: React.ReactNode;
   placement?: string;
+  trigger?: string;
+  popOverClassName?: string;
+  objectClassName?: string;
 }

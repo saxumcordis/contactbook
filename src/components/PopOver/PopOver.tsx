@@ -5,7 +5,14 @@ import classNames from "classnames";
 import { PopOverProps } from "../../types/Components";
 
 export const PopOver: React.FC<PopOverProps> = (props) => {
-  const { content, children, placement = "top" } = props;
+  const {
+    content,
+    children,
+    placement = "top",
+    trigger = "hover",
+    popOverClassName,
+    objectClassName,
+  } = props;
 
   const [element, setElement] = useState<HTMLElement | null>(null);
 
@@ -67,18 +74,32 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
   return (
     <div>
       <div
-        className={classNames({ [styles.fadeIn]: element }, styles.popOver)}
+        className={classNames(
+          { [styles.fadeIn]: element },
+          styles.popOver,
+          popOverClassName
+        )}
         style={popOverStyle}
       >
-        <span>{content}</span>
+        <span onMouseLeave={handlePopoverClose}>{content}</span>
       </div>
-      <div
-        className={styles.object}
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        {children}
-      </div>
+      {trigger === "hover" && (
+        <div
+          className={classNames(styles.object, objectClassName)}
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+        >
+          {children}
+        </div>
+      )}
+      {trigger === "click" && (
+        <div
+          className={classNames(styles.object, objectClassName)}
+          onClick={handlePopoverOpen}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 };
