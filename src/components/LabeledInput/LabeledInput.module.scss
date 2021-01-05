@@ -9,6 +9,9 @@
 .input {
   font-family: "FuturaBookC", serif;
   margin-top: 2px;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .labelBox {
