@@ -10,6 +10,7 @@ import { ContactModalBody } from "./components";
 import { Form, Formik } from "formik";
 import { ContactFormValues } from "../../../../types/ContactForm";
 import { useContactBook } from "../../../../service/contexts";
+import { ContactModalHeaderControl } from "./components/ContacModalHeaderControl";
 
 type Props = Contact & BaseModalProps;
 
@@ -133,6 +134,10 @@ export const ContactModal: React.FC<Props> = (props) => {
               />
             }
             closable={true}
+            control={
+              <ContactModalHeaderControl id={contact._id} setOpen={setOpen} />
+            }
+            controlClass={styles.control}
           />
         </Form>
       )}
