@@ -107,8 +107,6 @@ export const ContactModal: React.FC<Props> = (props) => {
               <ContactModalHeader
                 title={contact.name + " " + (contact.surname || "")}
                 dirty={dirty}
-                id={contact._id}
-                setOpen={setOpen}
               />
             }
             body={
