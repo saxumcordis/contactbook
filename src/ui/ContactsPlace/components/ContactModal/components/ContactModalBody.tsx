@@ -13,16 +13,19 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { FormikErrors } from "formik";
 import { ContactFormValues } from "../../../../../types/ContactForm";
 import { AvatarSelectorModal } from "../../../../../components/AvatarSelectorModal";
+import { ContactModalBodyGroups } from "./ContactModalBodyGroups";
 
 type Props = {
+  contactGroups: string;
   errors: FormikErrors<ContactFormValues>;
   avatar: string;
   setAvatar: (value: string) => void;
   changeAvatar: (avatar: string) => void;
+  changeGroups: (groups: string) => void;
 };
 
 export const ContactModalBody: React.FC<Props> = (props) => {
-  const { errors, avatar, setAvatar, changeAvatar } = props;
+  const { contactGroups, errors, avatar, setAvatar, changeAvatar, changeGroups } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -204,13 +207,7 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           styles.longWidth
         )}
       >
-        <LabeledInput
-          labelStyle={styles.labelStyle}
-          id="group"
-          name="group"
-          placeholder="Нет данных"
-          labelText="Группа"
-        />
+        <ContactModalBodyGroups contactGroups={contactGroups} changeGroups={changeGroups} />
       </FieldGroup>
       <AvatarSelectorModal
         avatar={avatar}
