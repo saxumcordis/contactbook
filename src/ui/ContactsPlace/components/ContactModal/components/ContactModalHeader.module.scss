@@ -1,19 +1,21 @@
 @import "../../../../../assets/theme/colors";
 
-.deleteIcon {
-  color: $color5;
-  margin-left: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.4s ease all;
+.control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & > svg {
+    min-width: 22px;
+    max-width: 22px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
 }
-
-.deleteIcon:hover {
-  color: $primary;
-}
-
 @media screen and (max-width: 450px) {
-  .deleteIcon {
-    font-size: 12px;
+  .control {
+    & > svg {
+      min-width: 16px;
+      max-width: 16px;
+    }
   }
 }
