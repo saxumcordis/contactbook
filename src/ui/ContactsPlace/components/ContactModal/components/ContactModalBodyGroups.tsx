@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGroups } from "../../../../../service/contexts/useGroups";
 
 import { ReactComponent as DeleteIcon } from "./assets/close.svg";
+import { DownOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalBodyGroups.module.scss";
 
@@ -26,12 +27,14 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
     changeGroups(removeGroupFromGroups?.(contactGroups || "", group) || "");
   };
 
-  const contactGroupsToRender = contactGroups !== "" &&
-    contactGroups.split(",").map((e, i) => (
-      <li key={i}>
-        {e} <DeleteIcon onClick={() => handleDeleting(e)} />
-      </li>
-    )) || "Нет данных";
+  const contactGroupsToRender =
+    contactGroups !== ""
+      ? contactGroups.split(",").map((e, i) => (
+          <li key={i}>
+            {e} <DeleteIcon onClick={() => handleDeleting(e)} />
+          </li>
+        ))
+      : null;
 
   const groupsToRender = groups?.map((e) => (
     <li>
@@ -40,10 +43,16 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
   ));
   return (
     <div className={styles.groups}>
-      <label>Группы</label>
+      <label className={styles.headLabel}>Группы</label>
       <div className={styles.inputWrapper}>
-      <ul>{contactGroupsToRender}</ul>
-        <label>DROP</label>
+        {contactGroupsToRender ? (
+          <ul>{contactGroupsToRender}</ul>
+        ) : (
+          <span>Нет данных</span>
+        )}
+        <label>
+          <DownOutlined />
+        </label>
       </div>
     </div>
   );
