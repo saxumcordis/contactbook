@@ -3,17 +3,17 @@
 .groupsWrapper {
   display: flex;
   flex-direction: column;
+}
 
-  & > label {
-    color: $color3;
-    font-size: 13px;
-  }
-
+.headLabel {
+  color: $color3;
+  font-size: 13px;
 }
 
 .inputWrapper {
   margin-top: 2px;
   display: flex;
+  justify-content: space-between;
   list-style: none;
   padding: 0 8px;
   min-height: 30px;
@@ -29,6 +29,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+    align-items: center;
     & > li {
       margin-right: 5px;
       margin-top: 4px;
@@ -44,8 +45,14 @@
       & > svg {
         margin-left: 4px;
         width: 15px;
+        cursor: pointer;
       }
     }
   }
 
+  & > label {
+    display: flex;
+    align-items: center;
+    color: $primary;
+  }
 }
