@@ -1,5 +1,5 @@
 import React, { createRef, useCallback, useEffect } from "react";
-import { CloseOutlined } from "@ant-design/icons";
+import { ReactComponent as CloseIcon } from "./assets/close.svg";
 import classNames from "classnames";
 import styles from "./BaseModal.module.scss";
 import { BaseModalProps } from "../../types/Components";
@@ -7,7 +7,17 @@ import { BaseModalProps } from "../../types/Components";
 type Props = BaseModalProps;
 
 export const BaseModal: React.FC<Props> = (props) => {
-  const { closable, isOpen, setOpen, className, title, body, footer } = props;
+  const {
+    closable,
+    isOpen,
+    setOpen,
+    className,
+    title,
+    body,
+    footer,
+    control,
+    controlClass,
+  } = props;
 
   const containerRef = createRef<HTMLDivElement>();
 
@@ -40,13 +50,24 @@ export const BaseModal: React.FC<Props> = (props) => {
     };
   }, [isOpen, handleClickOutside]);
 
+  const closeIcon = (
+    <CloseIcon
+      fill={"#feacef"}
+      className={styles.close}
+      onClick={handleClose}
+    />
+  );
+
   return isOpen ? (
     <div className={styles.overlay} ref={containerRef}>
       <div className={classes}>
         <div className={styles.header}>
           {title && <h3 className={styles.title}>{title}</h3>}
-          {closable && (
-            <CloseOutlined className={styles.close} onClick={handleClose} />
+          {closable && !control && CloseIcon}
+          {control && (
+            <div className={controlClass}>
+              {control} {closeIcon}
+            </div>
           )}
         </div>
         <div className={styles.body}>{body}</div>
