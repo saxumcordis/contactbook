@@ -31,16 +31,8 @@ export const ContactModalHeader: React.FC<Props> = ({
 
   return (
     <>
-      <PopConfirm
-        title="Удалить контакт?"
-        okText="Да"
-        cancelText="Нет"
-        onConfirm={handleRemove}
-      >
-        {!dirty ? "Контакт" : "Редактирование контакта"}{" "}
-        {handleLongStringWithTip(title, 18)}
-        <DeleteOutlined className={styles.deleteIcon} />
-      </PopConfirm>
+      {!dirty ? "Контакт" : "Редактирование контакта"}{" "}
+      {handleLongStringWithTip(title, 18)}
     </>
   );
 };
