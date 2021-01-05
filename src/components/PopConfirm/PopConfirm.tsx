@@ -16,6 +16,7 @@ export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
     children,
     onConfirm,
     onCancel,
+    childrenClass,
   } = props;
 
   const [isOpen, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
 
   if (isOpen)
     return (
-      <>
+      <div className={childrenClass}>
         {children}
         <BaseModal
           title={title}
@@ -48,7 +49,12 @@ export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
           setOpen={setOpen}
           className={classNames(styles.popConfirm, className)}
         />
-      </>
+      </div>
     );
-  else return <div onClick={() => !isOpen && handleOpen()}>{children}</div>;
+  else
+    return (
+      <div onClick={() => !isOpen && handleOpen()} className={childrenClass}>
+        {children}
+      </div>
+    );
 };

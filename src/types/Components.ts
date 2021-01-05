@@ -24,6 +24,8 @@ export interface BaseModalProps {
   closable?: boolean;
   isOpen: boolean;
   setOpen: (value: boolean) => void;
+  control?: React.ReactNode;
+  controlClass?: string;
 }
 
 export interface ButtonProps {
@@ -65,6 +67,7 @@ export interface PopConfirmProps {
   children: React.ReactNode;
   onConfirm?: () => void;
   onCancel?: () => void;
+  childrenClass?: string;
 }
 
 export interface PopOverProps {
