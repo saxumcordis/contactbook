@@ -68,8 +68,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   );
 
   const addGroupToGroups = useCallback(
-    (groups, group) =>
-      groups !== "" ? groups.split(",").concat([group]).join(",") : group,
+    (groups, group) => !isInGroup(groups, group) ?
+      groups !== "" ? groups.split(",").concat([group]).join(",") : group : groups,
     [setGroups]
   );
 
