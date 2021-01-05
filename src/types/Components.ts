@@ -44,6 +44,7 @@ export interface LabeledInputProps {
   labelStyle?: string;
   name: string;
   placeholder?: string;
+  disabled?: boolean;
   labelText: string;
   labelSuffix?: React.ReactNode;
 }

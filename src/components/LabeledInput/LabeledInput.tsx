@@ -12,6 +12,7 @@ export const LabeledInput: React.FC<LabeledInputProps> = (props) => {
     labelStyle,
     name,
     placeholder,
+    disabled = false,
     labelText,
     labelSuffix,
   } = props;
@@ -26,6 +27,7 @@ export const LabeledInput: React.FC<LabeledInputProps> = (props) => {
         id={id}
         name={name}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </div>
   );
