@@ -25,7 +25,7 @@ export interface Contact_person {
   fatherName: string | null;
   avatar: string;
   birth: string | null;
-  group: string | null;
+  groups: string | null;
   data: Contact_person_data | null;
 }
 

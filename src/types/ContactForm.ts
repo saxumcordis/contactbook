@@ -4,7 +4,7 @@ export interface ContactFormValues {
   fatherName: string | "";
   avatar: string;
   birth: string | "";
-  group: string | "";
+  groups: string | "";
   country: string | "";
   city: string | "";
   street: string | "";

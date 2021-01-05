@@ -23,7 +23,7 @@ export const NewContactModal: React.FC = () => {
       fatherName: "",
       avatar: "",
       birth: "",
-      group: "",
+      groups: "",
       country: "",
       city: "",
       street: "",
@@ -55,7 +55,7 @@ export const NewContactModal: React.FC = () => {
       fatherName: values?.fatherName,
       birth: values?.birth,
       avatar: values?.avatar || "default",
-      group: values?.group,
+      groups: values?.groups,
       data: {
         phone: {
           mobile: values.mobile,

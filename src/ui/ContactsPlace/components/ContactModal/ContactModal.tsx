@@ -28,7 +28,7 @@ export const ContactModal: React.FC<Props> = (props) => {
       fatherName: contact?.fatherName || "",
       avatar: contact.avatar,
       birth: contact?.birth || "",
-      group: contact?.group || "",
+      groups: contact?.groups || "",
       country: contact?.data?.address?.country || "",
       city: contact?.data?.address?.city || "",
       street: contact?.data?.address?.street || "",
@@ -62,7 +62,7 @@ export const ContactModal: React.FC<Props> = (props) => {
       fatherName: values?.fatherName,
       birth: values?.birth,
       avatar: values?.avatar,
-      group: values?.group,
+      groups: values?.groups,
       data: {
         phone: {
           mobile: values.mobile,
@@ -133,7 +133,7 @@ export const ContactModal: React.FC<Props> = (props) => {
             }
             closable={true}
             control={
-              <ContactModalHeaderControl id={contact._id} setOpen={setOpen} />
+              <ContactModalHeaderControl contact={contact} setOpen={setOpen} />
             }
             controlClass={styles.control}
           />
