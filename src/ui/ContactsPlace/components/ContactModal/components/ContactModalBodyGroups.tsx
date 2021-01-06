@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React /*{ useState } */ from "react";
 import { useGroups } from "../../../../../service/contexts/useGroups";
 
 import { ReactComponent as DeleteIcon } from "./assets/close.svg";
@@ -12,12 +12,9 @@ type Props = {
 };
 
 export const ContactModalBodyGroups: React.FC<Props> = (props) => {
-  const [dropped, setDropped] = useState(false);
+ // const [dropped, setDropped] = useState(false);
 
   const {
-    groups,
-    handleContactGroups,
-    addGroupToGroups,
     removeGroupFromGroups,
   } = useGroups();
 
@@ -36,11 +33,12 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
         ))
       : null;
 
-  const groupsToRender = groups?.map((e) => (
+  /* @TODO
+    const groupsToRender = groups?.map((e) => (
     <li>
       {e.name} <DeleteIcon />
     </li>
-  ));
+  ));*/
   return (
     <div className={styles.groups}>
       <label className={styles.headLabel}>Группы</label>
