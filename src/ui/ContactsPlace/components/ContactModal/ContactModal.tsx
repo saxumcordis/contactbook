@@ -97,7 +97,7 @@ export const ContactModal: React.FC<Props> = (props) => {
         errors,
         setFieldValue,
         setFieldTouched,
-          values
+        values,
       }) => (
         <Form className={styles.form}>
           <BaseModal
@@ -122,7 +122,7 @@ export const ContactModal: React.FC<Props> = (props) => {
                 }}
                 changeGroups={(groups: string) => {
                   setFieldValue("groups", groups);
-                  setFieldTouched("avatar");
+                  setFieldTouched("groups");
                 }}
               />
             }
@@ -139,7 +139,16 @@ export const ContactModal: React.FC<Props> = (props) => {
             }
             closable={true}
             control={
-              <ContactModalHeaderControl contact={contact} setOpen={setOpen} />
+              <ContactModalHeaderControl
+                contact={contact}
+                setOpen={setOpen}
+                formValues={values}
+                changeGroups={(groups: string) => {
+                  setFieldValue("groups", groups);
+                  setFieldTouched("groups");
+                }}
+                dirty={dirty}
+              />
             }
             controlClass={styles.control}
           />

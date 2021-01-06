@@ -25,7 +25,14 @@ type Props = {
 };
 
 export const ContactModalBody: React.FC<Props> = (props) => {
-  const { contactGroups, errors, avatar, setAvatar, changeAvatar, changeGroups } = props;
+  const {
+    contactGroups,
+    errors,
+    avatar,
+    setAvatar,
+    changeAvatar,
+    changeGroups,
+  } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -207,7 +214,10 @@ export const ContactModalBody: React.FC<Props> = (props) => {
           styles.longWidth
         )}
       >
-        <ContactModalBodyGroups contactGroups={contactGroups} changeGroups={changeGroups} />
+        <ContactModalBodyGroups
+          contactGroups={contactGroups}
+          changeGroups={changeGroups}
+        />
       </FieldGroup>
       <AvatarSelectorModal
         avatar={avatar}
