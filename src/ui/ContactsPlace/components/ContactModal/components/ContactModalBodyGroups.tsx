@@ -2,7 +2,7 @@ import React /*{ useState } */ from "react";
 import { useGroups } from "../../../../../service/contexts/useGroups";
 
 import { ReactComponent as DeleteIcon } from "./assets/close.svg";
-import { DownOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalBodyGroups.module.scss";
 
@@ -49,7 +49,7 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
           <span>Нет данных</span>
         )}
         <label>
-          <DownOutlined />
+          <EditOutlined />
         </label>
       </div>
     </div>
