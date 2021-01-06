@@ -63,7 +63,7 @@ export const BaseModal: React.FC<Props> = (props) => {
       <div className={classes}>
         <div className={styles.header}>
           {title && <h3 className={styles.title}>{title}</h3>}
-          {closable && !control && CloseIcon}
+          {closable && !control && closeIcon}
           {control && (
             <div className={controlClass}>
               {control} {closeIcon}
