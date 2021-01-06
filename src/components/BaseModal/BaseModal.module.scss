@@ -47,8 +47,8 @@
 }
 
 .close {
-  max-width: 16px;
-  width: 16px;
+  max-width: 22px;
+  width: 22px;
   color: $color5;
   cursor: pointer;
   margin-left: auto;
@@ -103,5 +103,10 @@
   .footer {
     padding: 10px 20px;
     min-height: 25px;
+  }
+
+  .close {
+    max-width: 16px;
+    width: 16px;
   }
 }
