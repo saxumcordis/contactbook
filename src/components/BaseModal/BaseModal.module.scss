@@ -27,8 +27,6 @@
   background: white;
   z-index: 1100;
   transition: all 0.2s ease-in-out;
-
-  overflow: auto;
 }
 
 .header {
@@ -59,6 +57,7 @@
   color: $primary;
   font-size: 15px;
   line-height: 1.23;
+  overflow: auto;
 }
 
 .footer {
