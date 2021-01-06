@@ -54,17 +54,17 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
       isGroupExists(newGroup.name)
         ? setStatus(1)
         : setGroups(groups.concat(newGroup)),
-    [groups]
+    [groups, isGroupExists]
   );
 
   const removeGroup = useCallback(
     (group) => setGroups(groups.filter((e) => e._id !== group._id)),
-    [groups]
+    [groups, setGroups]
   );
 
   const isInGroup = useCallback(
     (groups, group) => groups.split(",").includes(group),
-    [setGroups]
+    []
   );
 
   const addGroupToGroups = useCallback(
@@ -74,7 +74,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
           ? groups.split(",").concat([group]).join(",")
           : group
         : groups,
-    [setGroups]
+    [isInGroup]
   );
 
   const removeGroupFromGroups = useCallback(
@@ -83,7 +83,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
         .split(",")
         .filter((e: string) => e !== group)
         .join(","),
-    [setGroups]
+    []
   );
 
   const handleContactGroups = useCallback(
@@ -91,7 +91,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
       isInGroup(groups, group)
         ? removeGroupFromGroups(groups, group)
         : addGroupToGroups(groups, group),
-    [setGroups]
+    [isInGroup]
   );
 
   const value = {
