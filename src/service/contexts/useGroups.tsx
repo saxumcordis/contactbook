@@ -91,7 +91,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
       isInGroup(groups, group)
         ? removeGroupFromGroups(groups, group)
         : addGroupToGroups(groups, group),
-    [isInGroup]
+    [isInGroup, removeGroupFromGroups, addGroupToGroups]
   );
 
   const value = {
