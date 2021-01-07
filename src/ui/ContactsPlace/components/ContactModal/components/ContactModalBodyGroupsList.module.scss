@@ -1,0 +1,85 @@
+@import "../../../../../assets/theme/colors";
+
+.component {
+  & > label > span {
+    display: flex;
+    align-items: center;
+    color: $primary;
+    cursor: pointer;
+  }
+}
+
+.listWrapper {
+  min-height: 44px;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 5px);
+  width: calc(100% - 2px);
+  height: auto;
+  background: $color1;
+  border: 1px solid $color3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activeEdit {
+  & > span > * {
+    color: $color3;
+  }
+}
+
+.list {
+  list-style: none;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.listItem {
+  margin-right: 5px;
+  margin-top: 4px;
+  color: $color1;
+  padding: 2px 8px;
+  line-height: 1.43;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > span {
+    margin-top: 2px;
+  }
+
+}
+
+.icon {
+  margin-left: 4px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.addGroup {
+  background: $color3;
+  & > .icon {
+    transform: rotate(225deg);
+  }
+}
+
+.removeGroup {
+  background: $primary;
+  display: none !important;
+  visibility: hidden;
+}
+
+.newGroupButton {
+  fill: $primary;
+  color: $primary;
+  font-size: 15px;
+  min-width: 15px;
+  margin-right: 8px;
+}
