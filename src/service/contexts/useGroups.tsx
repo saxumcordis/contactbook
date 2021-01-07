@@ -32,9 +32,12 @@ const GroupsContext = createContext<Partial<TGroupsContext>>({});
 export const useGroups = () => useContext(GroupsContext);
 
 export const GroupsContextProvider: React.FC = ({ children }) => {
-  const [groups, setGroups] = useState([
-    { _id: 1, name: "Избранное", removable: false },
-  ]);
+  const [groups, setGroups] = useState<Group[]>(
+    JSON.parse(
+      localStorage.getItem("contactBookGroups") ||
+        '[{"_id":1,"name":"Избранное","removable":false}]'
+    )
+  );
 
   const [activeGroupName, setActiveGroupName] = useState(null);
   const [status, setStatus] = useState(0);
