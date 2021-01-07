@@ -3,6 +3,7 @@
 .groupsWrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .headLabel {
@@ -41,6 +42,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      & > span {
+        margin-top: 2px;
+      }
 
       & > svg {
         margin-left: 4px;
