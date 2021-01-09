@@ -6,6 +6,7 @@ import styles from "./ContactModalBodyGroupsList.module.scss";
 
 import { ReactComponent as HandleIcon } from "./assets/close.svg";
 import { SettingOutlined } from "@ant-design/icons";
+import { isDotInRectangle } from "../../../../../service/calculation";
 
 type Props = {
   contactGroups: string;
@@ -38,17 +39,32 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
         return;
       }
 
-      if (
-        !containerRef!.current?.childNodes[0].contains(
-          e.target as HTMLElement
-        ) &&
-        !(e.target as HTMLElement)?.classList.contains(
-          styles.listWrapper ||
-            styles.listItem ||
-            styles.list ||
-            styles.newGroupButton
-        )
-      )
+      const containerRefBounding = containerRef?.current?.getBoundingClientRect() || {
+        left: 0,
+        top: 0,
+        height: 0,
+        width: 0,
+      };
+      const rectangle = {
+        A: {
+          x: containerRefBounding.left,
+          y: containerRefBounding.top,
+        },
+        B: {
+          x: containerRefBounding.left + containerRefBounding.width,
+          y: containerRefBounding.top,
+        },
+        C: {
+          x: containerRefBounding.left + containerRefBounding.width,
+          y: containerRefBounding.top + containerRefBounding.height,
+        },
+        D: {
+          x: containerRefBounding.left,
+          y: containerRefBounding.top + containerRefBounding.height,
+        },
+      };
+
+      if (!isDotInRectangle({ x: e.clientX, y: e.clientY }, rectangle))
         handleClose();
     },
     [isOpen, containerRef, handleClose]
@@ -89,7 +105,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
         >
           <span>{group.name}</span>
           <HandleIcon
-              className={classNames(styles.icon)}
+            className={classNames(styles.icon)}
             onClick={() => handleChangingGroups(group.name, !isGroupInGroups)}
           />
         </li>
