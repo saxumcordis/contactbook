@@ -1,7 +1,7 @@
 import React, { createRef, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import { useGroups } from "../../../../../service/contexts/useGroups";
-import { useMedia } from "use-media"
+import { useMedia } from "use-media";
 
 import styles from "./ContactModalBodyGroupsList.module.scss";
 
@@ -12,6 +12,7 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import { StopOutlined } from "@ant-design/icons";
 import { isDotInRectangle } from "../../../../../service/calculation";
 import { PopOver } from "../../../../../components/PopOver";
+import { handleLongString } from "../../../../../service/stringHandlers";
 
 type Props = {
   contactGroups: string;
@@ -21,7 +22,7 @@ type Props = {
 export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   const { children, contactGroups, changeGroups } = props;
 
-  const isSmall = useMedia({maxWidth: "450px"});
+  const isSmall = useMedia({ maxWidth: "450px" });
 
   const {
     groups,
@@ -161,7 +162,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
           )}
           key={i}
         >
-          <span>{group.name}</span>
+          <span title={group.name}>{handleLongString(group.name, 14)}</span>
           <HandleIcon
             className={classNames(styles.icon)}
             onClick={() => handleChangingGroups(group.name, !isGroupInGroups)}
@@ -190,7 +191,11 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
               popOverClassName={styles.newGroupPopOverWrapper}
               trigger="click"
               status={newGroupNameStatus}
-              container={!isSmall ? { width: 216, height: 14 } : {width: 166, height: 10,}}
+              container={
+                !isSmall
+                  ? { width: 216, height: 14 }
+                  : { width: 166, height: 10 }
+              }
             >
               <PlusCircleOutlined
                 onClick={() => setNewGroupNameStatus("WAIT")}

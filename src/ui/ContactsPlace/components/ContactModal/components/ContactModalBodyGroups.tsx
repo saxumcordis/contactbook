@@ -6,6 +6,7 @@ import { EditOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalBodyGroups.module.scss";
 import { ContactModalBodyGroupsList } from "./ContactModalBodyGroupsList";
+import { handleLongString } from "../../../../../service/stringHandlers";
 
 type Props = {
   contactGroups: string;
@@ -25,7 +26,8 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
     contactGroups !== ""
       ? contactGroups.split(",").map((e, i) => (
           <li key={i}>
-            <span>{e}</span> <DeleteIcon onClick={() => handleDeleting(e)} />
+            <span title={e}>{handleLongString(e, 14)}</span>{" "}
+            <DeleteIcon onClick={() => handleDeleting(e)} />
           </li>
         ))
       : null;
