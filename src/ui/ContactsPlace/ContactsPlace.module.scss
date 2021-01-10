@@ -31,3 +31,11 @@
     text-decoration: underline;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .emptyContactBookMessage {
+    & > span {
+      font-size: 16px;
+    }
+  }
+}

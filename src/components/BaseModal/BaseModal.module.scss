@@ -27,6 +27,7 @@
   background: white;
   z-index: 1100;
   transition: all 0.2s ease-in-out;
+  max-height: 80vh;
 }
 
 .header {
@@ -35,7 +36,7 @@
   align-items: center;
   padding: 16px 20px;
   border-bottom: 1px solid $color4;
-  height: 55px;
+  min-height: 50px;
 }
 
 .title {
@@ -62,6 +63,7 @@
 
 .footer {
   padding: 22px 20px;
+  min-height: 30px;
   border-top: 1px solid $color4;
   display: flex;
   justify-content: flex-end;
@@ -101,7 +103,7 @@
 
   .footer {
     padding: 10px 20px;
-    min-height: 25px;
+    min-height: 30px;
   }
 
   .close {

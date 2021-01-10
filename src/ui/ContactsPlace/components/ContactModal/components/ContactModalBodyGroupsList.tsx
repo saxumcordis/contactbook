@@ -1,6 +1,7 @@
 import React, { createRef, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import { useGroups } from "../../../../../service/contexts/useGroups";
+import { useMedia } from "use-media"
 
 import styles from "./ContactModalBodyGroupsList.module.scss";
 
@@ -19,6 +20,8 @@ type Props = {
 
 export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   const { children, contactGroups, changeGroups } = props;
+
+  const isSmall = useMedia({maxWidth: "450px"});
 
   const {
     groups,
@@ -187,7 +190,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
               popOverClassName={styles.newGroupPopOverWrapper}
               trigger="click"
               status={newGroupNameStatus}
-              container={{ width: 216, height: 26 }}
+              container={!isSmall ? { width: 216, height: 14 } : {width: 166, height: 10,}}
             >
               <PlusCircleOutlined
                 onClick={() => setNewGroupNameStatus("WAIT")}

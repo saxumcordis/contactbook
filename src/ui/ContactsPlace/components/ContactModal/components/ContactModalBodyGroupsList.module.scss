@@ -117,7 +117,7 @@
 
 .newGroupPopOverWrapper {
   width: 200px !important;
-  height: 26px;
+  height: 14px;
   padding: 7px;
   display: flex;
   align-items: center;
@@ -130,6 +130,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: -1px;
 
   & > input {
     outline: none;
@@ -147,4 +148,54 @@
 .notActive {
   color: $color3 !important;
   cursor: not-allowed !important;
+}
+
+@media screen and (max-width: 450px) {
+  .listWrapper {
+    min-height: 20px;
+    height: 20px;
+  }
+
+  .listItem {
+    padding: 2px 4px;
+    font-size: 10px;
+    height: 10px;
+
+    & > svg {
+      margin-top: 1px;
+      width: 9px;
+    }
+  }
+
+  .settingsBox > span {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+
+  .button {
+    font-size: 10px;
+    margin-right: 2px;
+  }
+
+  .newGroupPopOverWrapper {
+    margin-top: 1px;
+    height: 2px;
+    width: 150px !important;
+  }
+
+  .newGroupPopOver {
+    & > input {
+      font-size: 9px;
+      height: 8px;
+      &::placeholder {
+        font-size: 9px;
+      }
+    };
+  }
+
+  .newGroupButtons {
+    & > span {
+      font-size: 10px;
+    }
+  }
 }
