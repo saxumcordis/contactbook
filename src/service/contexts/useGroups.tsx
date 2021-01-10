@@ -12,6 +12,8 @@ type TGroupsContext = {
   groups: Group[];
   addGroup: (newGroup: Group) => void;
   removeGroup: (group: Group) => void;
+  isGroupExists: (groupName: string) => boolean;
+  lastId: number;
   getStatus: () => string;
   activeGroup: Group;
   setActiveGroup: (group: Group) => void;
@@ -46,9 +48,11 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
 
   const isGroupExists = useCallback(
     (newGroupName: string) =>
-      groups.find((e) => e.name.toLowerCase() === newGroupName.toLowerCase()),
+      groups.some((e) => e.name.toLowerCase() === newGroupName.toLowerCase()),
     [groups]
   );
+
+  const lastId = groups.length && groups[groups.length - 1]._id;
 
   useEffect(() => setStatus(0), [groups]);
 
@@ -102,6 +106,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     getStatus,
     addGroup,
     removeGroup,
+    isGroupExists,
+    lastId,
     activeGroupName,
     setActiveGroupName,
     isInGroup,
