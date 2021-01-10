@@ -78,4 +78,9 @@ export interface PopOverProps {
   trigger?: string;
   popOverClassName?: string;
   objectClassName?: string;
+  status?: string;
+  container?: {
+    width: number;
+    height: number;
+  };
 }
