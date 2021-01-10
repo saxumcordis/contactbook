@@ -6,7 +6,11 @@ import styles from "./ContactModalBodyGroupsList.module.scss";
 
 import { ReactComponent as HandleIcon } from "./assets/close.svg";
 import { SettingOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined } from "@ant-design/icons";
+import { StopOutlined } from "@ant-design/icons";
 import { isDotInRectangle } from "../../../../../service/calculation";
+import { PopOver } from "../../../../../components/PopOver";
 
 type Props = {
   contactGroups: string;
@@ -19,13 +23,20 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   const {
     groups,
     isInGroup,
+    isGroupExists,
+    addGroup,
+    lastId,
     addGroupToGroups,
     removeGroupFromGroups,
   } = useGroups();
 
   const [isOpen, setOpen] = useState(false);
 
+  const [newGroupNameStatus, setNewGroupNameStatus] = useState("WAIT");
+
   const containerRef = createRef<HTMLDivElement>();
+
+  const inputRef = createRef<HTMLInputElement>();
 
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
 
@@ -88,6 +99,50 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
     [contactGroups, addGroupToGroups, removeGroupFromGroups, changeGroups]
   );
 
+  const handleNewGroupName = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newGroupName = e.target.value;
+      if (
+        /[а-яА-Яa-zA-Z0-9]/.test(newGroupName) &&
+        !isGroupExists?.(newGroupName)
+      )
+        setNewGroupNameStatus("ADD");
+      else setNewGroupNameStatus("WAIT");
+    },
+    [setNewGroupNameStatus, isGroupExists]
+  );
+
+  const handleAddNewGroup = useCallback(() => {
+    const groupName = inputRef.current!.value;
+    if (!isGroupExists?.(groupName)) {
+      addGroup?.({ _id: lastId!, name: groupName, removable: true });
+      inputRef.current!.value = "";
+      setNewGroupNameStatus("CLOSE");
+    }
+  }, [inputRef, isGroupExists, addGroup, lastId]);
+
+  const newGroupPopOver = useCallback(
+    () => (
+      <div className={styles.newGroupPopOver}>
+        <input
+          onChange={handleNewGroupName}
+          placeholder="Название новой группы"
+          ref={inputRef}
+        />
+        <div className={styles.newGroupButtons}>
+          <CheckCircleOutlined
+            className={classNames({
+              [styles.notActive]: newGroupNameStatus !== "ADD",
+            })}
+            onClick={handleAddNewGroup}
+          />
+          <StopOutlined onClick={() => setNewGroupNameStatus("CLOSE")} />
+        </div>
+      </div>
+    ),
+    [newGroupNameStatus, handleNewGroupName, handleAddNewGroup, inputRef]
+  );
+
   const groupsToRender = useCallback(() => {
     return groups?.map((group, i) => {
       const isGroupInGroups = isInGroup?.(contactGroups, group.name);
@@ -124,7 +179,22 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
       {isOpen && (
         <div className={styles.listWrapper} ref={containerRef}>
           <ul className={styles.list}>{groupsToRender}</ul>
-          <SettingOutlined className={styles.newGroupButton} />
+          <div className={styles.settingsBox}>
+            <PopOver
+              content={newGroupPopOver()}
+              placement="left"
+              objectClassName={styles.button}
+              popOverClassName={styles.newGroupPopOverWrapper}
+              trigger="click"
+              status={newGroupNameStatus}
+              container={{ width: 216, height: 26 }}
+            >
+              <PlusCircleOutlined
+                onClick={() => setNewGroupNameStatus("WAIT")}
+              />
+            </PopOver>
+            <SettingOutlined />
+          </div>
         </div>
       )}
     </div>
