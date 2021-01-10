@@ -81,7 +81,7 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
       };
       return { ...style[placement || "top"] };
     },
-    [container]
+    [container, status]
   );
 
   const popOverStyle = useStyle(element, placement);
