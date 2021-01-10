@@ -16,6 +16,7 @@
 
   & > span {
     line-height: 1.43;
+    width: 100%;
   }
 
   transition: 0.4s ease all;
@@ -41,8 +42,13 @@
   justify-content: center;
   align-items: center;
   transition: 0.2s ease all;
+
+  & > span {
+    outline: none;
+  }
 }
 
-.object:hover {
-  color: $color3;
+.object:hover,
+.active {
+  color: $color3 !important;
 }

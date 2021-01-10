@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import styles from "./PopOver.module.scss";
 import classNames from "classnames";
@@ -12,6 +12,11 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
     trigger = "hover",
     popOverClassName,
     objectClassName,
+    status,
+    container = {
+      width: 100,
+      height: 26,
+    },
   } = props;
 
   const [element, setElement] = useState<HTMLElement | null>(null);
@@ -26,48 +31,58 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
     setElement(null);
   };
 
-  const useStyle = (triggerObject: HTMLElement | null, placement: string) => {
-    if (!triggerObject) return { display: "none" };
-    const style: any = {
-      top: {
-        top: triggerObject.offsetTop - 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft + triggerObject.offsetWidth / 2 - 50,
-      },
-      left: {
-        top: triggerObject.offsetTop - 13,
-        left: triggerObject.offsetLeft - 106,
-      },
-      right: {
-        top: triggerObject.offsetTop - 13,
-        left: triggerObject.offsetLeft + triggerObject.offsetWidth + 6,
-      },
-      bottom: {
-        top: triggerObject.offsetTop + 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft + triggerObject.offsetWidth / 2 - 50,
-      },
-      leftTop: {
-        top: triggerObject.offsetTop - 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft - 106,
-        borderBottomRightRadius: 1,
-      },
-      leftBottom: {
-        top: triggerObject.offsetTop + 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft - 106,
-        borderTopRightRadius: 1,
-      },
-      rightBottom: {
-        top: triggerObject.offsetTop + 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft + triggerObject.offsetWidth + 6,
-        borderTopLeftRadius: 1,
-      },
-      rightTop: {
-        top: triggerObject.offsetTop - 2 * triggerObject.offsetHeight - 6,
-        left: triggerObject.offsetLeft + triggerObject.offsetWidth + 6,
-        borderBottomLeftRadius: 1,
-      },
-    };
-    return { ...style[placement || "top"] };
-  };
+  const useStyle = useCallback(
+    (triggerObject: HTMLElement | null, placement: string) => {
+      if (!triggerObject || status === "CLOSE") return { display: "none" };
+
+      const style: any = {
+        top: {
+          top: triggerObject.offsetTop - container.height - 10,
+          left:
+            triggerObject.offsetLeft +
+            triggerObject.offsetWidth / 2 -
+            container.width / 2,
+        },
+        left: {
+          top: triggerObject.offsetTop - container.height / 2,
+          left: triggerObject.offsetLeft - (container.width + 10),
+        },
+        right: {
+          top: triggerObject.offsetTop - container.height / 2,
+          left: triggerObject.offsetLeft + triggerObject.offsetWidth + 10,
+        },
+        bottom: {
+          top: triggerObject.offsetTop + triggerObject.offsetHeight + 10,
+          left:
+            triggerObject.offsetLeft +
+            triggerObject.offsetWidth / 2 -
+            container.width / 2,
+        },
+        leftTop: {
+          top: triggerObject.offsetTop - container.height - 10,
+          left: triggerObject.offsetLeft - container.width - 10,
+          borderBottomRightRadius: 1,
+        },
+        leftBottom: {
+          top: triggerObject.offsetTop + triggerObject.offsetHeight + 10,
+          left: triggerObject.offsetLeft - (container.width + 6),
+          borderTopRightRadius: 1,
+        },
+        rightBottom: {
+          top: triggerObject.offsetTop + triggerObject.offsetHeight + 10,
+          left: triggerObject.offsetLeft + triggerObject.offsetWidth + 10,
+          borderTopLeftRadius: 1,
+        },
+        rightTop: {
+          top: triggerObject.offsetTop - container.height - 10,
+          left: triggerObject.offsetLeft + triggerObject.offsetWidth + 10,
+          borderBottomLeftRadius: 1,
+        },
+      };
+      return { ...style[placement || "top"] };
+    },
+    [container]
+  );
 
   const popOverStyle = useStyle(element, placement);
 
@@ -81,7 +96,7 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
         )}
         style={popOverStyle}
       >
-        <span onMouseLeave={handlePopoverClose}>{content}</span>
+        <span>{content}</span>
       </div>
       {trigger === "hover" && (
         <div
@@ -94,7 +109,9 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
       )}
       {trigger === "click" && (
         <div
-          className={classNames(styles.object, objectClassName)}
+          className={classNames(styles.object, objectClassName, {
+            [styles.active]: element && status !== "CLOSE",
+          })}
           onClick={handlePopoverOpen}
         >
           {children}
