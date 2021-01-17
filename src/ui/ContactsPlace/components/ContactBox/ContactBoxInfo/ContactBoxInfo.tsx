@@ -1,8 +1,8 @@
 import React from "react";
-import { Contact_person } from "../../../../../../types/Contact";
+import { Contact_person } from "../../../../../types/Contact";
 
 import styles from "./ContactBoxInfo.module.scss";
-import { handleLongStringWithTip } from "../../../../../../service/stringHandlers";
+import { handleLongStringWithTip } from "../../../../../service/stringHandlers";
 
 type Props = {
   contact: Contact_person;

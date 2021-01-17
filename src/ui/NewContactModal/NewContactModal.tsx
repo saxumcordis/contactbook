@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 
 import { Form, Formik } from "formik";
-import styles from "../ContactsPlace/components/ContactModal/ContactModal.module.scss";
+import styles from "../ContactModal/ContactModal.module.scss";
 import { BaseModal } from "../../components/BaseModal";
 import { NewContactModalBody, NewContactModalFooter } from "./components";
 import { ContactFormValues } from "../../types/ContactForm";

@@ -1,12 +1,12 @@
 import React from "react";
-import { useGroups } from "../../../../../service/contexts/useGroups";
+import { useGroups } from "../../../service/contexts/useGroups";
 
 import { ReactComponent as DeleteIcon } from "./assets/close.svg";
 import { EditOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalBodyGroups.module.scss";
 import { ContactModalBodyGroupsList } from "./ContactModalBodyGroupsList";
-import { handleLongString } from "../../../../../service/stringHandlers";
+import { handleLongString } from "../../../service/stringHandlers";
 
 type Props = {
   contactGroups: string;

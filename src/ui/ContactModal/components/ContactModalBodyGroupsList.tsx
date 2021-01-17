@@ -1,6 +1,6 @@
 import React, { createRef, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-import { useGroups } from "../../../../../service/contexts/useGroups";
+import { useGroups } from "../../../service/contexts/useGroups";
 import { useMedia } from "use-media";
 
 import styles from "./ContactModalBodyGroupsList.module.scss";
@@ -10,9 +10,9 @@ import { SettingOutlined } from "@ant-design/icons";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import { StopOutlined } from "@ant-design/icons";
-import { isDotInRectangle } from "../../../../../service/calculation";
-import { PopOver } from "../../../../../components/PopOver";
-import { handleLongString } from "../../../../../service/stringHandlers";
+import { isDotInRectangle } from "../../../service/calculation";
+import { PopOver } from "../../../components/PopOver";
+import { handleLongString } from "../../../service/stringHandlers";
 
 type Props = {
   contactGroups: string;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { handleLongStringWithTip } from "../../../../../service/stringHandlers";
+import { handleLongStringWithTip } from "../../../service/stringHandlers";
 
 type Props = {
   title: string;

@@ -5,11 +5,11 @@ import { ReactComponent as FavoriteIcon } from "./assets/favorite.svg";
 import { ReactComponent as FilledFavoriteIcon } from "./assets/filledFavorite.svg";
 
 import styles from "./ContactModalHeader.module.scss";
-import { useContactBook } from "../../../../../service/contexts";
-import { PopConfirm } from "../../../../../components/PopConfirm";
-import { Contact_person } from "../../../../../types/Contact";
-import { useGroups } from "../../../../../service/contexts/useGroups";
-import { ContactFormValues } from "../../../../../types/ContactForm";
+import { useContactBook } from "../../../service/contexts";
+import { PopConfirm } from "../../../components/PopConfirm";
+import { Contact_person } from "../../../types/Contact";
+import { useGroups } from "../../../service/contexts/useGroups";
+import { ContactFormValues } from "../../../types/ContactForm";
 
 type Props = {
   contact: Contact_person;

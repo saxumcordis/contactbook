@@ -3,8 +3,8 @@ import styles from "./ContactBox.module.scss";
 
 import { Contact_person } from "../../../../types/Contact";
 import { Avatar } from "../../../../components/Avatar";
-import { ContactBoxInfo } from "./components/ContactBoxInfo";
-import { ContactModal } from "../ContactModal";
+import { ContactBoxInfo } from "./ContactBoxInfo";
+import { ContactModal } from "../../../ContactModal";
 
 type Props = {
   contact: Contact_person;

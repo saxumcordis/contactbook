@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
-import { Contact_person } from "../../../../../types/Contact";
-import { Button } from "../../../../../components/Button";
+import { Contact_person } from "../../../types/Contact";
+import { Button } from "../../../components/Button";
 
 import styles from "./ContactModalFooter.module.scss";
 import { FormikErrors } from "formik";
-import { ContactFormValues } from "../../../../../types/ContactForm";
+import { ContactFormValues } from "../../../types/ContactForm";
 
 type Props = {
   contact: Contact_person;

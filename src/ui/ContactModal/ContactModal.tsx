@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from "react";
-import { Contact } from "../../../../types/Contact";
-import { BaseModal } from "../../../../components/BaseModal";
-import { BaseModalProps } from "../../../../types/Components";
+import { Contact } from "../../types/Contact";
+import { BaseModal } from "../../components/BaseModal";
+import { BaseModalProps } from "../../types/Components";
 import * as Yup from "yup";
 
 import styles from "./ContactModal.module.scss";
 import { ContactModalFooter, ContactModalHeader } from "./components";
 import { ContactModalBody } from "./components";
 import { Form, Formik } from "formik";
-import { ContactFormValues } from "../../../../types/ContactForm";
-import { useContactBook } from "../../../../service/contexts";
+import { ContactFormValues } from "../../types/ContactForm";
+import { useContactBook } from "../../service/contexts";
 import { ContactModalHeaderControl } from "./components/ContacModalHeaderControl";
 
 type Props = Contact & BaseModalProps;

@@ -1,4 +1,4 @@
-import styles from "../../ContactsPlace/components/ContactModal/components/ContactModalBody.module.scss";
+import styles from "../../ContactModal/components/ContactModalBody.module.scss";
 import { FieldGroup } from "../../../components/FieldGroup";
 import classNames from "classnames";
 import {

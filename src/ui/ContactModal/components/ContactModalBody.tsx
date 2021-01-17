@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
 import styles from "./ContactModalBody.module.scss";
-import { FieldGroup } from "../../../../../components/FieldGroup";
+import { FieldGroup } from "../../../components/FieldGroup";
 import classNames from "classnames";
-import { Avatar } from "../../../../../components/Avatar";
+import { Avatar } from "../../../components/Avatar";
 import {
   LabeledInput,
   LabeledInputWithError,
-} from "../../../../../components/LabeledInput";
+} from "../../../components/LabeledInput";
 
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { FormikErrors } from "formik";
-import { ContactFormValues } from "../../../../../types/ContactForm";
-import { AvatarSelectorModal } from "../../../../../components/AvatarSelectorModal";
+import { ContactFormValues } from "../../../types/ContactForm";
+import { AvatarSelectorModal } from "../../../components/AvatarSelectorModal";
 import { ContactModalBodyGroups } from "./ContactModalBodyGroups";
 
 type Props = {
