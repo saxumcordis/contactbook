@@ -33,6 +33,7 @@
   list-style: none;
   margin-top: 4px;
   margin-bottom: 8px;
+  height: 50px;
   padding: 0 8px;
   display: flex;
   flex-direction: row;
@@ -116,12 +117,14 @@
 }
 
 .newGroupPopOverWrapper {
-  width: 200px !important;
+  width: 80% !important;
   height: 14px;
   padding: 7px;
   display: flex;
   align-items: center;
   margin-top: -1px;
+  border-color: $color3;
+  left: 8px !important;
 }
 
 .newGroupPopOver {
@@ -135,9 +138,9 @@
   & > input {
     outline: none;
     background: $color1;
-    border: 1px solid $color3;
+    border: none;
     color: $primary;
-
+    line-height: 1.43;
     &::placeholder {
       font-size: 13px;
       color: $color3;
@@ -148,12 +151,20 @@
 .notActive {
   color: $color3 !important;
   cursor: not-allowed !important;
+  opacity: 0.32;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media screen and (max-width: 450px) {
   .listWrapper {
     min-height: 20px;
-    height: 20px;
+  }
+
+  .list {
+    height: auto;
   }
 
   .listItem {
@@ -188,7 +199,7 @@
       font-size: 9px;
       height: 8px;
       &::placeholder {
-        font-size: 9px;
+        font-size: 8px;
       }
     }
   }
