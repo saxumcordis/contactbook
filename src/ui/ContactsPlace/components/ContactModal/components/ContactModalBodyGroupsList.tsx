@@ -36,7 +36,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
 
   const [isOpen, setOpen] = useState(false);
 
-  const [newGroupNameStatus, setNewGroupNameStatus] = useState("WAIT");
+  const [newGroupNameStatus, setNewGroupNameStatus] = useState("CLOSE");
 
   const containerRef = createRef<HTMLDivElement>();
 
@@ -79,8 +79,10 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
         },
       };
 
-      if (!isDotInRectangle({ x: e.clientX, y: e.clientY }, rectangle))
-        handleClose();
+      if (!isDotInRectangle({ x: e.clientX, y: e.clientY }, rectangle)) {
+          setNewGroupNameStatus("CLOSE");
+          handleClose();
+      }
     },
     [isOpen, containerRef, handleClose]
   );
@@ -182,7 +184,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
       </label>
       {isOpen && (
         <div className={styles.listWrapper} ref={containerRef}>
-          <ul className={styles.list}>{groupsToRender}</ul>
+          <ul className={classNames(styles.list, {[styles.hidden]: newGroupNameStatus !== "CLOSE"} )}>{groupsToRender}</ul>
           <div className={styles.settingsBox}>
             <PopOver
               content={newGroupPopOver()}
