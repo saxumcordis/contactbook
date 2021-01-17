@@ -10,6 +10,7 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
     children,
     placement = "top",
     trigger = "hover",
+    autoClosable = true,
     popOverClassName,
     objectClassName,
     status,
@@ -95,6 +96,7 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
           popOverClassName
         )}
         style={popOverStyle}
+        onMouseLeave={() => autoClosable && handlePopoverClose()}
       >
         <span>{content}</span>
       </div>
@@ -109,9 +111,13 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
       )}
       {trigger === "click" && (
         <div
-          className={classNames(styles.object, objectClassName, {
-            [styles.active]: element && status !== "CLOSE",
-          })}
+          className={classNames(
+            styles.object,
+            {
+              [styles.active]: element && status !== "CLOSE",
+            },
+            objectClassName
+          )}
           onClick={handlePopoverOpen}
         >
           {children}
