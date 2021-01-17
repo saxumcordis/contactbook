@@ -15,8 +15,10 @@ type TGroupsContext = {
   isGroupExists: (groupName: string) => boolean;
   lastId: number;
   getStatus: () => string;
-  activeGroup: Group;
-  setActiveGroup: (group: Group) => void;
+  activeGroups: string[];
+  isGroupActive: (group: string) => boolean;
+  handleActiveGroup: (groups: string) => void;
+  setActiveGroups: (groups: string[]) => void;
   isInGroup: (groups: string, group: string) => boolean;
   addGroupToGroups: (groups: string, group: string) => string;
   removeGroupFromGroups: (groups: string, group: string) => string;
@@ -41,7 +43,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     )
   );
 
-  const [activeGroupName, setActiveGroupName] = useState(null);
+  const [activeGroups, setActiveGroups] = useState<string[]>([]);
   const [status, setStatus] = useState(0);
 
   const getStatus = useCallback(() => statusCodes[status], [status]);
@@ -50,6 +52,19 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     (newGroupName: string) =>
       groups.some((e) => e.name.toLowerCase() === newGroupName.toLowerCase()),
     [groups]
+  );
+
+  const isGroupActive = useCallback(
+    (groupName: string) => activeGroups.includes(groupName),
+    [activeGroups]
+  );
+
+  const handleActiveGroup = useCallback(
+    (groupName) =>
+      isGroupActive(groupName)
+        ? setActiveGroups(activeGroups.filter((e) => e !== groupName))
+        : setActiveGroups(activeGroups.concat(groupName)),
+    [activeGroups, setActiveGroups, isGroupActive]
   );
 
   const lastId = groups.length && groups[groups.length - 1]._id;
@@ -108,8 +123,10 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     removeGroup,
     isGroupExists,
     lastId,
-    activeGroupName,
-    setActiveGroupName,
+    activeGroups,
+    isGroupActive,
+    handleActiveGroup,
+    setActiveGroups,
     isInGroup,
     addGroupToGroups,
     removeGroupFromGroups,
