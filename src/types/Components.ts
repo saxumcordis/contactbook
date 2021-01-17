@@ -76,6 +76,7 @@ export interface PopOverProps {
   children: React.ReactNode;
   placement?: string;
   trigger?: string;
+  autoClosable?: boolean;
   popOverClassName?: string;
   objectClassName?: string;
   status?: string;
