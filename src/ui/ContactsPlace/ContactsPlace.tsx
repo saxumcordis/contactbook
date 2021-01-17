@@ -64,7 +64,7 @@ export const ContactsPlace = () => {
           <ContactBox key={index} contact={contact} />
         ))}
         {!length && <NoData content={emptyContactBookMessage} />}
-        {!searchedItems?.length && !!length && (
+        {!contactBookFilterByGroups(searchedItems!)?.length && !!length && (
           <NoData content="Ни один из контактов не удовлетворяет введённым параметрам" />
         )}
       </div>
