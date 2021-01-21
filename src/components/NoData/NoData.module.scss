@@ -11,3 +11,11 @@
     font-size: 21px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .noDataWrapper {
+    & > * {
+      font-size: 12px;
+    }
+  }
+}
