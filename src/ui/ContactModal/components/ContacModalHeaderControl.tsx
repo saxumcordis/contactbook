@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 
-import { ReactComponent as DeleteIcon } from "./assets/delete.svg";
-import { ReactComponent as FavoriteIcon } from "./assets/favorite.svg";
-import { ReactComponent as FilledFavoriteIcon } from "./assets/filledFavorite.svg";
+import { ReactComponent as DeleteIcon } from "../../../assets/images/delete.svg";
+import { ReactComponent as FavoriteIcon } from "../../../assets/images/favorite.svg";
+import { ReactComponent as FilledFavoriteIcon } from "../../../assets/images/filledFavorite.svg";
 
 import styles from "./ContactModalHeader.module.scss";
 import { useContactBook } from "../../../service/contexts";

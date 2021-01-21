@@ -1,7 +1,7 @@
 import React from "react";
 import { useGroups } from "../../../service/contexts/useGroups";
 
-import { ReactComponent as DeleteIcon } from "./assets/close.svg";
+import { ReactComponent as DeleteIcon } from "../../../assets/images/close.svg";
 import { EditOutlined } from "@ant-design/icons";
 
 import styles from "./ContactModalBodyGroups.module.scss";

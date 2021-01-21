@@ -5,7 +5,7 @@ import { useMedia } from "use-media";
 
 import styles from "./ContactModalBodyGroupsList.module.scss";
 
-import { ReactComponent as HandleIcon } from "./assets/close.svg";
+import { ReactComponent as HandleIcon } from "../../../assets/images/close.svg";
 import { SettingOutlined } from "@ant-design/icons";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { CheckCircleOutlined } from "@ant-design/icons";
