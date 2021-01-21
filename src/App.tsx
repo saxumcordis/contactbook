@@ -8,6 +8,7 @@ import {
   GroupsContextProvider,
   PersistGroups,
 } from "./service/contexts/useGroups";
+import { FavoritesButton } from "./ui/FavoritesButton";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Header />
             <ContactsPlace />
             <NewContactModal />
+            <FavoritesButton />
             <PersistContactBook />
             <PersistGroups />
           </GroupsContextProvider>

@@ -1,0 +1,64 @@
+@import "../../assets/theme/colors";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  max-width: 78px;
+  width: 78px;
+  height: 78px;
+  max-height: 78px;
+  background: $color1;
+}
+
+.button {
+  max-width: 64px;
+  height: 64px;
+  cursor: pointer;
+  filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+
+  &:hover,
+  &_active {
+    fill: $color3;
+    filter: invert(0.5) sepia(1) saturate(4) hue-rotate(237deg);
+    transition: 0.4s ease all;
+  }
+
+  &_active {
+    filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+    &:hover {
+      filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .wrapper {
+    max-width: 52px;
+    max-height: 52px;
+    width: 52px;
+    height: 52px;
+  }
+  .button {
+    max-width: 40px;
+    max-height: 40px;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .wrapper {
+    max-width: 32px;
+    max-height: 32px;
+    width: 32px;
+    height: 32px;
+  }
+  .button {
+    max-width: 24px;
+    max-height: 24px;
+  }
+}
