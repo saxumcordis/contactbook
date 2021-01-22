@@ -14,7 +14,7 @@ export const FavoritesButton = React.memo(() => {
     activeGroups?.length && activeGroups[0] === "Избранное"
   );
   useEffect(() => {
-    setActive(activeGroups?.length == 1 && activeGroups[0] === "Избранное");
+    setActive(activeGroups?.length === 1 && activeGroups[0] === "Избранное");
   }, [setActive, activeGroups]);
 
   const handleClick = useCallback(() => {
