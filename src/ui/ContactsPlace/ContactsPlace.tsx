@@ -58,7 +58,9 @@ export const ContactsPlace = () => {
 
   return (
     <div className={styles.contactsPlace}>
-      <ContactsPlaceHeader currentLength={searchedItems?.length} />
+      <ContactsPlaceHeader
+        currentLength={contactBookFilterByGroups(searchedItems!)?.length}
+      />
       <div className={styles.contactsWrapper}>
         {contactBookFilterByGroups(searchedItems!)?.map((contact, index) => (
           <ContactBox key={index} contact={contact} />

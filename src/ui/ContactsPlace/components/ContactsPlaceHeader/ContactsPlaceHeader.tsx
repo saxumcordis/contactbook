@@ -13,7 +13,7 @@ type Props = {
 
 export const ContactsPlaceHeader: React.FC<Props> = (props) => {
   const { currentLength } = props;
-  const { length, searchValue } = useContactBook();
+  const { length } = useContactBook();
 
   const {
     groups,
@@ -59,10 +59,9 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
       </PopOver>
       <span>Сортировка</span>
       <span className={styles.fixedSpan}>
-        {" "}
-        {searchValue === ""
-          ? "Количество контактов " + length
-          : "Найдено контактов " + currentLength}
+        {currentLength === length
+          ? `Количество контактов ${length}`
+          : `Найдено контактов ${currentLength}`}
       </span>
     </div>
   );
