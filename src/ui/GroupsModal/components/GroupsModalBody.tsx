@@ -13,7 +13,10 @@ export const GroupsModalBody = () => {
     handleActiveGroup,
     isGroupActive,
     activeGroups,
+    setActiveGroups,
   } = useGroups();
+
+  const isActiveGroupsInit = !!activeGroups?.length;
 
   const renderGroupsList = (
     <ul className={styles.list}>
@@ -23,7 +26,7 @@ export const GroupsModalBody = () => {
           <li
             className={classNames(styles.listItem, {
               [styles.listItem_active]: isActive,
-              [styles.listItem_notActive]: !isActive && activeGroups?.length,
+              [styles.listItem_notActive]: !isActive && isActiveGroupsInit,
             })}
             key={i}
             onClick={() => handleActiveGroup?.(group?.name)}
@@ -53,7 +56,17 @@ export const GroupsModalBody = () => {
             tipContentClassName={styles.displayedGroupsTipWrapper}
             tipPlacement={"right"}
           />
-          {renderGroupsList}
+          <div className={styles.listWrapper}>
+            {renderGroupsList}
+            <span
+              className={classNames(styles.showAllGroups, {
+                [styles.showAllGroups_notActive]: !isActiveGroupsInit,
+              })}
+              onClick={() => setActiveGroups?.([])}
+            >
+              Показать все
+            </span>
+          </div>
         </div>
       </FieldGroup>
     </div>
