@@ -23,7 +23,7 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
       <span>Сортировка</span>
       <span className={styles.fixedSpan}>
         {currentLength === length
-          ? `${isSmall ? "Кол-во контактов" + handleLongStringWithTip(length!.toString(), 3) : "Количество контактов" + length}`
+          ? `${isSmall ? "Кол-во контактов " + handleLongStringWithTip(length!.toString(), 3) : "Количество контактов " + length}`
           : `Найдено контактов ${isSmall ? handleLongStringWithTip(currentLength!.toString(), 3) : currentLength}`}
       </span>
     </div>
