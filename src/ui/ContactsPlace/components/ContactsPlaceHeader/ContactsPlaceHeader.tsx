@@ -3,7 +3,7 @@ import styles from "./ContactsPlaceHeader.module.scss";
 import { useContactBook } from "../../../../service/contexts";
 import { useGroupsModal } from "../../../../service/contexts/useGroupsModal";
 import {useMedia} from "use-media";
-import {handleLongString} from "../../../../service/stringHandlers";
+import {handleLongStringWithTip} from "../../../../service/stringHandlers";
 
 type Props = {
   currentLength: number | undefined;
@@ -23,8 +23,8 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
       <span>Сортировка</span>
       <span className={styles.fixedSpan}>
         {currentLength === length
-          ? `Количество контактов ${isSmall ? handleLongString(length!.toString(), 0) : length}`
-          : `Найдено контактов ${isSmall ? handleLongString(currentLength!.toString(), 0) : currentLength}`}
+          ? `${isSmall ? "Кол-во контактов" + handleLongStringWithTip(length!.toString(), 3) : "Количество контактов" + length}`
+          : `Найдено контактов ${isSmall ? handleLongStringWithTip(currentLength!.toString(), 3) : currentLength}`}
       </span>
     </div>
   );
