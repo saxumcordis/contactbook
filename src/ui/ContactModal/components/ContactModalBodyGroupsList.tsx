@@ -13,6 +13,7 @@ import { StopOutlined } from "@ant-design/icons";
 import { isDotInRectangle } from "../../../service/calculation";
 import { PopOver } from "../../../components/PopOver";
 import { handleLongString } from "../../../service/stringHandlers";
+import {useGroupsModal} from "../../../service/contexts/useGroupsModal";
 
 type Props = {
   contactGroups: string;
@@ -21,6 +22,8 @@ type Props = {
 
 export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   const { children, contactGroups, changeGroups } = props;
+
+  const {open} = useGroupsModal();
 
   const isSmall = useMedia({ maxWidth: "450px" });
 
@@ -210,7 +213,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
                 onClick={() => setNewGroupNameStatus("WAIT")}
               />
             </PopOver>
-            <SettingOutlined />
+            <SettingOutlined className={styles.button} onClick={open} />
           </div>
         </div>
       )}

@@ -93,6 +93,12 @@
   font-size: 15px;
   min-width: 15px;
   margin-right: 8px;
+  outline: none;
+
+  &:hover {
+    color: $color3;
+    opacity: 0.32;
+  }
 }
 
 .newGroupButtons {
