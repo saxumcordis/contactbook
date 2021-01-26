@@ -1,9 +1,11 @@
 import React from "react";
 import { BaseModal } from "../../components/BaseModal";
 import { useGroupsModal } from "../../service/contexts/useGroupsModal";
+import { GroupsModalBody } from "./components";
+import classNames from "classnames";
 
 import styles from "../ContactModal/ContactModal.module.scss";
-import { GroupsModalBody } from "./components";
+import ownStyles from "./GroupsModal.module.scss";
 
 export const GroupsModal = () => {
   const { isOpen, open, close } = useGroupsModal();
@@ -12,7 +14,7 @@ export const GroupsModal = () => {
     <BaseModal
       isOpen={isOpen!}
       setOpen={() => (isOpen ? close!() : open!())}
-      className={styles.contactModal}
+      className={classNames(styles.contactModal, ownStyles.zIndex)}
       closable={true}
       title="Меню управления группами"
       body={<GroupsModalBody />}
