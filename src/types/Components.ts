@@ -55,6 +55,16 @@ export interface LabeledInputWithErrorProps {
   tipPlacement?: string;
 }
 
+export interface LabelWithTipProps {
+  labelClassName?: string;
+  labelText?: string;
+  tipContent?: React.ReactNode;
+  tipIcon?: React.ReactNode;
+  tipContentClassName?: string;
+  tipContentSizes?: { width: number; height: number };
+  tipPlacement?: string;
+}
+
 export interface NoDataProps {
   content: React.ReactNode | string;
   className?: string;
