@@ -1,0 +1,62 @@
+@import "../../../assets/theme/colors";
+
+.displayedGroups {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.displayedGroupsTipWrapper {
+  height: 80px;
+  width: 250px;
+}
+
+.displayedGroupsTip {
+  display: flex;
+  flex-direction: column;
+
+  & > span {
+    color: $color4;
+    max-height: 20px;
+    text-align: left;
+    padding: 0 0 0 2px;
+    margin: 5px 0 0 0;
+    display: block;
+    max-width: 170px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow: auto;
+  padding: 0;
+  height: 40px;
+}
+
+.listItem {
+  display: flex;
+  background: $color3;
+  color: $color4;
+  padding: 2px 8px;
+  margin-right: 5px;
+  line-height: 1.43;
+  align-items: center;
+  max-height: 20px;
+
+  &_active {
+    background: $primary;
+  }
+
+  &_notActive {
+    background: $color3;
+    opacity: 0.32;
+  }
+}
