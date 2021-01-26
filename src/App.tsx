@@ -9,6 +9,8 @@ import {
   PersistGroups,
 } from "./service/contexts/useGroups";
 import { FavoritesButton } from "./ui/FavoritesButton";
+import { GroupsModalContextProvider } from "./service/contexts/useGroupsModal";
+import { GroupsModal } from "./ui/GroupsModal";
 
 export default function App() {
   return (
@@ -16,12 +18,15 @@ export default function App() {
       <ContactBookProvider>
         <NewContactModalProvider>
           <GroupsContextProvider>
-            <Header />
-            <ContactsPlace />
-            <NewContactModal />
-            <FavoritesButton />
-            <PersistContactBook />
-            <PersistGroups />
+            <GroupsModalContextProvider>
+              <Header />
+              <ContactsPlace />
+              <NewContactModal />
+              <GroupsModal />
+              <FavoritesButton />
+              <PersistContactBook />
+              <PersistGroups />
+            </GroupsModalContextProvider>
           </GroupsContextProvider>
         </NewContactModalProvider>
       </ContactBookProvider>
