@@ -15,7 +15,7 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
   return (
     <div className={styles.contactsPlaceHeader}>
       <span>Все контакты</span>
-      <span onClick={open}>Управление группами</span>
+      <span className={styles.pointer} onClick={open}>Управление группами</span>
       <span>Сортировка</span>
       <span className={styles.fixedSpan}>
         {currentLength === length
