@@ -12,6 +12,7 @@ type TGroupsContext = {
   groups: Group[];
   addGroup: (newGroup: Group) => void;
   removeGroup: (group: Group) => void;
+  renameGroup: (group: Group, newGroupName: string) => void;
   isGroupExists: (groupName: string) => boolean;
   lastId: number;
   getStatus: () => string;
@@ -84,6 +85,23 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     [groups, setGroups]
   );
 
+  const renameGroup = useCallback(
+    (group, newGroupName) => {
+      if (isGroupExists(newGroupName)) setStatus(1);
+      else {
+        setActiveGroups(
+          activeGroups.map((e) => (e === group.name ? newGroupName : e))
+        );
+        setGroups(
+          groups.map((e) =>
+            e._id === group._id ? { ...e, name: newGroupName } : e
+          )
+        );
+      }
+    },
+    [isGroupExists, setGroups, groups, setActiveGroups, activeGroups]
+  );
+
   const isInGroup = useCallback(
     (groups, group) => groups.split(",").includes(group),
     []
@@ -121,6 +139,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     getStatus,
     addGroup,
     removeGroup,
+    renameGroup,
     isGroupExists,
     lastId,
     activeGroups,
