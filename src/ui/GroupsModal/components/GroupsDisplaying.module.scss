@@ -1,0 +1,131 @@
+@import "../../../assets/theme/colors";
+
+.groupsDisplaying {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.groupsDisplayingTipWrapper {
+  height: 80px;
+  width: 250px;
+  z-index: 2000;
+}
+
+.groupsDisplayingTip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+
+  & > span {
+    color: $color4;
+    max-height: 20px;
+    text-align: left;
+    padding: 0 0 0 2px;
+    margin: 5px auto 0 auto;
+    display: block;
+    max-width: 170px;
+    min-width: 170px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow: auto;
+  padding: 0;
+  height: 40px;
+  margin-top: 15px;
+  width: 80%;
+}
+
+.listItem {
+  display: flex;
+  background: $color3;
+  color: $color4;
+  padding: 2px 8px;
+  margin-right: 5px;
+  line-height: 1.43;
+  align-items: center;
+  max-height: 20px;
+  transition: 0.2s ease-in all;
+
+  &_active {
+    background: $primary;
+  }
+
+  &_notActive {
+    background: $color3;
+    opacity: 0.32;
+  }
+}
+
+.showAllGroups {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 2px 8px;
+  max-height: 20px;
+  color: $color4;
+  background: $color3;
+  line-height: 1.43;
+  cursor: pointer;
+  transition: 0.4s ease-in all;
+
+  &_notActive {
+    background: $color3;
+    opacity: 0.32;
+    cursor: not-allowed;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .listItem,
+  .showAllGroups {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .groupsDisplayingTipWrapper {
+    width: 150px;
+    height: 60px;
+  }
+
+  .groupsDisplayingTip {
+    & > span {
+      max-width: 120px;
+      font-size: 10px;
+      min-width: 120px !important;
+    }
+  }
+
+  .listItem,
+  .showAllGroups,
+  .listItem_active,
+  .listItem_notActive {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  .showAllGroups {
+    width: 57px;
+  }
+  .list {
+    width: 76%;
+  }
+}
