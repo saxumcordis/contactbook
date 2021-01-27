@@ -40,7 +40,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   const [groups, setGroups] = useState<Group[]>(
     JSON.parse(
       localStorage.getItem("contactBookGroups") ||
-        '[{"_id":1,"name":"Избранное","removable":false}]'
+        '[{"_id":1,"name":"Избранное","removable":false, "editable": false}]'
     )
   );
 

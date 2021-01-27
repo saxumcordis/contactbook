@@ -124,7 +124,12 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   const handleAddNewGroup = useCallback(() => {
     const groupName = inputRef.current!.value;
     if (!isGroupExists?.(groupName)) {
-      addGroup?.({ _id: lastId! + 1, name: groupName, removable: true });
+      addGroup?.({
+        _id: lastId! + 1,
+        name: groupName,
+        removable: true,
+        editable: true,
+      });
       inputRef.current!.value = "";
       setNewGroupNameStatus("CLOSE");
     }
