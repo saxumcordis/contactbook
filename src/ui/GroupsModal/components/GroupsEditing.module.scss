@@ -1,0 +1,84 @@
+@import "../../../assets/theme/colors";
+
+.groupsEditing {
+  width: 100%;
+}
+
+.groupsList {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.groupsListItem {
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+  color: $color4;
+  margin-bottom: 10px;
+  border: 1px solid $color3;
+  padding: 5px;
+  align-items: center;
+  height: 22px;
+
+  &_name {
+    padding: 2px 8px;
+    background: $color3;
+    opacity: 0.64;
+  }
+}
+
+.settingsBox {
+  display: flex;
+  align-items: center;
+  & > span {
+    fill: $primary;
+    color: $primary;
+    font-size: 15px;
+    min-width: 15px;
+    margin-right: 8px;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.button {
+  fill: $primary;
+  color: $primary;
+  font-size: 15px;
+  min-width: 15px;
+  outline: none;
+  transition: 0.2s ease-in all;
+
+  &_notActive {
+    color: $color3 !important;
+    fill: $color3 !important;
+    opacity: 0.32;
+  }
+
+  &:hover {
+    color: $color3;
+    fill: $color3;
+    opacity: 0.32;
+  }
+}
+
+.input {
+  width: 80px;
+  outline: none;
+  border: none;
+  background-color: $color1 !important;
+  color: $primary;
+
+  &::placeholder {
+    transition: all 0.4s ease;
+    color: $color3;
+  }
+}
+
+.zIndex {
+  z-index: 2500;
+}
