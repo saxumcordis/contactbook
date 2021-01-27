@@ -81,7 +81,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   );
 
   const removeGroup = useCallback(
-    (group) => group.removable && setGroups(groups.filter((e) => e._id !== group._id)),
+    (group) =>
+      group.removable && setGroups(groups.filter((e) => e._id !== group._id)),
     [groups, setGroups]
   );
 

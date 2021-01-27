@@ -53,7 +53,10 @@ export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
     );
   else
     return (
-      <div onClick={() => !isOpen && handleOpen()} className={classNames(styles.center,childrenClass)}>
+      <div
+        onClick={() => !isOpen && handleOpen()}
+        className={classNames(styles.center, childrenClass)}
+      >
         {children}
       </div>
     );
