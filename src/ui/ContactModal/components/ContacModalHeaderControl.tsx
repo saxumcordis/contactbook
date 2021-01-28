@@ -32,8 +32,8 @@ export const ContactModalHeaderControl: React.FC<Props> = (props) => {
   };
 
   const handleFavStatus = useCallback(() => {
-    const formStatus = isInGroup?.(formValues.groups, "Избранное");
-    const contactStatus = isInGroup?.(contact.groups || "", "Избранное");
+    const formStatus = isInGroup?.(formValues.groups, "1");
+    const contactStatus = isInGroup?.(contact.groups || "", "1");
 
     const isFormWaiting =
       (formStatus && !contactStatus) || (!formStatus && contactStatus);
@@ -44,7 +44,7 @@ export const ContactModalHeaderControl: React.FC<Props> = (props) => {
   const favStatus = handleFavStatus();
 
   const handleAddGroup = useCallback(() => {
-    const groups = addGroupToGroups?.(contact.groups || "", "Избранное");
+    const groups = addGroupToGroups?.(contact.groups || "", "1");
     if (!dirty) {
       updateContact?.({ ...contact, groups: groups || null });
     } else {
@@ -53,7 +53,7 @@ export const ContactModalHeaderControl: React.FC<Props> = (props) => {
   }, [addGroupToGroups, dirty, updateContact, changeGroups, contact]);
 
   const handleRemoveGroup = useCallback(() => {
-    const groups = removeGroupFromGroups?.(contact.groups || "", "Избранное");
+    const groups = removeGroupFromGroups?.(contact.groups || "", "1");
     if (!dirty) {
       updateContact?.({ ...contact, groups: groups || null });
     } else {
@@ -62,7 +62,7 @@ export const ContactModalHeaderControl: React.FC<Props> = (props) => {
   }, [removeGroupFromGroups, dirty, updateContact, changeGroups, contact]);
 
   const handleFavWaiting = useCallback(() => {
-    const groups = addGroupToGroups?.(formValues.groups || "", "Избранное");
+    const groups = addGroupToGroups?.(formValues.groups || "", "1");
     if (!dirty) {
       updateContact?.({ ...contact, groups: groups || null });
     }

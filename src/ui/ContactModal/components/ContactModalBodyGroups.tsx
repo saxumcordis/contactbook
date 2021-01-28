@@ -14,22 +14,25 @@ type Props = {
 };
 
 export const ContactModalBodyGroups: React.FC<Props> = (props) => {
-  const { removeGroupFromGroups } = useGroups();
+  const { removeGroupFromGroups, getGroupNameById } = useGroups();
 
   const { contactGroups, changeGroups } = props;
 
-  const handleDeleting = (group: string) => {
-    changeGroups(removeGroupFromGroups?.(contactGroups || "", group) || "");
+  const handleDeleting = (groupId: string) => {
+    changeGroups(removeGroupFromGroups?.(contactGroups || "", groupId) || "");
   };
 
   const contactGroupsToRender =
     contactGroups !== ""
-      ? contactGroups.split(",").map((e, i) => (
-          <li key={i}>
-            <span title={e}>{handleLongString(e, 14)}</span>{" "}
-            <DeleteIcon onClick={() => handleDeleting(e)} />
-          </li>
-        ))
+      ? contactGroups.split(",").map((id, i) => {
+          const groupName = getGroupNameById?.(id);
+          return (
+            <li key={i}>
+              <span title={groupName}>{handleLongString(groupName, 14)}</span>{" "}
+              <DeleteIcon onClick={() => handleDeleting(id)} />
+            </li>
+          );
+        })
       : null;
 
   return (

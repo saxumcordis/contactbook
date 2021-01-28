@@ -99,11 +99,9 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
   }, [isOpen, handleClickOutside]);
 
   const handleChangingGroups = useCallback(
-    (groupName, state) => {
-      if (state)
-        changeGroups(addGroupToGroups?.(contactGroups, groupName) || "");
-      else
-        changeGroups(removeGroupFromGroups?.(contactGroups, groupName) || "");
+    (groupId, state) => {
+      if (state) changeGroups(addGroupToGroups?.(contactGroups, groupId) || "");
+      else changeGroups(removeGroupFromGroups?.(contactGroups, groupId) || "");
     },
     [contactGroups, addGroupToGroups, removeGroupFromGroups, changeGroups]
   );
@@ -159,7 +157,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
 
   const groupsToRender = useCallback(() => {
     return groups?.map((group, i) => {
-      const isGroupInGroups = isInGroup?.(contactGroups, group.name);
+      const isGroupInGroups = isInGroup?.(contactGroups, group._id.toString());
 
       return (
         <li
@@ -175,7 +173,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
           <span title={group.name}>{handleLongString(group.name, 14)}</span>
           <HandleIcon
             className={classNames(styles.icon)}
-            onClick={() => handleChangingGroups(group.name, !isGroupInGroups)}
+            onClick={() => handleChangingGroups(group._id, !isGroupInGroups)}
           />
         </li>
       );
