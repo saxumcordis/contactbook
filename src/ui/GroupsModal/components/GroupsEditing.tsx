@@ -65,12 +65,17 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
 
   const inputRef = createRef<HTMLInputElement>();
 
-  const { renameGroup, removeGroup, isGroupExists } = useGroups();
-
-  const handleRemovingGroup = useCallback(() => removeGroup?.(group), [
+  const {
+    renameGroup,
     removeGroup,
-    group,
-  ]);
+    isGroupExists,
+    removeGroupFromAllContacts,
+  } = useGroups();
+
+  const handleRemovingGroup = useCallback(() => {
+    removeGroup?.(group);
+    removeGroupFromAllContacts?.(group._id.toString());
+  }, [removeGroup, group, removeGroupFromAllContacts]);
 
   const handleEdition = useCallback(() => {
     setEdit(!isEdit);
