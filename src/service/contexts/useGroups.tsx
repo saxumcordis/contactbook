@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 import { Group } from "../../types/Group";
+import { useContactBook } from "./useContactBook";
 
 type TGroupsContext = {
   groups: Group[];
@@ -20,10 +21,12 @@ type TGroupsContext = {
   isGroupActive: (group: string) => boolean;
   handleActiveGroup: (groups: string) => void;
   setActiveGroups: (groups: string[]) => void;
-  isInGroup: (groups: string, group: string) => boolean;
-  addGroupToGroups: (groups: string, group: string) => string;
-  removeGroupFromGroups: (groups: string, group: string) => string;
-  handleContactGroups: (groups: string, group: string) => string;
+  isInGroup: (groupsId: string, groupId: string) => string;
+  addGroupToGroups: (groupsId: string, groupId: string) => string;
+  removeGroupFromGroups: (groupsId: string, groupId: string) => string;
+  handleContactGroups: (groupsId: string, groupId: string) => string;
+  removeGroupFromAllContacts: (groupId: string) => void;
+  getGroupNameById: (groupId: string) => string | undefined;
 };
 
 const statusCodes: any = {
@@ -43,6 +46,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
         '[{"_id":1,"name":"Избранное","removable":false, "editable": false}]'
     )
   );
+
+  const { contactBook, updateContactBook } = useContactBook();
 
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
   const [status, setStatus] = useState(0);
@@ -81,8 +86,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   );
 
   const removeGroup = useCallback(
-    (group) =>
-      group.removable && setGroups(groups.filter((e) => e._id !== group._id)),
+    (group) => setGroups(groups.filter((e) => e._id !== group._id)),
     [groups, setGroups]
   );
 
@@ -104,35 +108,57 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   );
 
   const isInGroup = useCallback(
-    (groups, group) => groups.split(",").includes(group),
+    (groupsId, groupId) => groupsId.split(",").includes(groupId),
     []
   );
 
   const addGroupToGroups = useCallback(
-    (groups, group) =>
-      !isInGroup(groups, group)
-        ? groups !== ""
-          ? groups.split(",").concat([group]).join(",")
-          : group
-        : groups,
+    (groupsId, groupId) =>
+      !isInGroup(groupsId, groupId)
+        ? groupsId !== ""
+          ? groupsId.split(",").concat([groupId]).join(",")
+          : groupId
+        : groupsId,
     [isInGroup]
   );
 
   const removeGroupFromGroups = useCallback(
-    (groups, group) =>
-      groups
+    (groupsId, groupId) =>
+      groupsId
         .split(",")
-        .filter((e: string) => e !== group)
+        .filter((e: string) => e !== groupId)
         .join(","),
     []
   );
 
   const handleContactGroups = useCallback(
-    (groups, group) =>
-      isInGroup(groups, group)
-        ? removeGroupFromGroups(groups, group)
-        : addGroupToGroups(groups, group),
+    (groupsId, groupId) =>
+      isInGroup(groupsId, groupId)
+        ? removeGroupFromGroups(groupsId, groupId)
+        : addGroupToGroups(groupsId, groupId),
     [isInGroup, removeGroupFromGroups, addGroupToGroups]
+  );
+
+  const removeGroupFromAllContacts = useCallback(
+    (groupName) => {
+      if (contactBook?.length)
+        updateContactBook?.(
+          contactBook!.map((contact) =>
+            contact.groups
+              ? {
+                  ...contact,
+                  groups: removeGroupFromGroups(contact.groups, groupName),
+                }
+              : contact
+          )
+        );
+    },
+    [contactBook, removeGroupFromGroups, updateContactBook]
+  );
+
+  const getGroupNameById = useCallback(
+    (id) => groups.find((group) => group._id.toString() === id)?.name,
+    [groups]
   );
 
   const value = {
@@ -151,6 +177,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     addGroupToGroups,
     removeGroupFromGroups,
     handleContactGroups,
+    removeGroupFromAllContacts,
+    getGroupNameById,
   };
 
   return (
