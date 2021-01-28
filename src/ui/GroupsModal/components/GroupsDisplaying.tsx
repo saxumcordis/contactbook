@@ -19,7 +19,7 @@ export const GroupsDisplaying = () => {
   const renderGroupsList = (
     <ul className={styles.list}>
       {groups?.map((group, i) => {
-        const isActive = isGroupActive?.(group.name);
+        const isActive = isGroupActive?.(group._id.toString());
         return (
           <li
             className={classNames(styles.listItem, {
@@ -27,7 +27,7 @@ export const GroupsDisplaying = () => {
               [styles.listItem_notActive]: !isActive && isActiveGroupsInit,
             })}
             key={i}
-            onClick={() => handleActiveGroup?.(group?.name)}
+            onClick={() => handleActiveGroup?.(group?._id.toString())}
           >
             {handleLongString(group.name, 9)}
           </li>
@@ -36,7 +36,7 @@ export const GroupsDisplaying = () => {
     </ul>
   );
 
-  const rendergroupsDisplayingTip = (
+  const renderGroupsDisplayingTip = (
     <ul className={styles.groupsDisplayingTip}>
       <span className={styles.listItem_active}>Отображаемая группа</span>
       <span className={styles.listItem_notActive}>Неотображаемая группа</span>
@@ -48,7 +48,7 @@ export const GroupsDisplaying = () => {
     <div className={styles.groupsDisplaying}>
       <LabelWithTip
         labelText="Отображаемые группы"
-        tipContent={rendergroupsDisplayingTip}
+        tipContent={renderGroupsDisplayingTip}
         tipContentClassName={styles.groupsDisplayingTipWrapper}
         tipPlacement={"right"}
       />

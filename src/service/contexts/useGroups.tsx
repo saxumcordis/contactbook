@@ -18,7 +18,7 @@ type TGroupsContext = {
   lastId: number;
   getStatus: () => string;
   activeGroups: string[];
-  isGroupActive: (group: string) => boolean;
+  isGroupActive: (groupId: string) => boolean;
   handleActiveGroup: (groups: string) => void;
   setActiveGroups: (groups: string[]) => void;
   isInGroup: (groupsId: string, groupId: string) => string;
