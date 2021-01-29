@@ -100,12 +100,12 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
 
   const handleGroupRename = useCallback(() => {
     const groupName = inputRef.current!.value;
-    if (!isGroupExists?.(groupName)) {
-      renameGroup?.(group, groupName);
+    if (status === "ADD" && !isGroupExists?.(groupName)) {
+      renameGroup?.(group, groupName.replace(/\s+/g, " ").trim());
       setEdit(false);
       setStatus("WAIT");
     }
-  }, [inputRef, isGroupExists, setStatus, renameGroup, setEdit, group]);
+  }, [inputRef, isGroupExists, setStatus, renameGroup, setEdit, group, status]);
 
   return (
     <li className={styles.groupsListItem}>
