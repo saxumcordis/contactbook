@@ -4,9 +4,11 @@ import { FieldGroup } from "../../../components/FieldGroup";
 import { GroupsDisplaying } from "./GroupsDisplaying";
 import { GroupsEditing } from "./GroupsEditing";
 
+import styles from "./GroupsModalBody.module.scss";
+
 export const GroupsModalBody = () => {
   return (
-    <div>
+    <div className={styles.form}>
       <FieldGroup>
         <GroupsDisplaying />
       </FieldGroup>
