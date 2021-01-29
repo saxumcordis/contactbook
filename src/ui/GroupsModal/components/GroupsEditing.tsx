@@ -111,7 +111,7 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
     <li className={styles.groupsListItem}>
       {!isEdit && (
         <span className={styles.groupsListItem_name}>
-          {handleLongStringWithTip(group.name, 9)}
+          {handleLongStringWithTip(group.name, 14)}
         </span>
       )}
       {isEdit && (
@@ -151,7 +151,15 @@ export const GroupsEditing = () => {
   return (
     <div className={styles.groupsEditing}>
       <label>Редактирование групп</label>
-      <div>{renderGroupsList}</div>
+      <div>
+        {groups!.length > 1 ? (
+          renderGroupsList
+        ) : (
+          <span className={styles.noEditableGroups}>
+            Не найдено групп, доступных к редактированию
+          </span>
+        )}
+      </div>
     </div>
   );
 };
