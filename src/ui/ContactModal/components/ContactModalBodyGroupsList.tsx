@@ -1,4 +1,10 @@
-import React, { createRef, useCallback, useEffect, useState } from "react";
+import React, {
+  createRef,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import classNames from "classnames";
 import { useGroups } from "../../../service/contexts/useGroups";
 import { useMedia } from "use-media";
@@ -121,17 +127,17 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
 
   const handleAddNewGroup = useCallback(() => {
     const groupName = inputRef.current!.value;
-    if (!isGroupExists?.(groupName)) {
+    if (newGroupNameStatus === "ADD" && !isGroupExists?.(groupName)) {
       addGroup?.({
         _id: lastId! + 1,
-        name: groupName,
+        name: groupName.replace(/\s+/g, " ").trim(),
         removable: true,
         editable: true,
       });
       inputRef.current!.value = "";
       setNewGroupNameStatus("CLOSE");
     }
-  }, [inputRef, isGroupExists, addGroup, lastId]);
+  }, [inputRef, isGroupExists, addGroup, lastId, newGroupNameStatus]);
 
   const newGroupPopOver = useCallback(
     () => (
@@ -154,6 +160,10 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
     ),
     [newGroupNameStatus, handleNewGroupName, handleAddNewGroup, inputRef]
   );
+
+  useLayoutEffect(() => {
+    if (newGroupNameStatus) inputRef.current?.focus();
+  }, [inputRef, newGroupNameStatus]);
 
   const groupsToRender = useCallback(() => {
     return groups?.map((group, i) => {
