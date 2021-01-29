@@ -91,14 +91,13 @@
   margin-top: 10px;
 }
 
-
 @media screen and (max-width: 450px) {
   .groupsListItem {
     width: 120px;
 
     &_name {
       font-size: 10px;
-      max-width: 100px;;
+      max-width: 100px;
       padding: 2px 4px;
     }
   }
