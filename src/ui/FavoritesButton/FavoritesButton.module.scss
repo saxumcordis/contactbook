@@ -19,19 +19,18 @@
   max-width: 64px;
   height: 64px;
   cursor: pointer;
-  filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+  fill: $color3;
 
   &:hover,
   &_active {
-    fill: $color3;
-    filter: invert(0.5) sepia(1) saturate(4) hue-rotate(237deg);
+    fill: $color6;
     transition: 0.4s ease all;
   }
 
   &_active {
-    filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+    fill: $color6;
     &:hover {
-      filter: invert(0.5) sepia(1) saturate(10) hue-rotate(-38deg);
+      fill: $color3;
     }
   }
 }
