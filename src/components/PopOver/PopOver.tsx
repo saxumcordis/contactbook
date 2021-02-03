@@ -88,7 +88,7 @@ export const PopOver: React.FC<PopOverProps> = (props) => {
   const popOverStyle = useStyle(element, placement);
 
   return (
-    <div>
+    <div style={{display: "flex"}}>
       <div
         className={classNames(
           { [styles.fadeIn]: element },
