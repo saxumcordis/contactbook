@@ -108,7 +108,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   );
 
   const isInGroup = useCallback(
-    (groupsId, groupId) => groupsId.split(",").includes(groupId),
+    (groupsId, groupId) => groupsId?.split(",").includes(groupId),
     []
   );
 

@@ -21,10 +21,9 @@ export const ContactModalBodyGroups: React.FC<Props> = (props) => {
   const handleDeleting = (groupId: string) => {
     changeGroups(removeGroupFromGroups?.(contactGroups || "", groupId) || "");
   };
-
   const contactGroupsToRender =
     contactGroups !== ""
-      ? contactGroups.split(",").map((id, i) => {
+      ? contactGroups?.split(",").map((id, i) => {
           const groupName = getGroupNameById?.(id);
           return (
             <li key={i}>

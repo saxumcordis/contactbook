@@ -167,7 +167,10 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
 
   const groupsToRender = useCallback(() => {
     return groups?.map((group, i) => {
-      const isGroupInGroups = isInGroup?.(contactGroups, group._id.toString());
+      const isGroupInGroups = isInGroup?.(
+        contactGroups || "",
+        group._id.toString()
+      );
 
       return (
         <li
@@ -183,7 +186,9 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
           <span title={group.name}>{handleLongString(group.name, 14)}</span>
           <HandleIcon
             className={classNames(styles.icon)}
-            onClick={() => handleChangingGroups(group._id, !isGroupInGroups)}
+            onClick={() =>
+              handleChangingGroups(group._id.toString(), !isGroupInGroups)
+            }
           />
         </li>
       );
