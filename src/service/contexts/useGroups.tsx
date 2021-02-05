@@ -113,7 +113,14 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
         setGroupToEdit({ ...group, name: newGroupName });
       }
     },
-    [isGroupExists, setGroups, groups, setActiveGroups, activeGroups, setGroupToEdit]
+    [
+      isGroupExists,
+      setGroups,
+      groups,
+      setActiveGroups,
+      activeGroups,
+      setGroupToEdit,
+    ]
   );
 
   const isInGroup = useCallback(
