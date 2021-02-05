@@ -5,6 +5,8 @@
 
 .icon {
   margin-left: 5px;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 450px) {
