@@ -1,7 +1,7 @@
 import React from "react";
 import { FieldGroup } from "../../../components/FieldGroup";
 
-import { GroupsCreating } from "./GroupsCreating";
+// import { GroupsCreating } from "./GroupsCreating";
 import { GroupsEditing } from "./GroupsEditing";
 
 import styles from "./GroupsModalBody.module.scss";
@@ -12,9 +12,9 @@ export const GroupsModalBody = () => {
       <FieldGroup>
         <GroupsEditing />
       </FieldGroup>
-      <FieldGroup>
+        {/* @TODO <FieldGroup>
         <GroupsCreating />
-      </FieldGroup>
+      </FieldGroup>*/}
     </div>
   );
 };
