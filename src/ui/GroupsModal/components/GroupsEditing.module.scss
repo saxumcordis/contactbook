@@ -11,6 +11,7 @@
   &_eye {
     margin-left: 8px;
     transition: 0.2s ease all;
+    outline: none;
 
     &_notActive {
       opacity: 0.32;
@@ -149,19 +150,6 @@
     fill: $color3;
     color: $color3;
     opacity: 0.32;
-  }
-}
-
-.input {
-  width: 95px;
-  outline: none;
-  border: none;
-  background-color: $color1 !important;
-  color: $primary;
-
-  &::placeholder {
-    transition: all 0.4s ease;
-    color: $color3;
   }
 }
 
