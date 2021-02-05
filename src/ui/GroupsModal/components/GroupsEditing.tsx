@@ -6,84 +6,126 @@ import React, {
 } from "react";
 import { useGroups } from "../../../service/contexts/useGroups";
 import { handleLongStringWithTip } from "../../../service/stringHandlers";
-import { PopConfirm } from "../../../components/PopConfirm";
-
-import styles from "./GroupsEditing.module.scss";
-import { ReactComponent as DeleteIcon } from "../../../assets/images/delete.svg";
-import { EditOutlined } from "@ant-design/icons";
-import { CheckCircleOutlined } from "@ant-design/icons";
 import { Group } from "../../../types/Group";
 import classNames from "classnames";
+
+import styles from "./GroupsEditing.module.scss";
+import {
+  EyeOutlined,
+  CheckCircleOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
+import { ReactComponent as DeleteIcon } from "../../../assets/images/delete.svg";
+import { PopConfirm } from "../../../components/PopConfirm";
 
 type TGroupsListItem = {
   group: Group;
 };
 
-type TGroupsSettings = {
-  onEdit: () => void;
-  onDelete: () => void;
-  isEdit: boolean;
-  status: string;
-  onSubmit: () => void;
+type TControlButtons = {
+  isActive?: boolean;
+  group?: Group;
+  controls: any;
 };
 
-const GroupSettings: React.FC<TGroupsSettings> = ({
-  isEdit,
-  onEdit,
-  onDelete,
-  onSubmit,
-  status,
+const ControlButtons: React.FC<TControlButtons> = ({
+  isActive,
+  group,
+  controls,
 }) => {
+  const {
+    handleActiveGroup,
+    removeGroup,
+    removeGroupFromAllContacts,
+    setGroupToEdit,
+    groups,
+  } = useGroups();
+
+  const handleRemovingGroup = useCallback(() => {
+    removeGroup?.(group!);
+    removeGroupFromAllContacts?.(group!._id.toString());
+    setGroupToEdit?.(groups![0]);
+  }, [removeGroup, group, removeGroupFromAllContacts, groups, setGroupToEdit]);
+
   return (
-    <div className={styles.settingsBox}>
-      {isEdit && (
-        <CheckCircleOutlined
-          className={classNames({
-            [styles.button]: status !== "WAIT",
-            [styles.button_notActive]: status === "WAIT",
-          })}
-          onClick={() => status !== "WAIT" && onSubmit()}
-        />
+    <div className={styles.controlButtons}>
+      <EyeOutlined
+        className={classNames({
+          [styles.invertedButton]: isActive,
+          [styles.invertedButton_notActive]: !isActive,
+        })}
+        onClick={() => handleActiveGroup?.(group!._id.toString())}
+      />
+      {group?.editable && (
+        <div className={styles.renameControls}>
+          {controls.isEdit && (
+            <CheckCircleOutlined
+              className={classNames("confirm", {
+                [styles.button]: controls.status !== "WAIT",
+                [styles.button_notActive]: controls.status === "WAIT",
+              })}
+              onClick={() =>
+                controls.status === "ADD" && controls.renameGroup()
+              }
+            />
+          )}
+          <EditOutlined
+            className={styles.button}
+            onClick={controls.handleEdition}
+          />
+        </div>
       )}
-      <EditOutlined className={styles.button} onClick={onEdit} />
-      <PopConfirm
-        title="Удалить группу?"
-        okText="Да"
-        cancelText="Нет"
-        onConfirm={onDelete}
-        childrenClass={styles.zIndex}
-      >
-        <DeleteIcon className={styles.button} />
-      </PopConfirm>
+      {group?.removable && (
+        <PopConfirm
+          title="Удалить группу?"
+          okText="Да"
+          cancelText="Нет"
+          onConfirm={handleRemovingGroup}
+          childrenClass={styles.deletePopOver}
+        >
+          <DeleteIcon className={styles.button} />
+        </PopConfirm>
+      )}
     </div>
   );
 };
 
-const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
+const GroupToEdit = () => {
+  const {
+    groupToEdit,
+    isGroupActive,
+    activeGroups,
+    removeGroup,
+    removeGroupFromAllContacts,
+    isGroupExists,
+    renameGroup,
+  } = useGroups();
+
   const [isEdit, setEdit] = useState(false);
   const [status, setStatus] = useState("WAIT");
 
+  const isActiveGroupsInit = !!activeGroups?.length;
+
+  const isActive = isGroupActive?.(groupToEdit!._id.toString());
+
   const inputRef = createRef<HTMLInputElement>();
-
-  const {
-    renameGroup,
-    removeGroup,
-    isGroupExists,
-    removeGroupFromAllContacts,
-  } = useGroups();
-
-  const handleRemovingGroup = useCallback(() => {
-    removeGroup?.(group);
-    removeGroupFromAllContacts?.(group._id.toString());
-  }, [removeGroup, group, removeGroupFromAllContacts]);
-
-  const handleEdition = useCallback(() => {
-    setEdit(!isEdit);
-  }, [setEdit, isEdit]);
 
   useLayoutEffect(() => {
     if (isEdit) inputRef.current?.focus();
   }, [isEdit, inputRef]);
+
+  useLayoutEffect(() => {
+    setEdit(false);
+  }, [setEdit, groupToEdit]);
+
+  const handleRemovingGroup = useCallback(() => {
+    removeGroup?.(groupToEdit!);
+    removeGroupFromAllContacts?.(groupToEdit!._id.toString());
+  }, [removeGroup, groupToEdit, removeGroupFromAllContacts]);
+
+  const handleEdition = useCallback(() => {
+    setEdit(!isEdit);
+  }, [setEdit, isEdit]);
 
   const handleNewGroupName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,34 +143,102 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
   const handleGroupRename = useCallback(() => {
     const groupName = inputRef.current!.value;
     if (status === "ADD" && !isGroupExists?.(groupName)) {
-      renameGroup?.(group, groupName.replace(/\s+/g, " ").trim());
+      renameGroup?.(groupToEdit!, groupName.replace(/\s+/g, " ").trim());
       setEdit(false);
       setStatus("WAIT");
     }
-  }, [inputRef, isGroupExists, setStatus, renameGroup, setEdit, group, status]);
+  }, [
+    inputRef,
+    isGroupExists,
+    setStatus,
+    renameGroup,
+    setEdit,
+    groupToEdit,
+    status,
+  ]);
+
+  const controls = {
+    status: status,
+    setStatus: setStatus,
+    isEdit: isEdit,
+    handleEdition: handleEdition,
+    removeGroup: handleRemovingGroup,
+    renameGroup: handleGroupRename,
+  };
 
   return (
-    <li className={styles.groupsListItem}>
-      {!isEdit && (
-        <span className={styles.groupsListItem_name}>
-          {handleLongStringWithTip(group.name, 14)}
-        </span>
-      )}
-      {isEdit && (
-        <input
-          className={styles.input}
-          onChange={handleNewGroupName}
-          defaultValue={group.name}
-          ref={inputRef}
-        />
-      )}
-      {group.removable && (
-        <GroupSettings
-          isEdit={isEdit}
-          onEdit={handleEdition}
-          onDelete={handleRemovingGroup}
-          onSubmit={handleGroupRename}
-          status={status}
+    <div className={styles.groupToEditContainer}>
+      <span className={styles.groupToEditNameWrapper}>
+        {isEdit ? (
+          <input
+            className={classNames(styles.groupToEditName, {
+              [styles.groupToEditName_active]: isActive,
+              [styles.groupToEditName_notActive]:
+                !isActive && isActiveGroupsInit,
+            })}
+            ref={inputRef}
+            defaultValue={groupToEdit!.name}
+            onChange={handleNewGroupName}
+          />
+        ) : (
+          <label
+            className={classNames(styles.groupToEditName, {
+              [styles.groupToEditName_active]: isActive,
+              [styles.groupToEditName_notActive]:
+                !isActive && isActiveGroupsInit,
+            })}
+          >
+            {groupToEdit!.name}
+          </label>
+        )}
+      </span>
+      <ControlButtons
+        isActive={isActive}
+        group={groupToEdit}
+        controls={controls}
+      />
+    </div>
+  );
+};
+
+const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
+  const [isSettingDisplaying, setSettingDisplaying] = useState(false);
+
+  const {
+    activeGroups,
+    isGroupActive,
+    setGroupToEdit,
+    handleActiveGroup,
+  } = useGroups();
+
+  const isActiveGroupsInit = !!activeGroups?.length;
+
+  const isActive = isGroupActive?.(group._id.toString());
+
+  return (
+    <li
+      className={styles.groupsListItem}
+      onMouseEnter={() => setSettingDisplaying(true)}
+      onMouseLeave={() => setSettingDisplaying(false)}
+      onClick={() => setGroupToEdit?.(group)}
+    >
+      <span
+        className={classNames(styles.groupsListItem_name, {
+          [styles.groupsListItem_name_active]: isActive,
+          [styles.groupsListItem_name_notActive]:
+            !isActive && isActiveGroupsInit,
+        })}
+      >
+        {handleLongStringWithTip(group.name, 19)}
+      </span>
+      {(isSettingDisplaying || isActive) && (
+        <EyeOutlined
+          className={classNames({
+            [styles.invertedButton]: isActive,
+            [styles.invertedButton_notActive]: !isActive,
+          })}
+          hidden={isActive!}
+          onClick={() => handleActiveGroup?.(group!._id.toString())}
         />
       )}
     </li>
@@ -140,25 +250,24 @@ export const GroupsEditing = () => {
 
   const renderGroupsList = (
     <ul className={styles.groupsList}>
-      {groups
-        ?.filter((group) => group.editable)
-        .map((group, i) => (
-          <GroupsListItem key={i} group={group} />
-        ))}
+      {groups?.map((group, i) => (
+        <GroupsListItem key={i} group={group} />
+      ))}
     </ul>
   );
 
   return (
     <div className={styles.groupsEditing}>
       <label>Редактирование групп</label>
-      <div>
-        {groups!.length > 1 ? (
+      <div className={styles.columnContainer}>
+        {groups!.length > 0 ? (
           renderGroupsList
         ) : (
           <span className={styles.noEditableGroups}>
             Не найдено групп, доступных к редактированию
           </span>
         )}
+        <GroupToEdit />
       </div>
     </div>
   );

@@ -4,21 +4,27 @@
   width: 100%;
 }
 
+.columnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .groupsList {
   display: flex;
+  flex-direction: column;
   list-style: none;
-  justify-content: space-between;
-  flex-wrap: wrap;
   padding: 0;
+  height: 140px;
+  overflow: hidden scroll;
 }
 
 .groupsListItem {
-  width: 170px;
+  width: 182px;
   display: flex;
   justify-content: space-between;
   color: $color4;
   margin-bottom: 10px;
-  border: 1px solid $color3;
   padding: 5px;
   align-items: center;
   height: 22px;
@@ -26,7 +32,17 @@
   &_name {
     padding: 2px 8px;
     background: $color3;
-    opacity: 0.64;
+    width: 140px;
+    cursor: pointer;
+
+    &_active {
+      background: $primary;
+    }
+
+    &_notActive {
+      background: $color3;
+      opacity: 0.32;
+    }
   }
 }
 
@@ -34,11 +50,9 @@
   display: flex;
   align-items: center;
   & > span {
-    fill: $primary;
-    color: $primary;
     font-size: 15px;
     min-width: 15px;
-    margin-right: 8px;
+    margin-right: 4px;
     &:last-child {
       margin: 0;
     }
@@ -50,18 +64,49 @@
   color: $primary;
   font-size: 15px;
   min-width: 15px;
+  max-width: 15px;
+  margin-bottom: 10px;
   outline: none;
   transition: 0.2s ease-in all;
+  cursor: pointer;
 
   &_notActive {
     color: $color3 !important;
     fill: $color3 !important;
     opacity: 0.32;
+    outline: none;
+    cursor: not-allowed !important;
   }
 
   &:hover {
     color: $color3;
     fill: $color3;
+    opacity: 0.32;
+  }
+}
+
+.invertedButton {
+  fill: $primary;
+  color: $primary;
+  outline: none;
+  transition: 0.2s ease-in all;
+
+  &_notActive {
+    fill: $color3 !important;
+    color: $color3 !important;
+    outline: none;
+    transition: 0.2s ease-in all;
+
+    &:hover {
+      fill: $primary !important;
+      color: $primary !important;
+      opacity: 0.32;
+    }
+  }
+
+  &:hover {
+    fill: $color3;
+    color: $color3;
     opacity: 0.32;
   }
 }
@@ -79,8 +124,9 @@
   }
 }
 
-.zIndex {
+.deletePopOver {
   z-index: 2500;
+  padding: 5px 0 5px 0;
 }
 
 .noEditableGroups {
@@ -89,6 +135,72 @@
   color: $color3;
   font-size: 15px;
   margin-top: 10px;
+}
+
+.groupToEditContainer {
+  margin-top: 15px;
+  color: $color4;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .groupToEditNameWrapper {
+    padding: 5px 0 5px 5px;
+    height: 22px;
+    display: flex;
+    & > .groupToEditName {
+      padding: 2px 8px;
+      background: $color3;
+      width: 140px;
+      font-size: 15px;
+      text-align: right;
+      border: none;
+      outline: none;
+      font-family: "FuturaBookC", serif;
+      transition: 0.2s ease-in all;
+
+      &:disabled,
+      &::placeholder {
+        color: $color4;
+      }
+
+      &_active {
+        background: $primary;
+      }
+
+      &_notActive {
+        background: $color3;
+        opacity: 0.32;
+      }
+    }
+  }
+}
+
+.controlButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10px;
+
+  & > .button,
+  .invertedButton,
+  .invertedButton_notActive,
+  .button_notActive {
+    margin-bottom: 10px;
+    padding: 5px 0 5px 0;
+    outline: none;
+  }
+}
+
+.renameControls {
+  & > span {
+    padding: 5px 0 5px 0;
+  }
+
+  & > span:first-child:not(:only-child) {
+    margin-right: 8px;
+  }
 }
 
 @media screen and (max-width: 450px) {
