@@ -188,7 +188,7 @@ const GroupToEdit = () => {
                 !isActive && isActiveGroupsInit,
             })}
           >
-            {groupToEdit!.name}
+            {handleLongStringWithTip(groupToEdit!.name, 19)}
           </label>
         )}
       </span>
@@ -220,7 +220,6 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
       className={styles.groupsListItem}
       onMouseEnter={() => setSettingDisplaying(true)}
       onMouseLeave={() => setSettingDisplaying(false)}
-      onClick={() => setGroupToEdit?.(group)}
     >
       <span
         className={classNames(styles.groupsListItem_name, {
@@ -228,6 +227,7 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
           [styles.groupsListItem_name_notActive]:
             !isActive && isActiveGroupsInit,
         })}
+        onClick={() => setGroupToEdit?.(group)}
       >
         {handleLongStringWithTip(group.name, 19)}
       </span>
