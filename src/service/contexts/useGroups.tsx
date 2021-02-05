@@ -27,6 +27,8 @@ type TGroupsContext = {
   handleContactGroups: (groupsId: string, groupId: string) => string;
   removeGroupFromAllContacts: (groupId: string) => void;
   getGroupNameById: (groupId: string) => string | undefined;
+  groupToEdit: Group;
+  setGroupToEdit: (group: Group) => void;
 };
 
 const statusCodes: any = {
@@ -51,6 +53,12 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
 
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
   const [status, setStatus] = useState(0);
+  const [groupToEdit, setGroupToEdit] = useState<Group>({
+    _id: 1,
+    name: "Избранное",
+    removable: false,
+    editable: false,
+  });
 
   const getStatus = useCallback(() => statusCodes[status], [status]);
 
@@ -102,9 +110,10 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
             e._id === group._id ? { ...e, name: newGroupName } : e
           )
         );
+        setGroupToEdit({ ...group, name: newGroupName });
       }
     },
-    [isGroupExists, setGroups, groups, setActiveGroups, activeGroups]
+    [isGroupExists, setGroups, groups, setActiveGroups, activeGroups, setGroupToEdit]
   );
 
   const isInGroup = useCallback(
@@ -179,6 +188,8 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     handleContactGroups,
     removeGroupFromAllContacts,
     getGroupNameById,
+    groupToEdit,
+    setGroupToEdit,
   };
 
   return (
