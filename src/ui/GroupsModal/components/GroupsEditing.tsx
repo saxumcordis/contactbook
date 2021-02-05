@@ -17,6 +17,7 @@ import {
 } from "@ant-design/icons";
 import { ReactComponent as DeleteIcon } from "../../../assets/images/delete.svg";
 import { PopConfirm } from "../../../components/PopConfirm";
+import { LabelWithTip } from "../../../components/LabelWithTip";
 
 type TGroupsListItem = {
   group: Group;
@@ -245,8 +246,22 @@ const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
   );
 };
 
+const renderGroupsDisplayingTip = (
+  <ul className={styles.groupsDisplayingTip}>
+    <span className={styles.groupsListItem_name_active}>
+      Отображаемая группа
+    </span>
+    <span className={styles.groupsListItem_name_notActive}>
+      Неотображаемая группа
+    </span>
+    <span className={styles.groupsListItem_name}>Все группы отображаются</span>
+  </ul>
+);
+
 export const GroupsEditing = () => {
-  const { groups } = useGroups();
+  const { groups, activeGroups, setActiveGroups } = useGroups();
+
+  const isActiveGroupsInit = !!activeGroups?.length;
 
   const renderGroupsList = (
     <ul className={styles.groupsList}>
@@ -258,7 +273,20 @@ export const GroupsEditing = () => {
 
   return (
     <div className={styles.groupsEditing}>
-      <label>Редактирование групп</label>
+      <div className={styles.header}>
+        <LabelWithTip
+          labelText="Редактирование групп"
+          tipContent={renderGroupsDisplayingTip}
+          tipContentClassName={styles.groupsDisplayingTipWrapper}
+          tipPlacement={"right"}
+        />
+        <EyeOutlined
+          className={classNames(styles.header_eye, {
+            [styles.header_eye_notActive]: !isActiveGroupsInit,
+          })}
+          onClick={() => setActiveGroups?.([])}
+        />
+      </div>
       <div className={styles.columnContainer}>
         {groups!.length > 0 ? (
           renderGroupsList
