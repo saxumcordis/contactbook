@@ -35,11 +35,13 @@
     color: $color4;
     max-height: 20px;
     text-align: left;
-    padding: 0 0 0 2px;
+    padding: 0 0 0 2px !important;
     margin: 5px auto 0 auto;
     display: block;
     max-width: 170px;
     min-width: 170px;
+    height: 17px;
+    font-size: 12px !important;
     &:first-child {
       margin-top: 0;
     }
@@ -233,14 +235,25 @@
 }
 
 @media screen and (max-width: 450px) {
-  .groupsListItem {
+  .groupsListItem, .groupToEditNameWrapper  {
     width: 120px;
+    font-size: 10px;
+    height: auto;
 
-    &_name {
-      font-size: 10px;
+    &_name, .groupToEditName {
+      font-size: 10px !important;
       max-width: 100px;
-      padding: 2px 4px;
+      padding: 2px 4px !important;
+      height: 12px;
     }
+
+    .groupToEditName {
+      margin-left: auto;
+    }
+  }
+
+  .groupToEditNameWrapper {
+    padding: 0 !important;
   }
 
   .button {
@@ -256,9 +269,10 @@
     margin-right: 5px;
   }
 
-  .input {
-    width: 60px;
+  .button, .invertedButton, .invertedButton_notActive, .button_notActive {
+    max-width: 10px;
     font-size: 10px;
+    min-width: 10px;
   }
 
   .noEditableGroups {

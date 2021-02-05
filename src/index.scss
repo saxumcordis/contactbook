@@ -26,3 +26,11 @@ body {
     background-color: $color4;
   }
 }
+
+@media screen and (max-width: 450px) {
+  body {
+    ::-webkit-scrollbar {
+      width: 1px;
+    }
+  }
+}
