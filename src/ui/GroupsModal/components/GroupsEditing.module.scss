@@ -56,9 +56,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 .groupsList {
+  position: relative;
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -78,7 +80,9 @@
   height: 22px;
 
   &:nth-child(1) {
-    position: fixed;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
     background: $color1;
   }
 
@@ -174,10 +178,16 @@
 .groupToEditContainer {
   margin-top: 15px;
   color: $color4;
-  border-left: 1px solid $primary;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  &::before {
+    border-left: 1px solid $primary;
+    width: 1px;
+    height: 100%;
+    content: "";
+    position: absolute;
+  }
 
   .groupToEditNameWrapper {
     padding: 5px 0 5px 5px;
