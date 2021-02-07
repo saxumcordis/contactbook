@@ -86,7 +86,7 @@ const ControlButtons: React.FC<TControlButtons> = ({
   );
 };
 
-export const GroupToEdit = () => {
+export const GroupToEdit = React.memo(() => {
   const {
     groupToEdit,
     isGroupActive,
@@ -195,4 +195,4 @@ export const GroupToEdit = () => {
       />
     </div>
   );
-};
+});
