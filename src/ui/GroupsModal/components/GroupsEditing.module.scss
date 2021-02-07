@@ -18,6 +18,7 @@
 
     &_notActive {
       opacity: 0.32;
+      cursor: not-allowed !important;
     }
   }
 }
@@ -76,10 +77,14 @@
   align-items: center;
   height: 22px;
 
+  &:nth-child(1) {
+    position: fixed;
+    background: $color1;
+  }
+
   &_name {
     padding: 2px 8px;
     background: $color3;
-    width: 140px;
     cursor: pointer;
 
     &_active {
@@ -91,18 +96,21 @@
       opacity: 0.32;
     }
   }
-}
 
-.settingsBox {
-  display: flex;
-  align-items: center;
-  & > span {
+  .findGroup {
+    border: 1px solid $primary;
+
+    width: 138px;
+    outline: none;
+    background: $color1;
+    font-family: "FuturaBookC", serif;
     font-size: 15px;
-    min-width: 15px;
-    margin-right: 4px;
-    &:last-child {
-      margin: 0;
+    &::placeholder {
+      color: $primary;
     }
+    height: 16px;
+    color: $primary;
+    caret-color: $primary;
   }
 }
 
@@ -163,18 +171,10 @@
   padding: 5px 0 5px 0;
 }
 
-.noEditableGroups {
-  display: flex;
-  align-items: center;
-  color: $color3;
-  font-size: 15px;
-  margin-top: 10px;
-}
-
 .groupToEditContainer {
   margin-top: 15px;
   color: $color4;
-
+  border-left: 1px solid $primary;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -186,9 +186,7 @@
     & > .groupToEditName {
       padding: 2px 8px;
       background: $color3;
-      width: 140px;
       font-size: 15px;
-      text-align: right;
       border: none;
       outline: none;
       font-family: "FuturaBookC", serif;
@@ -238,12 +236,14 @@
 }
 
 @media screen and (max-width: 450px) {
-  .groupsListItem, .groupToEditNameWrapper  {
+  .groupsListItem,
+  .groupToEditNameWrapper {
     width: 120px;
     font-size: 10px;
     height: auto;
 
-    &_name, .groupToEditName {
+    &_name,
+    .groupToEditName {
       font-size: 10px !important;
       max-width: 100px;
       padding: 2px 4px !important;
@@ -257,6 +257,10 @@
 
   .groupToEditNameWrapper {
     padding: 0 !important;
+
+    .findGroup {
+      height: 10px;
+    }
   }
 
   .button {
@@ -272,7 +276,10 @@
     margin-right: 5px;
   }
 
-  .button, .invertedButton, .invertedButton_notActive, .button_notActive {
+  .button,
+  .invertedButton,
+  .invertedButton_notActive,
+  .button_notActive {
     max-width: 10px;
     font-size: 10px;
     min-width: 10px;
@@ -292,5 +299,4 @@
       margin-right: 4px;
     }
   }
-
 }

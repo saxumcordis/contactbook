@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useGroups } from "../../../service/contexts/useGroups";
 import classNames from "classnames";
 import { LabelWithTip } from "../../../components/LabelWithTip";
 import { GroupToEdit } from "./GroupToEdit";
+import Fuse from "fuse.js";
 
 import styles from "./GroupsEditing.module.scss";
 import { EyeOutlined } from "@ant-design/icons";
@@ -23,11 +24,41 @@ const renderGroupsDisplayingTip = (
 export const GroupsEditing = () => {
   const { groups, activeGroups, setActiveGroups } = useGroups();
 
+  const [searchValue, setSearchValue] = useState("");
+
   const isActiveGroupsInit = !!activeGroups?.length;
+
+  const isAllGroupsActive = groups?.length === activeGroups?.length;
+
+  const searchedGroups = useCallback(() => {
+    if (!searchValue.length) return groups;
+    const searchOptions = {
+      includeScore: true,
+      location: 0,
+      threshold: 0.5,
+      distance: 100,
+      keys: ["name"],
+    };
+
+    const fuse = new Fuse(groups!, searchOptions);
+    return fuse.search(searchValue).map((e) => e.item);
+  }, [searchValue, groups])();
+
+  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) setSearchValue?.(e.target.value);
+    else setSearchValue?.("");
+  };
 
   const renderGroupsList = (
     <ul className={styles.groupsList}>
-      {groups?.map((group, i) => (
+      <li className={styles.groupsListItem}>
+        <input
+          className={classNames(styles.groupsListItem_name, styles.findGroup)}
+          placeholder="Поиск группы"
+          onChange={handleSearchValue}
+        />
+      </li>
+      {searchedGroups?.map((group, i) => (
         <GroupsListItem key={i} group={group} />
       ))}
     </ul>
@@ -44,9 +75,13 @@ export const GroupsEditing = () => {
         />
         <EyeOutlined
           className={classNames(styles.header_eye, {
-            [styles.header_eye_notActive]: !isActiveGroupsInit,
+            [styles.header_eye_notActive]:
+              !isActiveGroupsInit || isAllGroupsActive,
           })}
-          onClick={() => setActiveGroups?.([])}
+          onClick={() =>
+            (!isActiveGroupsInit || isAllGroupsActive) && setActiveGroups?.([])
+          }
+          title="Показать все группы"
         />
       </div>
       <div className={styles.columnContainer}>
