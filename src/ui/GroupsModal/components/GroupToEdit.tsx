@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { handleLongStringWithTip } from "../../../service/stringHandlers";
 import { Group } from "../../../types/Group";
 import { PopConfirm } from "../../../components/PopConfirm";
 import { ReactComponent as DeleteIcon } from "../../../assets/images/delete.svg";
@@ -184,7 +183,7 @@ export const GroupToEdit = React.memo(() => {
                 !isActive && isActiveGroupsInit,
             })}
           >
-            {handleLongStringWithTip(groupToEdit!.name, 17)}
+            {groupToEdit?.name}
           </label>
         )}
       </span>

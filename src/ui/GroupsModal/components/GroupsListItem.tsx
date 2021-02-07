@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useGroups } from "../../../service/contexts/useGroups";
 import classNames from "classnames";
-import { handleLongStringWithTip } from "../../../service/stringHandlers";
 import { Group } from "../../../types/Group";
 
 import { EyeOutlined } from "@ant-design/icons";
@@ -43,7 +42,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
         })}
         onClick={() => setGroupToEdit?.(group)}
       >
-        {handleLongStringWithTip(group.name, 17)}
+        {group.name}
       </span>
       {(isSettingDisplaying || (isActive && !isAllGroupsActive)) && (
         <EyeOutlined

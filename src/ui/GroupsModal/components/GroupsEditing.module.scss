@@ -1,4 +1,5 @@
 @import "../../../assets/theme/colors";
+@import "../../../assets/mixins/_helpers";
 
 .groupsEditing {
   width: 100%;
@@ -87,9 +88,11 @@
   }
 
   &_name {
+    @include wordBreaker;
     padding: 2px 8px;
     background: $color3;
     cursor: pointer;
+    max-width: 140px;
 
     &_active {
       background: $primary;
@@ -194,6 +197,8 @@
     height: 22px;
     display: flex;
     & > .groupToEditName {
+      @include wordBreaker;
+      max-width: 140px;
       padding: 2px 8px;
       background: $color3;
       font-size: 15px;
