@@ -16,6 +16,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
   const [isSettingDisplaying, setSettingDisplaying] = useState(false);
 
   const {
+    groups,
     activeGroups,
     isGroupActive,
     setGroupToEdit,
@@ -26,6 +27,8 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
 
   const isActive = isGroupActive?.(group._id.toString());
 
+  const isAllGroupsActive = groups?.length === activeGroups?.length;
+
   return (
     <li
       className={styles.groupsListItem}
@@ -34,7 +37,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
     >
       <span
         className={classNames(styles.groupsListItem_name, {
-          [styles.groupsListItem_name_active]: isActive,
+          [styles.groupsListItem_name_active]: isActive && !isAllGroupsActive,
           [styles.groupsListItem_name_notActive]:
             !isActive && isActiveGroupsInit,
         })}
@@ -42,7 +45,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
       >
         {handleLongStringWithTip(group.name, 17)}
       </span>
-      {(isSettingDisplaying || isActive) && (
+      {(isSettingDisplaying || (isActive && !isAllGroupsActive)) && (
         <EyeOutlined
           className={classNames({
             [styles.invertedButton]: isActive,
