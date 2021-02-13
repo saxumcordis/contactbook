@@ -20,7 +20,7 @@ export const SearchInput = () => {
       <InputField
         className={styles.searchInput}
         suffix={suffix}
-        placeholder="Start input contact name..."
+        placeholder="ФИО или номер телефона..."
         onChange={handleSearchValue}
       />
     </div>
