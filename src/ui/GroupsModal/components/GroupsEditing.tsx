@@ -79,7 +79,7 @@ export const GroupsEditing = () => {
               !isActiveGroupsInit || isAllGroupsActive,
           })}
           onClick={() =>
-            (!isActiveGroupsInit || isAllGroupsActive) && setActiveGroups?.([])
+            (isActiveGroupsInit || isAllGroupsActive) && setActiveGroups?.([])
           }
           title="Показать все группы"
         />
