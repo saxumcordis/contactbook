@@ -16,6 +16,7 @@ import {
 } from "@ant-design/icons";
 
 import styles from "./GroupsEditing.module.scss";
+import { useMedia } from "use-media";
 
 type TControlButtons = {
   isActive?: boolean;
@@ -61,7 +62,8 @@ const ControlButtons: React.FC<TControlButtons> = ({
       <li>
         <span
           className={classNames(styles.controlButtonTip, {
-            [styles.controlButtonTip_notVisible]: !isVisible,
+            [styles.controlButtonTip_notVisible]:
+              !isVisible && !controls.isSmall,
           })}
         >
           {!isActiveGroupsInit
@@ -94,7 +96,7 @@ const ControlButtons: React.FC<TControlButtons> = ({
         <span
           className={classNames(styles.controlButtonTip, {
             [styles.controlButtonTip_notVisible]:
-              !isVisible && !controls.isEdit,
+              !isVisible && !controls.isEdit && !controls.isSmall,
           })}
         >
           {!controls.isEdit ? "Переименовать" : statusTips[controls.status]}
@@ -129,7 +131,8 @@ const ControlButtons: React.FC<TControlButtons> = ({
       <li>
         <span
           className={classNames(styles.controlButtonTip, {
-            [styles.controlButtonTip_notVisible]: !isVisible,
+            [styles.controlButtonTip_notVisible]:
+              !isVisible && !controls.isSmall,
           })}
         >
           Удалить группу
@@ -170,6 +173,8 @@ export const GroupToEdit = React.memo(() => {
     isGroupExists,
     renameGroup,
   } = useGroups();
+
+  const isSmall = useMedia({ maxWidth: "450px" });
 
   const [isEdit, setEdit] = useState(false);
   const [status, setStatus] = useState("SAME");
@@ -239,6 +244,7 @@ export const GroupToEdit = React.memo(() => {
     handleEdition: handleEdition,
     removeGroup: handleRemovingGroup,
     renameGroup: handleGroupRename,
+    isSmall: isSmall,
   };
 
   return (
