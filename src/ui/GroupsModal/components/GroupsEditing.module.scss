@@ -190,6 +190,7 @@
     height: 100%;
     content: "";
     position: absolute;
+    left: 70%;
   }
 
   .groupToEditNameWrapper {
@@ -250,6 +251,12 @@
   }
 }
 
+@media screen and (max-width: 700px) {
+  .groupToEditContainer::before {
+    left: 55%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .groupsListItem,
   .groupToEditNameWrapper {
@@ -268,6 +275,10 @@
     .groupToEditName {
       margin-left: auto;
     }
+  }
+
+  .groupToEditContainer::before {
+    left: 55%;
   }
 
   .groupToEditNameWrapper {
