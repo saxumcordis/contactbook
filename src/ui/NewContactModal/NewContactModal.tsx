@@ -89,6 +89,7 @@ export const NewContactModal: React.FC = () => {
         errors,
         setFieldTouched,
         setFieldValue,
+        values,
       }) => (
         <Form className={styles.form}>
           <BaseModal
@@ -104,6 +105,11 @@ export const NewContactModal: React.FC = () => {
                 changeAvatar={(avatar: string) => {
                   setFieldValue("avatar", avatar);
                   setFieldTouched("avatar");
+                }}
+                contactGroups={values.groups}
+                changeGroups={(groups: string) => {
+                  setFieldValue("groups", groups);
+                  setFieldTouched("groups");
                 }}
               />
             }
