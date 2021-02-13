@@ -23,6 +23,13 @@ type TControlButtons = {
   controls: any;
 };
 
+const statusTips: any = {
+  ADD: "Имя свободно",
+  BUSY: "Имя занято",
+  INVALID: "Неверный формат",
+  SAME: "Текущее имя",
+};
+
 const ControlButtons: React.FC<TControlButtons> = ({
   isActive,
   group,
@@ -42,22 +49,61 @@ const ControlButtons: React.FC<TControlButtons> = ({
     setGroupToEdit?.(groups![0]);
   }, [removeGroup, group, removeGroupFromAllContacts, groups, setGroupToEdit]);
 
-  return (
-    <div className={styles.controlButtons}>
-      <EyeOutlined
-        className={classNames({
-          [styles.invertedButton]: isActive,
-          [styles.invertedButton_notActive]: !isActive,
-        })}
-        onClick={() => handleActiveGroup?.(group!._id.toString())}
-      />
-      {group?.editable && (
+  const DisplayButton = () => {
+    const [isVisible, setVisible] = useState(false);
+
+    const { activeGroups } = useGroups();
+
+    const isActiveGroupsInit = !!activeGroups?.length;
+    const activeGroupsLength = activeGroups?.length;
+
+    return (
+      <li>
+        <span
+          className={classNames(styles.controlButtonTip, {
+            [styles.controlButtonTip_notVisible]: !isVisible,
+          })}
+        >
+          {!isActiveGroupsInit
+            ? "Скрыть остальные"
+            : activeGroupsLength === 1
+            ? "Показать все группы"
+            : isActive
+            ? "Скрыть группу"
+            : "Отображать группу"}
+        </span>
+        <EyeOutlined
+          className={classNames({
+            [styles.invertedButton]: isActive,
+            [styles.invertedButton_notActive]: !isActive,
+          })}
+          onClick={() => handleActiveGroup?.(group!._id.toString())}
+          onMouseEnter={() => setVisible(true)}
+          onMouseLeave={() => setVisible(false)}
+        />
+      </li>
+    );
+  };
+
+  const RenameControls = () => {
+    const [isVisible, setVisible] = useState(false);
+
+    return (
+      <li>
+        <span
+          className={classNames(styles.controlButtonTip, {
+            [styles.controlButtonTip_notVisible]:
+              !isVisible && !controls.isEdit,
+          })}
+        >
+          {!controls.isEdit ? "Переименовать" : statusTips[controls.status]}
+        </span>
         <div className={styles.renameControls}>
           {controls.isEdit && (
             <CheckCircleOutlined
               className={classNames("confirm", {
-                [styles.button]: controls.status !== "WAIT",
-                [styles.button_notActive]: controls.status === "WAIT",
+                [styles.button]: controls.status === "ADD",
+                [styles.button_notActive]: controls.status !== "ADD",
               })}
               onClick={() =>
                 controls.status === "ADD" && controls.renameGroup()
@@ -67,10 +113,26 @@ const ControlButtons: React.FC<TControlButtons> = ({
           <EditOutlined
             className={styles.button}
             onClick={controls.handleEdition}
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
           />
         </div>
-      )}
-      {group?.removable && (
+      </li>
+    );
+  };
+
+  const DeleteButton = () => {
+    const [isVisible, setVisible] = useState(false);
+
+    return (
+      <li>
+        <span
+          className={classNames(styles.controlButtonTip, {
+            [styles.controlButtonTip_notVisible]: !isVisible,
+          })}
+        >
+          Удалить группу
+        </span>
         <PopConfirm
           title="Удалить группу?"
           okText="Да"
@@ -78,10 +140,22 @@ const ControlButtons: React.FC<TControlButtons> = ({
           onConfirm={handleRemovingGroup}
           childrenClass={styles.deletePopOver}
         >
-          <DeleteIcon className={styles.button} />
+          <DeleteIcon
+            className={styles.button}
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+          />
         </PopConfirm>
-      )}
-    </div>
+      </li>
+    );
+  };
+
+  return (
+    <ul className={styles.controlButtons}>
+      <DisplayButton />
+      {group?.editable && <RenameControls />}
+      {group?.removable && <DeleteButton />}
+    </ul>
   );
 };
 
@@ -97,7 +171,7 @@ export const GroupToEdit = React.memo(() => {
   } = useGroups();
 
   const [isEdit, setEdit] = useState(false);
-  const [status, setStatus] = useState("WAIT");
+  const [status, setStatus] = useState("SAME");
 
   const isActiveGroupsInit = !!activeGroups?.length;
 
@@ -106,7 +180,7 @@ export const GroupToEdit = React.memo(() => {
   const inputRef = createRef<HTMLInputElement>();
 
   useLayoutEffect(() => {
-    if (isEdit) inputRef.current?.focus();
+    isEdit ? inputRef.current?.focus() : setStatus("SAME");
   }, [isEdit, inputRef]);
 
   useLayoutEffect(() => {
@@ -125,14 +199,18 @@ export const GroupToEdit = React.memo(() => {
   const handleNewGroupName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newGroupName = e.target.value;
-      if (
-        /[а-яА-Яa-zA-Z0-9]/.test(newGroupName) &&
-        !isGroupExists?.(newGroupName)
-      )
-        setStatus("ADD");
-      else setStatus("WAIT");
+
+      if (newGroupName.toLowerCase() === groupToEdit?.name.toLowerCase())
+        setStatus("SAME");
+      else {
+        const isBusy = isGroupExists?.(newGroupName);
+        const isValid = /[а-яА-Яa-zA-Z0-9]/.test(newGroupName);
+        if (isBusy) setStatus("BUSY");
+        else if (isValid) setStatus("ADD");
+        else setStatus("INVALID");
+      }
     },
-    [setStatus, isGroupExists]
+    [groupToEdit, setStatus, isGroupExists]
   );
 
   const handleGroupRename = useCallback(() => {
@@ -140,7 +218,7 @@ export const GroupToEdit = React.memo(() => {
     if (status === "ADD" && !isGroupExists?.(groupName)) {
       renameGroup?.(groupToEdit!, groupName.replace(/\s+/g, " ").trim());
       setEdit(false);
-      setStatus("WAIT");
+      setStatus("BUSY");
     }
   }, [
     inputRef,
