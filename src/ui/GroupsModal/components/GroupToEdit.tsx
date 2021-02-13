@@ -66,7 +66,8 @@ const ControlButtons: React.FC<TControlButtons> = ({
         >
           {!isActiveGroupsInit
             ? "Скрыть остальные"
-            : activeGroupsLength === 1
+            : activeGroupsLength === 1 &&
+              activeGroups?.[0] === controls.groupId.toString()
             ? "Показать все группы"
             : isActive
             ? "Скрыть группу"
@@ -231,6 +232,7 @@ export const GroupToEdit = React.memo(() => {
   ]);
 
   const controls = {
+    groupId: groupToEdit?._id,
     status: status,
     setStatus: setStatus,
     isEdit: isEdit,
