@@ -40,15 +40,21 @@ const ControlButtons: React.FC<TControlButtons> = ({
     handleActiveGroup,
     removeGroup,
     removeGroupFromAllContacts,
-    setGroupToEdit,
+    setGroupToEditId,
     groups,
   } = useGroups();
 
   const handleRemovingGroup = useCallback(() => {
     removeGroup?.(group!);
     removeGroupFromAllContacts?.(group!._id.toString());
-    setGroupToEdit?.(groups![0]);
-  }, [removeGroup, group, removeGroupFromAllContacts, groups, setGroupToEdit]);
+    setGroupToEditId?.(groups![0]._id);
+  }, [
+    removeGroup,
+    group,
+    removeGroupFromAllContacts,
+    groups,
+    setGroupToEditId,
+  ]);
 
   const DisplayButton = () => {
     const [isVisible, setVisible] = useState(false);
@@ -165,7 +171,8 @@ const ControlButtons: React.FC<TControlButtons> = ({
 
 export const GroupToEdit = React.memo(() => {
   const {
-    groupToEdit,
+    groupToEditId,
+    getGroupById,
     isGroupActive,
     activeGroups,
     removeGroup,
@@ -173,6 +180,8 @@ export const GroupToEdit = React.memo(() => {
     isGroupExists,
     renameGroup,
   } = useGroups();
+
+  const groupToEdit = getGroupById?.(groupToEditId!.toString());
 
   const isSmall = useMedia({ maxWidth: "450px" });
 

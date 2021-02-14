@@ -133,6 +133,7 @@ export const ContactModalBodyGroupsList: React.FC<Props> = (props) => {
         name: groupName.replace(/\s+/g, " ").trim(),
         removable: true,
         editable: true,
+        countContacts: 0,
       });
       inputRef.current!.value = "";
       setNewGroupNameStatus("CLOSE");

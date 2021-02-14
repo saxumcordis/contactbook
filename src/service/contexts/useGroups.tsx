@@ -27,8 +27,9 @@ type TGroupsContext = {
   handleContactGroups: (groupsId: string, groupId: string) => string;
   removeGroupFromAllContacts: (groupId: string) => void;
   getGroupNameById: (groupId: string) => string | undefined;
-  groupToEdit: Group;
-  setGroupToEdit: (group: Group) => void;
+  getGroupById: (groupId: string) => Group | undefined;
+  groupToEditId: number;
+  setGroupToEditId: (groupId: number) => void;
 };
 
 const statusCodes: any = {
@@ -45,7 +46,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
   const [groups, setGroups] = useState<Group[]>(
     JSON.parse(
       localStorage.getItem("contactBookGroups") ||
-        '[{"_id":1,"name":"Избранное","removable":false, "editable": false}]'
+        '[{"_id":1,"name":"Избранное","removable":false, "editable": false, "countContacts": 0}]'
     )
   );
 
@@ -53,12 +54,7 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
 
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
   const [status, setStatus] = useState(0);
-  const [groupToEdit, setGroupToEdit] = useState<Group>({
-    _id: 1,
-    name: "Избранное",
-    removable: false,
-    editable: false,
-  });
+  const [groupToEditId, setGroupToEditId] = useState<number>(1);
 
   const getStatus = useCallback(() => statusCodes[status], [status]);
 
@@ -85,6 +81,25 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => setStatus(0), [groups]);
 
+  const updateCountContacts = useCallback(() => {
+    const countContacts = (groupId: number) =>
+      contactBook?.reduce(
+        (a, b) =>
+          a +
+          (b.groups?.split("").some((e) => e === groupId.toString()) ? 1 : 0),
+        0
+      ) || 0;
+    setGroups(
+      groups.map((group) => ({
+        ...group,
+        countContacts: countContacts(group._id),
+      }))
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setGroups, contactBook]);
+
+  useEffect(() => updateCountContacts(), [updateCountContacts]);
+
   const addGroup = useCallback(
     (newGroup) =>
       isGroupExists(newGroup.name)
@@ -110,17 +125,9 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
             e._id === group._id ? { ...e, name: newGroupName } : e
           )
         );
-        setGroupToEdit({ ...group, name: newGroupName });
       }
     },
-    [
-      isGroupExists,
-      setGroups,
-      groups,
-      setActiveGroups,
-      activeGroups,
-      setGroupToEdit,
-    ]
+    [isGroupExists, setGroups, groups, setActiveGroups, activeGroups]
   );
 
   const isInGroup = useCallback(
@@ -177,6 +184,11 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     [groups]
   );
 
+  const getGroupById = useCallback(
+    (id) => groups.find((group) => group._id.toString() === id),
+    [groups]
+  );
+
   const value = {
     groups,
     getStatus,
@@ -195,8 +207,9 @@ export const GroupsContextProvider: React.FC = ({ children }) => {
     handleContactGroups,
     removeGroupFromAllContacts,
     getGroupNameById,
-    groupToEdit,
-    setGroupToEdit,
+    getGroupById,
+    groupToEditId,
+    setGroupToEditId,
   };
 
   return (

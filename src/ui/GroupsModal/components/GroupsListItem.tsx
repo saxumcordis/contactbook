@@ -18,7 +18,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
     groups,
     activeGroups,
     isGroupActive,
-    setGroupToEdit,
+    setGroupToEditId,
     handleActiveGroup,
   } = useGroups();
 
@@ -40,7 +40,7 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
           [styles.groupsListItem_name_notActive]:
             !isActive && isActiveGroupsInit,
         })}
-        onClick={() => setGroupToEdit?.(group)}
+        onClick={() => setGroupToEditId?.(group._id)}
       >
         {group.name}
       </span>

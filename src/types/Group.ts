@@ -3,4 +3,5 @@ export interface Group {
   name: string;
   removable: boolean;
   editable: boolean;
+  countContacts: number;
 }
