@@ -66,7 +66,8 @@
   flex-direction: column;
   list-style: none;
   padding: 0;
-  height: 140px;
+  height: 166px;
+  margin-bottom: 0;
   overflow: hidden scroll;
 }
 
@@ -75,7 +76,7 @@
   display: flex;
   justify-content: space-between;
   color: $color4;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   padding: 5px;
   align-items: center;
   height: 22px;
@@ -122,13 +123,25 @@
   }
 }
 
+.countContacts {
+  @include wordBreaker;
+  display: inline !important;
+  max-width: 160px;
+  padding: 6px 0 5px 0;
+  margin-bottom: 7px;
+  color: $color3;
+  & > span {
+    color: $primary;
+  }
+}
+
 .button {
   fill: $primary;
   color: $primary;
   font-size: 15px;
   min-width: 15px;
   max-width: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   outline: none;
   transition: 0.2s ease-in all;
   cursor: pointer;
@@ -189,7 +202,7 @@
   &::before {
     border-left: 1px solid $primary;
     width: 1px;
-    height: 90%;
+    height: 95%;
     content: "";
     position: absolute;
     left: 70%;
@@ -197,10 +210,10 @@
 
   .groupToEditNameWrapper {
     padding: 3px 0 5px 5px;
-    height: 22px;
     display: flex;
     justify-content: flex-end;
     margin-left: auto;
+    flex-direction: column;
 
     & > .groupToEditName {
       @include wordBreaker;
@@ -240,7 +253,7 @@
   .invertedButton,
   .invertedButton_notActive,
   .button_notActive {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     padding: 5px 0 5px 0;
     outline: none;
   }
@@ -255,7 +268,7 @@
 .controlButtonTip {
   color: $primary;
   padding: 6px 0 5px 0;
-  margin: 0 5px 10px 0;
+  margin: 0 5px 7px 0;
 
   &_notVisible {
     opacity: 0;
@@ -308,11 +321,12 @@
 
   .groupToEditNameWrapper {
     padding: 0 !important;
-
-    .findGroup {
-      height: 10px;
-    }
+    justify-content: flex-start !important;
   }
+    .findGroup {
+      height: 10px !important;
+    }
+
 
   .button {
     max-width: 10px;
