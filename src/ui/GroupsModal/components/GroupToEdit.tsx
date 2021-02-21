@@ -13,6 +13,7 @@ import {
   EyeOutlined,
   CheckCircleOutlined,
   EditOutlined,
+  StopOutlined,
 } from "@ant-design/icons";
 
 import styles from "./GroupsEditing.module.scss";
@@ -119,12 +120,19 @@ const ControlButtons: React.FC<TControlButtons> = ({
               }
             />
           )}
-          <EditOutlined
-            className={styles.button}
-            onClick={controls.handleEdition}
-            onMouseEnter={() => setVisible(true)}
-            onMouseLeave={() => setVisible(false)}
-          />
+          {!controls.isEdit ? (
+            <EditOutlined
+              className={styles.button}
+              onClick={controls.handleEdition}
+              onMouseEnter={() => setVisible(true)}
+              onMouseLeave={() => setVisible(false)}
+            />
+          ) : (
+            <StopOutlined
+              className={styles.button}
+              onClick={controls.handleEdition}
+            />
+          )}
         </div>
       </li>
     );
