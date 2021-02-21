@@ -1,0 +1,113 @@
+@import "../../../assets/theme/colors";
+
+.groupsCreating {
+  width: 100%;
+}
+
+.content {
+  margin-top: 15px;
+  padding-left: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.newGroupWrapper {
+  width: 69%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controlButtons {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  & > :nth-child(1) {
+    margin-right: 4px;
+  }
+}
+
+.newGroupInput {
+  border: 1px solid $color3;
+  padding: 2px 8px;
+  display: flex;
+  flex-grow: 1;
+  outline: none;
+  background: $color1;
+  font-family: "FuturaBookC", serif;
+  font-size: 15px;
+  &::placeholder {
+    color: $color3;
+  }
+  height: 16px;
+  color: $primary;
+  caret-color: $primary;
+}
+
+.button {
+  fill: $primary;
+  color: $primary;
+  font-size: 15px;
+  min-width: 15px;
+  max-width: 15px;
+  outline: none;
+  transition: 0.2s ease-in all;
+  cursor: pointer;
+
+  &_notActive {
+    color: $color3 !important;
+    fill: $color3 !important;
+    opacity: 0.32;
+    outline: none;
+    cursor: not-allowed !important;
+  }
+
+  &:hover {
+    color: $color3;
+    fill: $color3;
+    opacity: 0.32;
+  }
+}
+
+.newGroupTip {
+  display: inline-flex;
+  margin-top: 8px;
+  color: $color3;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 700px) {
+  .newGroupWrapper {
+    width: 54%;
+  }
+  .button {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    font-size: 12px;
+  }
+
+  .newGroupWrapper {
+    width: 54%;
+  }
+  .button {
+    font-size: 10px;
+    max-width: 10px;
+    min-width: 10px;
+  }
+
+  .newGroupInput {
+    height: 12px;
+    padding: 2px 4px;
+    font-size: 10px;
+    &::placeholder {
+      font-size: 10px;
+    }
+  }
+
+  .newGroupTip {
+    font-size: 9px;
+  }
+}
