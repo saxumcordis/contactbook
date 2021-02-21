@@ -170,7 +170,9 @@ const ControlButtons: React.FC<TControlButtons> = ({
 
   return (
     <ul className={styles.controlButtons}>
-      <li className={styles.countContacts}>Контактов в группе: <span>{group?.countContacts}</span></li>
+      <li className={styles.countContacts}>
+        Контактов в группе: <span>{group?.countContacts}</span>
+      </li>
       <DisplayButton />
       {group?.editable && <RenameControls />}
       {group?.removable && <DeleteButton />}
