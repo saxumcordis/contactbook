@@ -53,7 +53,7 @@ export const GroupsEditing = () => {
     <ul className={styles.groupsList}>
       <li className={styles.groupsListItem}>
         <input
-          className={classNames(styles.groupsListItem_name, styles.findGroup)}
+          className={styles.findGroup}
           placeholder="Поиск группы"
           onChange={handleSearchValue}
         />
