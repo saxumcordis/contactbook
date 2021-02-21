@@ -74,10 +74,9 @@
 .groupsListItem {
   width: 182px;
   display: flex;
-  justify-content: space-between;
   color: $color4;
   margin-bottom: 7px;
-  padding: 5px;
+  padding: 5px 0 5px 19px;
   align-items: center;
   height: 22px;
 
@@ -95,7 +94,6 @@
     background: $color3;
     cursor: pointer;
     max-width: 140px;
-
     &_active {
       background: $primary;
     }
@@ -107,19 +105,27 @@
   }
 
   .findGroup {
-    border: 1px solid $primary;
-
+    border: 1px solid $color3;
+    padding: 2px 8px;
     width: 138px;
     outline: none;
     background: $color1;
     font-family: "FuturaBookC", serif;
     font-size: 15px;
     &::placeholder {
-      color: $primary;
+      color: $color3;
     }
     height: 16px;
     color: $primary;
     caret-color: $primary;
+  }
+
+  .eye {
+    position: absolute;
+    left: 0;
+    &_hidden {
+      opacity: 0;
+    }
   }
 }
 
@@ -200,7 +206,7 @@
   justify-content: flex-start;
   height: 162px;
   &::before {
-    border-left: 1px solid $primary;
+    border-left: 1px solid $color3;
     width: 1px;
     height: 95%;
     content: "";

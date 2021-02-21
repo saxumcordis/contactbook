@@ -34,6 +34,19 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
       onMouseEnter={() => setSettingDisplaying(true)}
       onMouseLeave={() => setSettingDisplaying(false)}
     >
+      {
+        <EyeOutlined
+          className={classNames(styles.eye, {
+            [styles.invertedButton]: isActive,
+            [styles.invertedButton_notActive]: !isActive,
+            [styles.eye_hidden]:
+              !isSettingDisplaying &&
+              ((isActive && isAllGroupsActive) || !isActive),
+          })}
+          hidden={isActive!}
+          onClick={() => handleActiveGroup?.(group!._id.toString())}
+        />
+      }
       <span
         className={classNames(styles.groupsListItem_name, {
           [styles.groupsListItem_name_active]: isActive && !isAllGroupsActive,
@@ -44,16 +57,6 @@ export const GroupsListItem: React.FC<TGroupsListItem> = ({ group }) => {
       >
         {group.name}
       </span>
-      {(isSettingDisplaying || (isActive && !isAllGroupsActive)) && (
-        <EyeOutlined
-          className={classNames({
-            [styles.invertedButton]: isActive,
-            [styles.invertedButton_notActive]: !isActive,
-          })}
-          hidden={isActive!}
-          onClick={() => handleActiveGroup?.(group!._id.toString())}
-        />
-      )}
     </li>
   );
 };
