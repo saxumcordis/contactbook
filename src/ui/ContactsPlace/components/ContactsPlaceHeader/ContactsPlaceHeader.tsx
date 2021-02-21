@@ -4,6 +4,7 @@ import { useContactBook } from "../../../../service/contexts";
 import { useGroupsModal } from "../../../../service/contexts/useGroupsModal";
 import { useMedia } from "use-media";
 import { handleLongStringWithTip } from "../../../../service/stringHandlers";
+import { useGroups } from "../../../../service/contexts/useGroups";
 
 type Props = {
   currentLength: number | undefined;
@@ -11,8 +12,9 @@ type Props = {
 
 export const ContactsPlaceHeader: React.FC<Props> = (props) => {
   const { currentLength } = props;
-  const { length } = useContactBook();
+  const { length, searchValue } = useContactBook();
   const { open } = useGroupsModal();
+  const { activeGroups } = useGroups();
 
   const isSmall = useMedia({ maxWidth: "450px" });
 
@@ -24,7 +26,7 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
       </span>
       <span>Сортировка</span>
       <span className={styles.fixedSpan}>
-        {currentLength === length
+        {currentLength === length && !activeGroups?.length && !searchValue
           ? `${
               isSmall
                 ? "Кол-во контактов " +
