@@ -83,7 +83,8 @@ export const NewContactModal: React.FC = () => {
         actions.resetForm();
         close();
       }}
-      render={({
+    >
+      {({
         dirty,
         resetForm,
         errors,
@@ -127,6 +128,6 @@ export const NewContactModal: React.FC = () => {
           />
         </Form>
       )}
-    />
+    </Formik>
   );
 };

@@ -91,7 +91,8 @@ export const ContactModal: React.FC<Props> = (props) => {
       onSubmit={(values) => {
         handleUpdate(values);
       }}
-      render={({
+    >
+      {({
         dirty,
         resetForm,
         errors,
@@ -154,6 +155,6 @@ export const ContactModal: React.FC<Props> = (props) => {
           />
         </Form>
       )}
-    />
+    </Formik>
   );
 };
