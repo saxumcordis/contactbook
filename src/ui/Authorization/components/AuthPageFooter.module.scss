@@ -1,0 +1,26 @@
+@import "../../../assets/theme/colors";
+
+.footer {
+  width: 95%;
+  border-top: 1px solid $color3;
+  padding: 10px 10px;
+  &Choice {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &Confirm {
+    margin-top: 10px;
+    & > button {
+      width: 100%;
+    }
+  }
+}
+
+.button {
+  width: 45%;
+  &_notActive {
+    opacity: 0.32;
+  }
+}
