@@ -70,6 +70,7 @@ export const AuthPageBody = () => {
         labelSuffix={<ExclamationCircleOutlined />}
         hiddenTip={true}
         tipPlacement="leftTop"
+        type="password"
       />
       {isRegistration && (
         <>
@@ -82,6 +83,7 @@ export const AuthPageBody = () => {
             labelSuffix={<ExclamationCircleOutlined />}
             hiddenTip={true}
             tipPlacement="leftTop"
+            type="password"
           />
           <LabeledInputWithError
             labelStyle={styles.labelStyle}
