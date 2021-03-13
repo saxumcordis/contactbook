@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import { defaultUser, useUser } from "./useUser";
 
 export enum AuthMode {
   LOGIN = "login",
@@ -10,9 +11,10 @@ export enum AuthStatus {
   READYFORREGISTER = "readyForRegister",
   EMPTYDATA = "emptyData",
   WRONGFIELD = "wrongField",
+  LOGGED = "logged",
 }
 
-type TAuthData = {
+export type TAuthData = {
   login: string | null;
   password: string | null;
   confirmPassword: string | null;
@@ -24,7 +26,7 @@ type TAuthDataContext = {
   loginData: Partial<TAuthData> | null;
   registerData: TAuthData | null;
   clearData: () => void;
-  confirmData: () => void; //@TODO;
+  confirmData: (data: TAuthData) => void; //@TODO;
   authMode: AuthMode;
   setAuthMode: (mode: AuthMode) => void;
   authStatus: AuthStatus;
@@ -43,7 +45,7 @@ export const AuthDataContext = createContext<Partial<TAuthDataContext>>({
   authMode: AuthMode.LOGIN,
 });
 
-const defaultAuthData = {
+export const defaultAuthData = {
   login: "",
   password: "",
   confirmPassword: "",
@@ -58,13 +60,31 @@ export const AuthDataProvider: React.FC = ({ children }) => {
     AuthStatus.EMPTYDATA
   );
 
+  const { reloadUser } = useUser();
+
   const loginData = { login: authData.login, password: authData.password };
   const registerData = authData;
 
   const clearData = useCallback(() => setAuthData(defaultAuthData), [
     setAuthData,
   ]);
-  const confirmData = () => {};
+  const confirmData = useCallback(
+    (data: TAuthData) => {
+      if (authMode === AuthMode.LOGIN) {
+        const { login, password } = data;
+
+        if (login?.match(/^test$/) && password?.match(/^testUser1$/)) {
+          localStorage.setItem(
+            "AUTHORIZED_USER_CONTACT_BOOK",
+            JSON.stringify(defaultUser)
+          );
+          setAuthStatus(AuthStatus.LOGGED);
+          reloadUser();
+        }
+      }
+    },
+    [authMode, reloadUser]
+  );
 
   const value = {
     loginData,
