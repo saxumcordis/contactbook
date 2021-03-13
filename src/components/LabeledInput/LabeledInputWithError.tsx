@@ -8,15 +8,14 @@ import {
   LabeledInputProps,
   LabeledInputWithErrorProps,
 } from "../../types/Components";
+import { InputProps } from "antd/lib/input";
 
 export const LabeledInputWithError: React.FC<
-  LabeledInputProps & LabeledInputWithErrorProps
+  LabeledInputProps & LabeledInputWithErrorProps & InputProps
 > = (props) => {
   const {
     className,
-    id,
     labelStyle,
-    name,
     placeholder,
     labelText,
     labelSuffix,
@@ -46,9 +45,8 @@ export const LabeledInputWithError: React.FC<
       </div>
       <Field
         className={styles.input}
-        id={id}
-        name={name}
         placeholder={placeholder}
+        {...props}
       />
     </div>
   );

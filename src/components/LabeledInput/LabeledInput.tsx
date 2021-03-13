@@ -4,13 +4,14 @@ import { Field } from "formik";
 
 import styles from "./LabeledInput.module.scss";
 import { LabeledInputProps } from "../../types/Components";
+import { InputProps } from "antd/lib/input";
 
-export const LabeledInput: React.FC<LabeledInputProps> = (props) => {
+export const LabeledInput: React.FC<LabeledInputProps & InputProps> = (
+  props
+) => {
   const {
     className,
-    id,
     labelStyle,
-    name,
     placeholder,
     disabled = false,
     labelText,
@@ -24,10 +25,9 @@ export const LabeledInput: React.FC<LabeledInputProps> = (props) => {
       </label>
       <Field
         className={styles.input}
-        id={id}
-        name={name}
         placeholder={placeholder}
         disabled={disabled}
+        {...props}
       />
     </div>
   );
