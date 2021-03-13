@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/react-hooks";
+// import { useQuery } from "@apollo/react-hooks";
 import React, { createContext, useCallback, useContext, useState } from "react";
-import { ApolloQueryResult, NetworkStatus } from "apollo-client";
+// import { ApolloQueryResult, NetworkStatus } from "apollo-client";
 
 type TUser = {
   userId: string;
@@ -32,7 +32,7 @@ export const UserContext = createContext<TUserContext>({
     "",
 });
 
-const defaultUser = {
+export const defaultUser = {
   userId: "0",
   firstName: "testUser",
   lastName: null,
@@ -42,7 +42,11 @@ const defaultUser = {
 };
 
 export const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<TUser | null>(null);
+  const authorizedUser = JSON.parse(
+    localStorage.getItem("AUTHORIZED_USER_CONTACT_BOOK")!
+  );
+
+  const [user, setUser] = useState<TUser | null>(authorizedUser);
 
   //const { data, loading, refetch } = useQuery();
 
@@ -50,7 +54,10 @@ export const UserProvider: React.FC = ({ children }) => {
 
   const reloadUser = useCallback(
     () => {
-      // return refetch();
+      const authorizedUser = JSON.parse(
+        localStorage.getItem("AUTHORIZED_USER_CONTACT_BOOK")!
+      );
+      setUser(authorizedUser);
       return "";
     },
     [
