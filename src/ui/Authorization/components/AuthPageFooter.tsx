@@ -4,20 +4,26 @@ import classNames from "classnames";
 import {
   AuthMode,
   AuthStatus,
+  TAuthData,
   useAuthData,
 } from "../../../service/contexts/useAuth";
 
 import styles from "./AuthPageFooter.module.scss";
+import { useFormikContext } from "formik";
 
 export const AuthPageFooter = () => {
   const { authMode, setAuthMode, authStatus } = useAuthData();
   const isLogin = authMode === AuthMode.LOGIN;
   const isRegistration = authMode === AuthMode.REGISTRATION;
 
-  const isConfirmDisabled = ![
-    AuthStatus.READYFORLOGIN,
-    AuthStatus.READYFORREGISTER,
-  ].includes(authStatus!);
+  const { errors, dirty, submitForm } = useFormikContext<TAuthData>();
+
+  const isConfirmDisabled =
+    !dirty ||
+    !!Object.keys(errors).length ||
+    ![AuthStatus.READYFORLOGIN, AuthStatus.READYFORREGISTER].includes(
+      authStatus!
+    );
 
   return (
     <div className={styles.footer}>
@@ -47,10 +53,12 @@ export const AuthPageFooter = () => {
             [styles.button_notActive]: isConfirmDisabled,
           })}
           disabled={isConfirmDisabled}
+          onClick={submitForm}
         >
           ОК
         </Button>
       </div>
+      <label>login: test password: testUser1</label> {/*@TODO warnings*/}
     </div>
   );
 };
