@@ -20,7 +20,7 @@ export const ContactsPlace = () => {
   const searchOptions = {
     includeScore: true,
     location: 0,
-    threshold: 0.5,
+    threshold: 0.2,
     distance: 100,
     keys: [
       "name",
