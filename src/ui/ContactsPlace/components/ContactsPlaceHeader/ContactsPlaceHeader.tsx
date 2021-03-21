@@ -41,7 +41,7 @@ export const ContactsPlaceHeader: React.FC<Props> = (props) => {
       <span className={styles.pointer} onClick={open}>
         Управление группами
       </span>
-      <span>Сортировка</span>
+      <span style={{opacity: 0.3}}>Настройки</span>
       <span className={styles.fixedSpan}>
         {isContactBookNotFiltered
           ? `${
