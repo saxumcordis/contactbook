@@ -28,24 +28,28 @@ export const AuthPageFooter = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.footerChoice}>
-        <Button
-          className={classNames(styles.button, {
-            [styles.button_notActive]: isRegistration,
-          })}
-          disabled={isRegistration}
-          onClick={() => setAuthMode?.(AuthMode.REGISTRATION)}
-        >
-          Регистрация
-        </Button>
-        <Button
-          className={classNames(styles.button, {
-            [styles.button_notActive]: isLogin,
-          })}
-          disabled={isLogin}
-          onClick={() => setAuthMode?.(AuthMode.LOGIN)}
-        >
-          Вход
-        </Button>
+          {isLogin &&
+          <Button
+              className={classNames(styles.button, {
+                  [styles.button_notActive]: isRegistration,
+              })}
+              disabled={isRegistration}
+              onClick={() => setAuthMode?.(AuthMode.REGISTRATION)}
+          >
+              Регистрация
+          </Button>
+          }
+          {isRegistration &&
+          <Button
+              className={classNames(styles.button, {
+                  [styles.button_notActive]: isLogin,
+              })}
+              disabled={isLogin}
+              onClick={() => setAuthMode?.(AuthMode.LOGIN)}
+          >
+              Вход в существующий аккаунт
+          </Button>
+          }
       </div>
       <div className={styles.footerConfirm}>
         <Button
@@ -58,7 +62,7 @@ export const AuthPageFooter = () => {
           ОК
         </Button>
       </div>
-      <label>login: test password: testUser1</label> {/*@TODO warnings*/}
+      <label>{isLogin ? 'login: test password: testUser1' : 'Temporary unavailable'} </label> {/*@TODO warnings*/}
     </div>
   );
 };
