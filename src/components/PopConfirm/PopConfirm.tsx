@@ -35,7 +35,7 @@ export const PopConfirm: React.FC<PopConfirmProps> = (props) => {
 
   if (isOpen)
     return (
-      <div className={childrenClass}>
+      <div className={styles.zIndex}>
         {children}
         <BaseModal
           title={title}

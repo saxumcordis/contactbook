@@ -41,6 +41,10 @@
   align-items: center;
 }
 
+.zIndex {
+  z-index: 1;
+}
+
 @media screen and (max-width: 450px) {
   .popConfirm {
     max-width: 300px;
